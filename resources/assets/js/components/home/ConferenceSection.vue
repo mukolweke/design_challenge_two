@@ -1,0 +1,136 @@
+<template>
+    <div class="grid-x member">
+        <div class="medium-offset-1 medium-10 columns">
+            <h6 class="text-center"><strong>OUR CONFERENCES</strong></h6>
+            <div class="row small-collapse medium-uncollapse">
+
+                <slick ref="slick" :options="slickOptions">
+                    <div class="column medium-4 small-4 textOverImage"
+                         style="background-image: url('storage/Bitmap5.png');">
+                        <div class="hover-height">
+                            <div class="link-slider">
+                                <h3>The Future of GIS <br/>in our Region</h3>
+                                <p>Promoting growth in our<br/> chapters and communities</p>
+                                <button type="button" class="button button_conference">View Conference</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column medium-4 small-4 textOverImage"
+                         style="background-image: url('storage/Bitmap6.png');">
+                        <div class="hover-height">
+                            <div class="link-slider">
+                                <h3>The Future of GIS <br/>in our Region</h3>
+                                <p>Promoting growth in our<br/> chapters and communities</p>
+                                <button type="button " class="button  button_conference">View Conference</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column medium-4 small-4 textOverImage"
+                         style="background-image: url('storage/Bitmap9.png');">
+                        <div class="hover-height">
+                            <div class="link-slider">
+                                <h3>The Future of GIS <br/>in our Region</h3>
+                                <p>Promoting growth in our<br/> chapters and communities</p>
+                                <button type="button" class="button  button_conference">View Conference</button>
+                            </div>
+                        </div>
+                    </div>
+                </slick>
+
+
+
+
+
+
+
+
+
+                <!--<div class="my-slick-carousel">-->
+
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import Slick from 'vue-slick';
+
+    export default {
+        name: "ConferenceSection",
+        slickOptions: {
+            slidesToShow: 2,
+            infinite: true,
+            accessibility: true,
+            adaptiveHeight: false,
+            arrows: true,
+            dots: true,
+            draggable: true,
+            edgeFriction: 0.30,
+            swipe: true
+        },
+
+        components: { Slick },
+
+    }
+</script>
+
+<style scoped>
+    .hover_btn {
+        background: white;
+        color: black;
+        border-radius: 50px;
+        width: 40%;
+    }
+    .hover-height {
+        height: 350px;
+        transition: 0.7s;
+    }
+
+    .hover-height:hover {
+        transition: 0.7s;
+        cursor: pointer;
+    }
+
+    h5 {
+        font-weight: 600;
+    }
+
+    .hover-height {
+        height: 350px;
+        color: white;
+    }
+
+    .hover-height:hover {
+        cursor: pointer;
+        color: white;
+    }
+
+    .textOverImage {
+        background-size: 100%;
+        transition: 0.7s;
+        background-position: center;
+    }
+
+    .textOverImage:hover {
+        background-size: 110%;
+        transition: 0.7s;
+    }
+
+    .view_pr {
+        width: 15%;
+        margin-left: 0;
+    }
+
+    hr {
+        border-bottom: 1px solid #f68c1e;
+    }
+
+    .button_conference {
+        background-color: #ffffff;
+        color: black;
+        font-weight: bold;
+        border-radius: 30px;
+    }
+
+</style>

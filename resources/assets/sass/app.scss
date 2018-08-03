@@ -1,0 +1,28 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// Foundation Icons
+@import url(https://cdn.jsdelivr.net/npm/foundation-icons@1.0.1/foundation-icons.min.css);
+
+// Variables
+@import "settings";
+
+// Bootstrap
+@import "foundation";
+
+// Font Awesome
+@import "../../../node_modules/font-awesome/scss/font-awesome";
+
+
+// Foundation icons
+@import url(https://cdn.jsdelivr.net/npm/foundation-icons@1.0.1/foundation-icons.min.css);
+
+// Custom
+@import "custom";
+
+
+// Slick Courasel
+//@import url(https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css);
+@import "../../../node_modules/slick-carousel/slick/slick.css";
+
