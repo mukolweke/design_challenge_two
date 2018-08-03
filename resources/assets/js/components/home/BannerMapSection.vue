@@ -1,7 +1,7 @@
 <template>
     <div class="map_bike" style="background: url('storage/Bitmap9.png');background-size: cover;">
         <div class="medium-offset-1 medium-10">
-            <div class="grid-x" style="height: 350px;">
+            <div class="grid-x">
                 <div class="column medium-5 small-12" style="color:white;">
                     <h4>
                         Allowing conservation GIS

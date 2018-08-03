@@ -53567,6 +53567,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "HeaderTwo"
@@ -53587,89 +53593,123 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "top-bar my_nav_two",
-        staticStyle: { background: "transparent !important" }
-      },
-      [
-        _c("div", { staticClass: "top-bar-left" }, [
-          _c("ul", { staticClass: "menu" }, [
-            _c("li", [
-              _c("img", { attrs: { src: "storage/logo.svg", alt: "logo" } })
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "top-bar-right" }, [
-          _c(
-            "ul",
-            {
-              staticClass: "dropdown menu",
-              attrs: { "data-dropdown-menu": "" }
-            },
-            [
+    return _c("div", [
+      _c(
+        "div",
+        {
+          staticClass: "title-bar",
+          attrs: {
+            "data-responsive-toggle": "second-menu",
+            "data-hide-for": "medium"
+          }
+        },
+        [
+          _c("button", {
+            staticClass: "menu-icon",
+            attrs: { type: "button", "data-toggle": "second-menu" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "title-bar-title" }, [_vm._v("Menu")])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "top-bar my_nav_two",
+          staticStyle: { background: "transparent !important" },
+          attrs: { id: "second-menu" }
+        },
+        [
+          _c("div", { staticClass: "top-bar-left" }, [
+            _c("ul", { staticClass: "menu" }, [
               _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("WHO WE ARE")]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "menu vertical" }, [
-                  _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("One")])])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("CONFERENCE")]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "menu vertical" }, [
-                  _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("One")])])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("MEMBERSHIP")]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "menu vertical" }, [
-                  _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("One")])])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("DISCUSSIONS")]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "menu vertical" }, [
-                  _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("One")])])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("MEDIA CENTRE")]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "menu vertical" }, [
-                  _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("One")])])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("SUPPORT")]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "menu vertical" }, [
-                  _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("One")])])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "a",
-                  { staticClass: "button button_join", attrs: { href: "#" } },
-                  [_vm._v("JOIN NOW")]
-                )
+                _c("img", { attrs: { src: "storage/logo.svg", alt: "logo" } })
               ])
-            ]
-          )
-        ])
-      ]
-    )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "top-bar-right" }, [
+            _c(
+              "ul",
+              {
+                staticClass: "dropdown menu",
+                attrs: { "data-dropdown-menu": "" }
+              },
+              [
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("WHO WE ARE")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu vertical" }, [
+                    _c("li", [
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("CONFERENCE")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu vertical" }, [
+                    _c("li", [
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("MEMBERSHIP")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu vertical" }, [
+                    _c("li", [
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("DISCUSSIONS")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu vertical" }, [
+                    _c("li", [
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("MEDIA CENTRE")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu vertical" }, [
+                    _c("li", [
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("SUPPORT")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu vertical" }, [
+                    _c("li", [
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "button button_join", attrs: { href: "#" } },
+                    [_vm._v("JOIN NOW")]
+                  )
+                ])
+              ]
+            )
+          ])
+        ]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -53767,7 +53807,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.input-group[data-v-55ae3a08]{\n    height: 100px;\n    margin:0 auto;\n}\nbutton[data-v-55ae3a08]{\n    background-color: #5d7a37;\n}\n/**/\n", ""]);
+exports.push([module.i, "\n.fi-magnifying-glass[data-v-55ae3a08]{\n    font-size: 50px;\n}\n.fi-arrow-right[data-v-55ae3a08]{\n    font-size: 50px;\n}\n.input-group[data-v-55ae3a08]{\n    height: 100px;\n    margin:0 auto;\n}\nbutton[data-v-55ae3a08]{\n    background-color: #5d7a37;\n}\n/**/\n", ""]);
 
 // exports
 
@@ -53818,30 +53858,34 @@ var staticRenderFns = [
       { staticClass: "grid-x", staticStyle: { "margin-top": "7%" } },
       [
         _c("div", { staticClass: "small-12 medium-offset-2 medium-8 cell" }, [
-          _c("div", { staticClass: "input-group" }, [
-            _c("span", { staticClass: "input-group-label" }, [
-              _c("i", {
-                staticClass: "fi-magnifying-glass",
-                staticStyle: { transform: "rotate(270deg)" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "input-group-field",
-              attrs: {
-                type: "text",
-                placeholder: "What do you wish to learn Today?"
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group-button" }, [
-              _c(
-                "button",
-                { staticClass: "button", attrs: { type: "submit" } },
-                [_c("i", { staticClass: "fi-arrow-right" })]
-              )
-            ])
-          ])
+          _c(
+            "div",
+            { staticClass: "input-group", staticStyle: { padding: "10px" } },
+            [
+              _c("span", { staticClass: "input-group-label" }, [
+                _c("i", {
+                  staticClass: "fi-magnifying-glass",
+                  staticStyle: { transform: "rotate(270deg)" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "input-group-field",
+                attrs: {
+                  type: "text",
+                  placeholder: "What do you wish to learn Today?"
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group-button" }, [
+                _c(
+                  "button",
+                  { staticClass: "button", attrs: { type: "submit" } },
+                  [_c("i", { staticClass: "fi-arrow-right" })]
+                )
+              ])
+            ]
+          )
         ])
       ]
     )
@@ -54124,7 +54168,7 @@ var staticRenderFns = [
                 _c(
                   "a",
                   {
-                    staticClass: "button expanded button_meeting",
+                    staticClass: "button large button_meeting",
                     attrs: { href: "#" }
                   },
                   [_vm._v("Learn more about "), _c("strong", [_vm._v("SCGIS")])]
@@ -54749,7 +54793,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.hover_btn[data-v-14373f30] {\n    background: white;\n    color: black;\n    border-radius: 50px;\n    width: 40%;\n}\n.hover-height[data-v-14373f30] {\n    height: 350px;\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n}\n.hover-height[data-v-14373f30]:hover {\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n    cursor: pointer;\n}\nh5[data-v-14373f30] {\n    font-weight: 600;\n}\n.hover-height[data-v-14373f30] {\n    height: 350px;\n    color: white;\n}\n.hover-height[data-v-14373f30]:hover {\n    cursor: pointer;\n    color: white;\n}\n.textOverImage[data-v-14373f30] {\n    background-size: 100%;\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n    background-position: center;\n}\n.textOverImage[data-v-14373f30]:hover {\n    background-size: 110%;\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n}\n.view_pr[data-v-14373f30] {\n    width: 15%;\n    margin-left: 0;\n}\nhr[data-v-14373f30] {\n    border-bottom: 1px solid #f68c1e;\n}\n.button_conference[data-v-14373f30] {\n    background-color: #ffffff;\n    color: black;\n    font-weight: bold;\n    border-radius: 30px;\n}\n\n", ""]);
+exports.push([module.i, "\n.member[data-v-14373f30]{\n    margin-top: 20px;\n    margin-bottom:30px;\n}\n.hover_btn[data-v-14373f30] {\n    background: white;\n    color: black;\n    border-radius: 50px;\n    width: 40%;\n}\n.hover-height[data-v-14373f30] {\n    height: 350px;\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n}\n.hover-height[data-v-14373f30]:hover {\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n    cursor: pointer;\n}\nh5[data-v-14373f30] {\n    font-weight: 600;\n}\n.hover-height[data-v-14373f30] {\n    height: 350px;\n    color: white;\n}\n.hover-height[data-v-14373f30]:hover {\n    cursor: pointer;\n    color: white;\n}\n.textOverImage[data-v-14373f30] {\n    background-size: 100%;\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n    margin:4px;\n    background-position: center;\n}\n.textOverImage[data-v-14373f30]:hover {\n    background-size: 110%;\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n}\n.view_pr[data-v-14373f30] {\n    width: 15%;\n    margin-left: 0;\n}\nhr[data-v-14373f30] {\n    border-bottom: 1px solid #f68c1e;\n}\n.button_conference[data-v-14373f30] {\n    background-color: #ffffff;\n    color: black;\n    font-weight: bold;\n    border-radius: 30px;\n}\n.slick-dots[data-v-14373f30]{\n    list-style: none;\n}\n\n", ""]);
 
 // exports
 
@@ -54812,30 +54856,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "ConferenceSection",
-    slickOptions: {
+    name: "ConferenceSection"
+
+});
+
+$(document).ready(function () {
+    $('.my-slick-carousel').slick({
         slidesToShow: 2,
-        infinite: true,
-        accessibility: true,
-        adaptiveHeight: false,
-        arrows: true,
-        dots: true,
-        draggable: true,
-        edgeFriction: 0.30,
-        swipe: true
-    },
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        arrows: false,
+        adaptiveHeight: true,
 
-    components: { Slick: __WEBPACK_IMPORTED_MODULE_0_vue_slick___default.a }
-
+        mobileFirst: true
+    });
 });
 
 /***/ }),
@@ -58116,21 +58155,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "grid-x member" }, [
-    _c("div", { staticClass: "medium-offset-1 medium-10 columns" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row small-collapse medium-uncollapse" },
-        [
-          _c("slick", { ref: "slick", attrs: { options: _vm.slickOptions } }, [
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "grid-x member" }, [
+      _c("div", { staticClass: "medium-offset-1 medium-10 columns" }, [
+        _c("h6", { staticClass: "text-center" }, [
+          _c("strong", [_vm._v("OUR CONFERENCES")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row small-collapse medium-uncollapse" }, [
+          _c("div", { staticClass: "my-slick-carousel" }, [
             _c(
               "div",
               {
                 staticClass: "column medium-4 small-4 textOverImage",
                 staticStyle: {
-                  "background-image": "url('storage/Bitmap5.png')"
+                  "background-image": "url('storage/conference2.jpg')"
                 }
               },
               [
@@ -58166,7 +58211,7 @@ var render = function() {
               {
                 staticClass: "column medium-4 small-4 textOverImage",
                 staticStyle: {
-                  "background-image": "url('storage/Bitmap6.png')"
+                  "background-image": "url('storage/group_photo.jpg')"
                 }
               },
               [
@@ -58202,7 +58247,7 @@ var render = function() {
               {
                 staticClass: "column medium-4 small-4 textOverImage",
                 staticStyle: {
-                  "background-image": "url('storage/Bitmap9.png')"
+                  "background-image": "url('storage/speaker.jpg')"
                 }
               },
               [
@@ -58233,19 +58278,8 @@ var render = function() {
               ]
             )
           ])
-        ],
-        1
-      )
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h6", { staticClass: "text-center" }, [
-      _c("strong", [_vm._v("OUR CONFERENCES")])
+        ])
+      ])
     ])
   }
 ]
@@ -58344,7 +58378,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.member[data-v-533c28d6]{\n    margin-top:40px;\n    margin-bottom:70px;\n}\nh5[data-v-533c28d6]{\n     font-weight: 600;\n}\n.hover-height[data-v-533c28d6] {\n    height: 350px;\n    color: white;\n}\n.hover-height[data-v-533c28d6]:hover {\n    cursor: pointer;\n    color: white;\n}\n.textOverImage[data-v-533c28d6]{\n    background-size: cover;\n    background-position: center;\n    border-bottom: 3px solid orangered;\n}\n.textOverImage[data-v-533c28d6]:hover{\n    height: 300px;\n}\n.textOverImage[data-v-533c28d6]:after{\n    content: attr(data-text)\n}\n.link-slider[data-v-533c28d6]{\n    padding-top: 310px;\n    -webkit-transition: 0.9s;\n    transition: 0.9s;\n    padding-left: 30px;\n    display: none;\n    color: black;\n    font-weight: bold;\n}\n.link-slider[data-v-533c28d6]:hover{\n    display: block;\n    -webkit-transition: 0.9s;\n    transition: 0.9s;\n}\n.view_pr[data-v-533c28d6]{\n    width: 15%;\n    margin-left: 0;\n}\nhr[data-v-533c28d6]{\n    border-bottom: 1px solid #f68c1e;\n}\n.button_go[data-v-533c28d6]{\n    width: 50px;\n    background-color: #f68c1e;\n    color: black;\n    font-weight:bold;\n    height:50px;\n    border-radius: 60%;\n}\n.fi-arrow-right[data-v-533c28d6]{\n    background-color: transparent;\n    color:white;\n}\n\n", ""]);
+exports.push([module.i, "\n.member[data-v-533c28d6]{\n    margin-top:40px;\n    margin-bottom:70px;\n}\nh5[data-v-533c28d6]{\n     font-weight: 600;\n}\n.hover-height[data-v-533c28d6] {\n    height: 350px;\n    color: white;\n}\n.hover-height[data-v-533c28d6]:hover {\n    cursor: pointer;\n    color: white;\n}\n.textOverImage[data-v-533c28d6]{\n    background-size: cover;\n    background-position: center;\n    border-bottom: 3px solid orangered;\n}\n.textOverImage[data-v-533c28d6]:hover{\n    height: 300px;\n}\n.textOverImage[data-v-533c28d6]:after{\n    content: attr(data-text)\n}\n.link-slider[data-v-533c28d6]{\n    padding-top: 310px;\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n    padding-left: 30px;\n    display: none;\n    color: black;\n    font-weight: bold;\n}\n.link-slider[data-v-533c28d6]:hover{\n    display: block;\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n}\n.view_pr[data-v-533c28d6]{\n    width: 15%;\n    margin-left: 0;\n}\nhr[data-v-533c28d6]{\n    border-bottom: 1px solid #f68c1e;\n}\n.button_go[data-v-533c28d6]{\n    width: 50px;\n    background-color: #f68c1e;\n    color: black;\n    font-weight:bold;\n    height:50px;\n    border-radius: 60%;\n}\n.fi-arrow-right[data-v-533c28d6]{\n    background-color: transparent;\n    color:white;\n}\n\n", ""]);
 
 // exports
 
@@ -58355,8 +58389,6 @@ exports.push([module.i, "\n.member[data-v-533c28d6]{\n    margin-top:40px;\n    
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
 //
 //
 //
@@ -58491,11 +58523,11 @@ var staticRenderFns = [
                 _c("div", { staticClass: "link-slider" }, [
                   _c("div", { staticClass: "grid-x" }, [
                     _c("div", { staticClass: "small-9 column" }, [
-                      _c("h5", [_vm._v("Dr Lilian Pintea ")]),
+                      _c("h5", [_vm._v("Dr. Michael Wamaye ")]),
                       _vm._v(" "),
                       _c("p", [
                         _vm._v(
-                          "\n                                    Vice President Conservation Science, the Jance Goodall\n                                    Institute.\n                                "
+                          "\n                                    Head of our design and development team.\n                                "
                         )
                       ])
                     ]),
@@ -58522,11 +58554,11 @@ var staticRenderFns = [
                 _c("div", { staticClass: "link-slider" }, [
                   _c("div", { staticClass: "grid-x" }, [
                     _c("div", { staticClass: "small-9 column" }, [
-                      _c("h5", [_vm._v("Dr Lilian Pintea ")]),
+                      _c("h5", [_vm._v("Mr. Chaka Williams ")]),
                       _vm._v(" "),
                       _c("p", [
                         _vm._v(
-                          "\n                                    Vice President Conservation Science, the Jance Goodall\n                                    Institute.\n                                "
+                          "\n                                    Head of our Software Engineering department.\n                                "
                         )
                       ])
                     ]),
@@ -58719,62 +58751,58 @@ var staticRenderFns = [
       },
       [
         _c("div", { staticClass: "medium-offset-1 medium-10" }, [
-          _c(
-            "div",
-            { staticClass: "grid-x", staticStyle: { height: "350px" } },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "column medium-5 small-12",
-                  staticStyle: { color: "white" }
-                },
-                [
-                  _c("h4", [
-                    _vm._v(
-                      "\n                    Allowing conservation GIS\n                    practitioners to attend the\n                    Esri user conference and\n                    SGIS annual conference .\n                "
-                    )
+          _c("div", { staticClass: "grid-x" }, [
+            _c(
+              "div",
+              {
+                staticClass: "column medium-5 small-12",
+                staticStyle: { color: "white" }
+              },
+              [
+                _c("h4", [
+                  _vm._v(
+                    "\n                    Allowing conservation GIS\n                    practitioners to attend the\n                    Esri user conference and\n                    SGIS annual conference .\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                    Lorem ipsum is simply a dummy text of the printing\n                    and typsetting industry. Lorem ipsum has been the\n                    industry's standard dummy text ever since...\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "grid-x grid-padding-x" }, [
+                  _c("div", { staticClass: "medium-3 small-3 cell" }, [
+                    _c("img", {
+                      staticClass: "play-icon",
+                      attrs: { src: "storage/play_icon.svg" }
+                    })
                   ]),
                   _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "\n                    Lorem ipsum is simply a dummy text of the printing\n                    and typsetting industry. Lorem ipsum has been the\n                    industry's standard dummy text ever since...\n                "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "grid-x grid-padding-x" }, [
-                    _c("div", { staticClass: "medium-3 small-3 cell" }, [
-                      _c("img", {
-                        staticClass: "play-icon",
-                        attrs: { src: "storage/play_icon.svg" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "medium-9 small-9 cell" }, [
-                      _c("p", { staticClass: "span_head" }, [
-                        _c("span", { staticClass: "head_bold" }, [
-                          _vm._v("Learning more with GIS ")
-                        ]),
-                        _vm._v(" "),
-                        _c("br"),
-                        _vm._v(
-                          "Improving\n                            customer service"
-                        ),
-                        _c("br"),
-                        _vm._v(
-                          "with\n                            custom\n                            IOS apps"
-                        )
-                      ])
+                  _c("div", { staticClass: "medium-9 small-9 cell" }, [
+                    _c("p", { staticClass: "span_head" }, [
+                      _c("span", { staticClass: "head_bold" }, [
+                        _vm._v("Learning more with GIS ")
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(
+                        "Improving\n                            customer service"
+                      ),
+                      _c("br"),
+                      _vm._v(
+                        "with\n                            custom\n                            IOS apps"
+                      )
                     ])
                   ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "column small-12 medium-5" })
-            ]
-          )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "column small-12 medium-5" })
+          ])
         ])
       ]
     )

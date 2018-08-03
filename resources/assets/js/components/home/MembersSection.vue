@@ -29,10 +29,9 @@
                         <div class="link-slider">
                             <div class="grid-x">
                                 <div class="small-9 column">
-                                    <h5>Dr Lilian Pintea </h5>
+                                    <h5>Dr. Michael Wamaye </h5>
                                     <p>
-                                        Vice President Conservation Science, the Jance Goodall
-                                        Institute.
+                                        Head of our design and development team.
                                     </p>
                                 </div>
                                 <div class="small-3 column">
@@ -49,10 +48,9 @@
                         <div class="link-slider">
                             <div class="grid-x">
                                 <div class="small-9 column">
-                                    <h5>Dr Lilian Pintea </h5>
+                                    <h5>Mr. Chaka Williams </h5>
                                     <p>
-                                        Vice President Conservation Science, the Jance Goodall
-                                        Institute.
+                                        Head of our Software Engineering department.
                                     </p>
                                 </div>
                                 <div class="small-3 column">
@@ -108,7 +106,7 @@
 
     .link-slider{
         padding-top: 310px;
-        transition: 0.9s;
+        transition: 0.7s;
         padding-left: 30px;
         display: none;
         color: black;
@@ -117,7 +115,7 @@
 
     .link-slider:hover{
         display: block;
-        transition: 0.9s;
+        transition: 0.7s;
     }
 
     .view_pr{

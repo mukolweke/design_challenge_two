@@ -4,9 +4,16 @@
             <h6 class="text-center"><strong>OUR CONFERENCES</strong></h6>
             <div class="row small-collapse medium-uncollapse">
 
-                <slick ref="slick" :options="slickOptions">
+                <!--<slick ref="slick" :options="slickOptions">-->
+                    <!---->
+                <!--</slick>-->
+
+
+
+
+                <div class="my-slick-carousel">
                     <div class="column medium-4 small-4 textOverImage"
-                         style="background-image: url('storage/Bitmap5.png');">
+                         style="background-image: url('storage/conference2.jpg');">
                         <div class="hover-height">
                             <div class="link-slider">
                                 <h3>The Future of GIS <br/>in our Region</h3>
@@ -16,7 +23,7 @@
                         </div>
                     </div>
                     <div class="column medium-4 small-4 textOverImage"
-                         style="background-image: url('storage/Bitmap6.png');">
+                         style="background-image: url('storage/group_photo.jpg');">
                         <div class="hover-height">
                             <div class="link-slider">
                                 <h3>The Future of GIS <br/>in our Region</h3>
@@ -26,7 +33,7 @@
                         </div>
                     </div>
                     <div class="column medium-4 small-4 textOverImage"
-                         style="background-image: url('storage/Bitmap9.png');">
+                         style="background-image: url('storage/speaker.jpg');">
                         <div class="hover-height">
                             <div class="link-slider">
                                 <h3>The Future of GIS <br/>in our Region</h3>
@@ -35,19 +42,7 @@
                             </div>
                         </div>
                     </div>
-                </slick>
-
-
-
-
-
-
-
-
-
-                <!--<div class="my-slick-carousel">-->
-
-                <!--</div>-->
+                </div>
             </div>
         </div>
     </div>
@@ -58,24 +53,29 @@
 
     export default {
         name: "ConferenceSection",
-        slickOptions: {
-            slidesToShow: 2,
-            infinite: true,
-            accessibility: true,
-            adaptiveHeight: false,
-            arrows: true,
-            dots: true,
-            draggable: true,
-            edgeFriction: 0.30,
-            swipe: true
-        },
 
-        components: { Slick },
 
     }
+
+    $(document).ready(function () {
+        $('.my-slick-carousel').slick({
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            arrows: false,
+            adaptiveHeight: true,
+
+            mobileFirst: true
+        });
+    });
 </script>
 
 <style scoped>
+    .member{
+        margin-top: 20px;
+        margin-bottom:30px;
+    }
     .hover_btn {
         background: white;
         color: black;
@@ -109,6 +109,7 @@
     .textOverImage {
         background-size: 100%;
         transition: 0.7s;
+        margin:4px;
         background-position: center;
     }
 
@@ -131,6 +132,10 @@
         color: black;
         font-weight: bold;
         border-radius: 30px;
+    }
+
+    .slick-dots{
+        list-style: none;
     }
 
 </style>

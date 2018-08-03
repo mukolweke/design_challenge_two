@@ -23,16 +23,8 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
 
-        {{--<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>--}}
-
         <script>
        $(document).foundation()
-
-       $(document).ready(function () {
-           $('.my-slick-carousel').slick({
-
-           });
-       });
 
        $(document).ready(() => {
            let offset = 600;

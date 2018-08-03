@@ -143,19 +143,6 @@ body {
       font-weight: 600;
     }
   }
-  //
-  //.img1 {
-  //  background: url('storage/Bitmap5.png');
-  //}
-  //
-  //.img2 {
-  //  background: url('../img/Bitmap6.png') no-repeat;
-  //  background-size: cover;
-  //}
-  //
-  //.img3 {
-  //  background: url('../img/img_forest.jpg');
-  //}
 
   .link-slider {
     display: none;
