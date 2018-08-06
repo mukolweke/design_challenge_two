@@ -23,25 +23,25 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
 
-        <script>
-       $(document).foundation()
+    <script>
+        $(document).foundation()
 
-       $(document).ready(() => {
-           let offset = 600;
-           let duration = 500;
+        $(document).ready(() => {
+            let offset = 600;
+            let duration = 500;
 
-           $(window).scroll(() => {
-               if ($(this).scrollTop() > offset) {
-                   $('.to-top').fadeIn(duration);
-               } else {
-                   $('.to-top').fadeOut(duration);
-               }
-           });
+            $(window).scroll(() => {
+                if ($(this).scrollTop() > offset) {
+                    $('.to-top').fadeIn(duration);
+                } else {
+                    $('.to-top').fadeOut(duration);
+                }
+            });
 
-           $('.to-top').click(() => {
-               $('body').animate({scrollTop: 0}, 600);
-           });
-       });
+            $('.to-top').click(() => {
+                $('body').animate({scrollTop: 0}, 600);
+            });
+        });
     </script>
 
     </body>
