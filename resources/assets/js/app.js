@@ -8,7 +8,7 @@
 require('./bootstrap');
 require('./components');
 require('./slick.min');
-
+require('./custom')
 
 import Vue from 'vue'
 

@@ -39,7 +39,6 @@
 
 <style scoped>
     .hero {
-        /*height:400px;*/
         padding: 80px;
         color: #ffffff;
     }

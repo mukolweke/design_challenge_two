@@ -33,6 +33,29 @@ body {
   .banner {
     height: 700px;
   }
+
+  .header_main{
+    .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+      display: block;
+      width: 0;
+      height: 0;
+      border: inset 6px;
+      content: '';
+      border-bottom-width: 0;
+      border-top-style: solid;
+      border-color: white transparent transparent;
+      right: 5px;
+      left: auto;
+      margin-top: -3px;
+    }
+    .button_join{
+      background: white;
+      border-radius: 20px;
+      color:black;
+      font-weight:600;
+      width: 150px;
+    }
+  }
   .primary {
     height: 500px;
   }
