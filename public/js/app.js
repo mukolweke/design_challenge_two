@@ -52912,21 +52912,17 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(43)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(46)
 /* template */
-var __vue_template__ = __webpack_require__(116)
+var __vue_template__ = __webpack_require__(137)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-3d067658"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -52959,46 +52955,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(44);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("6f47ea60", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3d067658\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IndexComponent.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3d067658\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IndexComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 43 */,
+/* 44 */,
 /* 45 */
 /***/ (function(module, exports) {
 
@@ -53283,21 +53241,17 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(130)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(55)
 /* template */
-var __vue_template__ = __webpack_require__(132)
+var __vue_template__ = __webpack_require__(133)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-5e6f0c35"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -53386,13 +53340,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(137)
+  __webpack_require__(57)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(59)
 /* template */
-var __vue_template__ = __webpack_require__(139)
+var __vue_template__ = __webpack_require__(60)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -53431,8 +53385,46 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 57 */,
-/* 58 */,
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(58);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("635d0f0e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-58deacf4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./HeaderTwo.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-58deacf4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./HeaderTwo.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -53504,7 +53496,149 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 60 */,
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "header_main" }, [
+      _c(
+        "div",
+        {
+          staticClass: "title-bar",
+          attrs: {
+            "data-responsive-toggle": "second-menu",
+            "data-hide-for": "medium"
+          }
+        },
+        [
+          _c("button", {
+            staticClass: "menu-icon",
+            attrs: { type: "button", "data-toggle": "second-menu" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "title-bar-title" }, [_vm._v("Menu")])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "top-bar my_nav_two",
+          staticStyle: { background: "transparent !important" },
+          attrs: { id: "second-menu" }
+        },
+        [
+          _c("div", { staticClass: "top-bar-left" }, [
+            _c("ul", { staticClass: "menu" }, [
+              _c("li", [
+                _c("img", { attrs: { src: "storage/logo.svg", alt: "logo" } })
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "top-bar-right" }, [
+            _c(
+              "ul",
+              {
+                staticClass: "dropdown menu",
+                attrs: { "data-dropdown-menu": "" }
+              },
+              [
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("WHO WE ARE")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu vertical" }, [
+                    _c("li", [
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("CONFERENCE")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu vertical" }, [
+                    _c("li", [
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("MEMBERSHIP")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu vertical" }, [
+                    _c("li", [
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("DISCUSSIONS")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu vertical" }, [
+                    _c("li", [
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("MEDIA CENTRE")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu vertical" }, [
+                    _c("li", [
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("SUPPORT")]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "menu vertical" }, [
+                    _c("li", [
+                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { staticClass: "button button_join", attrs: { href: "#" } },
+                    [_vm._v("JOIN NOW")]
+                  )
+                ])
+              ]
+            )
+          ])
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-58deacf4", module.exports)
+  }
+}
+
+/***/ }),
 /* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -53566,13 +53700,13 @@ var content = __webpack_require__(63);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("2b5f0a42", content, false, {});
+var update = __webpack_require__(2)("e392ec8e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-55ae3a08\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SearchComponent.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-55ae3a08\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SearchComponent.vue");
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-55ae3a08\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SearchComponent.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-55ae3a08\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SearchComponent.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -53590,7 +53724,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.fi-magnifying-glass[data-v-55ae3a08]{\n    font-size: 50px;\n}\n.fi-arrow-right[data-v-55ae3a08]{\n    font-size: 50px;\n}\n.input-group[data-v-55ae3a08]{\n    height: 100px;\n    margin:0 auto;\n}\nbutton[data-v-55ae3a08]{\n    background-color: #5d7a37;\n}\n/**/\n", ""]);
+exports.push([module.i, "\n.input-group[data-v-55ae3a08] {\n  height: 100px;\n  margin: 0 auto;\n}\n.input-group .fi-magnifying-glass[data-v-55ae3a08] {\n    font-size: 50px;\n}\n.input-group .fi-arrow-right[data-v-55ae3a08] {\n    font-size: 50px;\n}\n.input-group button[data-v-55ae3a08] {\n    background-color: #5d7a37;\n}\n\n/**/\n", ""]);
 
 // exports
 
@@ -53601,6 +53735,7 @@ exports.push([module.i, "\n.fi-magnifying-glass[data-v-55ae3a08]{\n    font-size
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -53770,7 +53905,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.meeting[data-v-7323b504] {\n    padding-top: 10px;\n    background-color: #fafafa;\n}\n.mobile[data-v-7323b504] {\n    background-size: cover;\n    background-color: #fafafa;\n}\nh2[data-v-7323b504] {\n    font-weight: 200;\n}\n.button_meeting[data-v-7323b504] {\n    background: darkorange;\n    font-weight: 600;\n    border-radius: 25px;\n    height: 50px;\n}\n.button_meeting[data-v-7323b504]:hover {\n    background-color: orange;\n    -webkit-transition: 2ms;\n    transition: 2ms;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53828,7 +53963,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("div", { staticClass: "meeting" }, [
+      _c("div", { staticClass: "who_we_are" }, [
         _c(
           "div",
           { staticClass: "grid-x", staticStyle: { "margin-top": "40px" } },
@@ -53903,21 +54038,17 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(73)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(75)
 /* template */
-var __vue_template__ = __webpack_require__(76)
+var __vue_template__ = __webpack_require__(138)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-09446dc7"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -53950,46 +54081,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 73 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(74);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("4c489c24", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-09446dc7\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FeaturedStorySection.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-09446dc7\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FeaturedStorySection.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.featured[data-v-09446dc7]{\n    margin-top: 20px;\n}\nh5[data-v-09446dc7]{\n    font-weight: 600;\n}\n.images[data-v-09446dc7]{\n    margin-top:20px;\n}\n.hover-height[data-v-09446dc7] {\n    height: 350px;\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n    color: white;\n}\n.hover-height[data-v-09446dc7]:hover {\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n    cursor: pointer;\n    color: white;\n}\n.textOverImage[data-v-09446dc7]{\n    background-size: 100%;\n    background-position: center;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n}\n.textOverImage[data-v-09446dc7]:hover{\n    background-size:110%;\n}\n.textOverImage[data-v-09446dc7]:after{\n    content: attr(data-text)\n}\n.text-slider[data-v-09446dc7] {\n    display: block;\n    padding-top: 200px;\n    padding-left: 30px;\n}\n.link-slider[data-v-09446dc7]{\n    display: none;\n    padding-top: 10px;\n    padding-left: 30px;\n    color: white;\n}\n.link-slider[data-v-09446dc7]:hover{\n    display: block;\n}\n.view_pr[data-v-09446dc7]{\n    width: 15%;\n    margin-left: 0;\n}\nhr[data-v-09446dc7]{\n    border-bottom: 1px solid darkorange;\n}\na[data-v-09446dc7]{\n    margin-top:0;\n    color: white;\n    pointer: cursor;\n}\n.button_view[data-v-09446dc7]{\n    padding-top: 20px;\n    margin: 0 auto;\n    background-color: #f4f4f4;\n    color: black;\n    font-weight:bold;\n    height:60px;\n    border-radius: 20px;\n}\n.button_view[data-v-09446dc7]:hover{\n    background-color: #8a8a8a;\n}\n.btn[data-v-09446dc7]{\n    margin-top: 40px;\n    margin-bottom: 40px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 73 */,
+/* 74 */,
 /* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -54071,182 +54164,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 76 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "featured" }, [
-      _c("h6", { staticClass: "text-center" }, [
-        _c("strong", [_vm._v("FEATURED STORIES")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "grid-x images" }, [
-        _c("div", { staticClass: "medium-offset-1 medium-10 small-12" }, [
-          _c("div", { staticClass: "grid-x" }, [
-            _c(
-              "div",
-              {
-                staticClass: "columns medium-6 small-12 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/green_back.jpg')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "text-slider" }, [
-                    _c("h5", [_vm._v("Master's Thesis")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("hr", { staticClass: "view_pr" }),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("View Project >")
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "columns medium-6 small-12 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/bitmap2.png')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "text-slider" }, [
-                    _c("h5", [
-                      _vm._v("Catalog and classification of online "),
-                      _c("br"),
-                      _vm._v(
-                        "\n                                Free GIS Training Courses"
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("hr", { staticClass: "view_pr" }),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("View Project >")
-                    ])
-                  ])
-                ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "grid-x" }, [
-            _c(
-              "div",
-              {
-                staticClass: "columns medium-5 small-12 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/bitmap3.png')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "text-slider" }, [
-                    _c("h5", [
-                      _vm._v("Caribou and mining "),
-                      _c("br"),
-                      _vm._v(" Story Map")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("hr", { staticClass: "view_pr" }),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("View Project >")
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "columns medium-7 small-12 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/bitmap4.png')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "text-slider" }, [
-                    _c("h5", [
-                      _vm._v("Quantifying The Impact of Multi-Annual "),
-                      _c("br"),
-                      _vm._v(
-                        "\n                                Drought on California's Agriculture Industry "
-                      ),
-                      _c("br")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("hr", { staticClass: "view_pr" }),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("View Project >")
-                    ])
-                  ])
-                ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "grid-x" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "cell small-offset-4 small-4 medium-offset-4 medium-4 large-4 btn"
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "button expanded button_view",
-                    attrs: { href: "#" }
-                  },
-                  [_vm._v("View All Project")]
-                )
-              ]
-            )
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-09446dc7", module.exports)
-  }
-}
-
-/***/ }),
+/* 76 */,
 /* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -54332,7 +54250,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\nh3[data-v-43ba11bd] {\n    font-weight: bold;\n}\n.support[data-v-43ba11bd] {\n    background-color: #fafafa;padding: 60px;\n}\np[data-v-43ba11bd]{\n    font-size: 25px;\n    font-weight:500;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54420,21 +54338,17 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(83)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(85)
 /* template */
-var __vue_template__ = __webpack_require__(90)
+var __vue_template__ = __webpack_require__(131)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-14373f30"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -54467,46 +54381,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 83 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(84);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("1c227cec", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-14373f30\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ConferenceSection.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-14373f30\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ConferenceSection.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 84 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.member[data-v-14373f30]{\n    margin-top: 20px;\n    margin-bottom:30px;\n}\n.hover_btn[data-v-14373f30] {\n    background: white;\n    color: black;\n    border-radius: 50px;\n    width: 40%;\n}\n.hover-height[data-v-14373f30] {\n    height: 350px;\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n}\n.hover-height[data-v-14373f30]:hover {\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n    cursor: pointer;\n}\nh5[data-v-14373f30] {\n    font-weight: 600;\n}\n.hover-height[data-v-14373f30] {\n    height: 350px;\n    color: white;\n}\n.hover-height[data-v-14373f30]:hover {\n    cursor: pointer;\n    color: white;\n}\n.textOverImage[data-v-14373f30] {\n    background-size: 100%;\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n    margin:4px;\n    background-position: center;\n}\n.textOverImage[data-v-14373f30]:hover {\n    background-size: 110%;\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n}\n.view_pr[data-v-14373f30] {\n    width: 15%;\n    margin-left: 0;\n}\nhr[data-v-14373f30] {\n    border-bottom: 1px solid #f68c1e;\n}\n.button_conference[data-v-14373f30] {\n    background-color: #ffffff;\n    color: black;\n    font-weight: bold;\n    border-radius: 30px;\n}\n.slick-dots[data-v-14373f30]{\n    list-style: none;\n}\n\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 83 */,
+/* 84 */,
 /* 85 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -54514,9 +54390,6 @@ exports.push([module.i, "\n.member[data-v-14373f30]{\n    margin-top: 20px;\n   
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_slick__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_slick___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_slick__);
-//
-//
-//
 //
 //
 //
@@ -57856,170 +57729,22 @@ if (false) {
 }
 
 /***/ }),
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "grid-x member" }, [
-      _c("div", { staticClass: "medium-offset-1 medium-10 columns" }, [
-        _c("h6", { staticClass: "text-center" }, [
-          _c("strong", [_vm._v("OUR CONFERENCES")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row small-collapse medium-uncollapse" }, [
-          _c("div", { staticClass: "my-slick-carousel" }, [
-            _c(
-              "div",
-              {
-                staticClass: "column medium-4 small-4 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/conference2.jpg')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("h3", [
-                      _vm._v("The Future of GIS "),
-                      _c("br"),
-                      _vm._v("in our Region")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v("Promoting growth in our"),
-                      _c("br"),
-                      _vm._v(" chapters and communities")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "button button_conference",
-                        attrs: { type: "button" }
-                      },
-                      [_vm._v("View Conference")]
-                    )
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "column medium-4 small-4 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/group_photo.jpg')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("h3", [
-                      _vm._v("The Future of GIS "),
-                      _c("br"),
-                      _vm._v("in our Region")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v("Promoting growth in our"),
-                      _c("br"),
-                      _vm._v(" chapters and communities")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "button  button_conference",
-                        attrs: { type: "button " }
-                      },
-                      [_vm._v("View Conference")]
-                    )
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "column medium-4 small-4 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/speaker.jpg')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("h3", [
-                      _vm._v("The Future of GIS "),
-                      _c("br"),
-                      _vm._v("in our Region")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v("Promoting growth in our"),
-                      _c("br"),
-                      _vm._v(" chapters and communities")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "button  button_conference",
-                        attrs: { type: "button" }
-                      },
-                      [_vm._v("View Conference")]
-                    )
-                  ])
-                ])
-              ]
-            )
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-14373f30", module.exports)
-  }
-}
-
-/***/ }),
+/* 90 */,
 /* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(92)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(94)
 /* template */
-var __vue_template__ = __webpack_require__(95)
+var __vue_template__ = __webpack_require__(132)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-533c28d6"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -58052,46 +57777,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 92 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(93);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("73d19773", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-533c28d6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MembersSection.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-533c28d6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MembersSection.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 93 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.member[data-v-533c28d6]{\n    margin-top:40px;\n    margin-bottom:70px;\n}\nh5[data-v-533c28d6]{\n     font-weight: 600;\n}\n.hover-height[data-v-533c28d6] {\n    height: 350px;\n    color: white;\n}\n.hover-height[data-v-533c28d6]:hover {\n    cursor: pointer;\n    color: white;\n}\n.textOverImage[data-v-533c28d6]{\n    background-size: cover;\n    background-position: center;\n    border-bottom: 3px solid orangered;\n}\n.textOverImage[data-v-533c28d6]:hover{\n    height: 300px;\n}\n.textOverImage[data-v-533c28d6]:after{\n    content: attr(data-text)\n}\n.link-slider[data-v-533c28d6]{\n    padding-top: 310px;\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n    padding-left: 30px;\n    display: none;\n    color: black;\n    font-weight: bold;\n}\n.link-slider[data-v-533c28d6]:hover{\n    display: block;\n    -webkit-transition: 0.7s;\n    transition: 0.7s;\n}\n.view_pr[data-v-533c28d6]{\n    width: 15%;\n    margin-left: 0;\n}\nhr[data-v-533c28d6]{\n    border-bottom: 1px solid #f68c1e;\n}\n.button_go[data-v-533c28d6]{\n    width: 50px;\n    background-color: #f68c1e;\n    color: black;\n    font-weight:bold;\n    height:50px;\n    border-radius: 60%;\n}\n.fi-arrow-right[data-v-533c28d6]{\n    background-color: transparent;\n    color:white;\n}\n\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 92 */,
+/* 93 */,
 /* 94 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -58170,151 +57857,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "grid-x member" }, [
-      _c("div", { staticClass: "medium-offset-1 medium-10 columns" }, [
-        _c("p", [_c("b", [_vm._v("PANEL MEMBERS")])]),
-        _vm._v(" "),
-        _c("div", { staticClass: "grid-x", staticStyle: { height: "350px" } }, [
-          _c(
-            "div",
-            {
-              staticClass: "column medium-4 small-12 textOverImage",
-              staticStyle: { "background-image": "url('storage/client1.jpg')" }
-            },
-            [
-              _c("div", { staticClass: "hover-height" }, [
-                _c("div", { staticClass: "link-slider" }, [
-                  _c("div", { staticClass: "grid-x" }, [
-                    _c("div", { staticClass: "small-9 column" }, [
-                      _c("h5", [_vm._v("Dr Lilian Pintea ")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                                    Vice President Conservation Science, the Jance Goodall\n                                    Institute.\n                                "
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "small-3 column" }, [
-                      _c("button", { staticClass: "button button_go" }, [
-                        _c("i", { staticClass: "fi-arrow-right" })
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "column medium-4 small-12 textOverImage",
-              staticStyle: { "background-image": "url('storage/client2.jpg')" }
-            },
-            [
-              _c("div", { staticClass: "hover-height" }, [
-                _c("div", { staticClass: "link-slider" }, [
-                  _c("div", { staticClass: "grid-x" }, [
-                    _c("div", { staticClass: "small-9 column" }, [
-                      _c("h5", [_vm._v("Dr. Michael Wamaye ")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                                    Head of our design and development team.\n                                "
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "small-3 column" }, [
-                      _c("button", { staticClass: "button button_go" }, [
-                        _c("i", { staticClass: "fi-arrow-right" })
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "column medium-4 small-12 textOverImage",
-              staticStyle: { "background-image": "url('storage/client3.jpg')" }
-            },
-            [
-              _c("div", { staticClass: "hover-height" }, [
-                _c("div", { staticClass: "link-slider" }, [
-                  _c("div", { staticClass: "grid-x" }, [
-                    _c("div", { staticClass: "small-9 column" }, [
-                      _c("h5", [_vm._v("Mr. Chaka Williams ")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                                    Head of our Software Engineering department.\n                                "
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "small-3 column" }, [
-                      _c("button", { staticClass: "button button_go" }, [
-                        _c("i", { staticClass: "fi-arrow-right" })
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ]
-          )
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-533c28d6", module.exports)
-  }
-}
-
-/***/ }),
+/* 95 */,
 /* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(97)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(99)
 /* template */
-var __vue_template__ = __webpack_require__(100)
+var __vue_template__ = __webpack_require__(130)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-556e0d7e"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -58347,46 +57905,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 97 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(98);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("e6b23730", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-556e0d7e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BannerMapSection.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-556e0d7e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BannerMapSection.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.map_bike[data-v-556e0d7e]{\n    padding:150px;\n}\nh4[data-v-556e0d7e] {\n    font-size: 30px;\n    font-weight: 100;\n    font-family: \"Proxima Nova\", sans-serif;\n    text-align: left;\n}\n.head_bold[data-v-556e0d7e] {\n    font-weight: bold;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 97 */,
+/* 98 */,
 /* 99 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -58434,117 +57954,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 100 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "map_bike",
-        staticStyle: {
-          background: "url('storage/Bitmap9.png')",
-          "background-size": "cover"
-        }
-      },
-      [
-        _c("div", { staticClass: "medium-offset-1 medium-10" }, [
-          _c("div", { staticClass: "grid-x" }, [
-            _c(
-              "div",
-              {
-                staticClass: "column medium-5 small-12",
-                staticStyle: { color: "white" }
-              },
-              [
-                _c("h4", [
-                  _vm._v(
-                    "\n                    Allowing conservation GIS\n                    practitioners to attend the\n                    Esri user conference and\n                    SGIS annual conference .\n                "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "\n                    Lorem ipsum is simply a dummy text of the printing\n                    and typsetting industry. Lorem ipsum has been the\n                    industry's standard dummy text ever since...\n                "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("div", { staticClass: "grid-x grid-padding-x" }, [
-                  _c("div", { staticClass: "medium-3 small-3 cell" }, [
-                    _c("img", {
-                      staticClass: "play-icon",
-                      attrs: { src: "storage/play_icon.svg" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "medium-9 small-9 cell" }, [
-                    _c("p", { staticClass: "span_head" }, [
-                      _c("span", { staticClass: "head_bold" }, [
-                        _vm._v("Learning more with GIS ")
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(
-                        "Improving\n                            customer service"
-                      ),
-                      _c("br"),
-                      _vm._v(
-                        "with\n                            custom\n                            IOS apps"
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "column small-12 medium-5" })
-          ])
-        ])
-      ]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-556e0d7e", module.exports)
-  }
-}
-
-/***/ }),
+/* 100 */,
 /* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(102)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(104)
 /* template */
-var __vue_template__ = __webpack_require__(105)
+var __vue_template__ = __webpack_require__(135)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-201591dc"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -58577,46 +58002,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 102 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(103);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("1af67ba0", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-201591dc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewsArticlesSection.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-201591dc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewsArticlesSection.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 103 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.info[data-v-201591dc] {\n    color: gray;\n    font-weight: 600;\n}\nh5[data-v-201591dc] {\n    font-weight: 700;\n}\n.article_section[data-v-201591dc] {\n    padding: 30px;\n}\n.column[data-v-201591dc] {\n    margin: 15px;\n}\n.panel_article[data-v-201591dc] {\n    border: 1px solid gray;\n    padding: 20px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 102 */,
+/* 103 */,
 /* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -58668,120 +58055,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 105 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "article_section" }, [
-      _c("div", { staticClass: "grid-x" }, [
-        _c("div", { staticClass: "medium-offset-1 small-offset-1" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "medium-3 small-12 column" }, [
-          _c("h5", [_vm._v("NEWS & ARTICLES")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "grid-x" }, [
-        _c("div", { staticClass: "medium-offset-1" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "medium-3 small-12 column panel_article" }, [
-          _c("h5", [_vm._v("SCGIS Conference: Maps for advocacy session.")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorem ipsum is simply a dummy text of the printing\n                and typsetting industry. Lorem ipsum has been the\n                industry's standard dummy text ever since..."
-            )
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _c("span", { staticClass: "info" }, [_vm._v("Posted on: ")]),
-            _vm._v("Date is 17th July")
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "medium-3 small-12 column panel_article",
-            staticStyle: { background: "#5d7a37", color: "white" }
-          },
-          [
-            _c("h5", [_vm._v("CrisisMapping Typhoon Haiyan (Yolanda)")]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "Lorem ipsum is simply a dummy text of the printing\n                and typsetting industry. Lorem ipsum has been the\n                industry's standard dummy text ever since...."
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _c("span", { staticClass: "info" }, [_vm._v("Posted on: ")]),
-              _vm._v("Date is 17th July")
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "medium-3 small-12 column panel_article" }, [
-          _c("h5", [_vm._v("Web GIS Spurs Open Culture Towards Government")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorem ipsum is simply a dummy text of the printing\n                and typsetting industry. Lorem ipsum has been the\n                industry's standard dummy text ever since..."
-            )
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _c("span", { staticClass: "info" }, [_vm._v("Posted on: ")]),
-            _vm._v("Date is 17th July")
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("br")
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-201591dc", module.exports)
-  }
-}
-
-/***/ }),
+/* 105 */,
 /* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(107)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(109)
 /* template */
-var __vue_template__ = __webpack_require__(110)
+var __vue_template__ = __webpack_require__(136)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-1294f631"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -58814,46 +58103,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 107 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(108);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("5a1c12cf", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1294f631\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./JoinMessageSection.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1294f631\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./JoinMessageSection.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 108 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nh3[data-v-1294f631]{\n    font-weight:600;\n}\np[data-v-1294f631]{\n    font-weight:100;\n    font-size:30px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 107 */,
+/* 108 */,
 /* 109 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -58879,76 +58130,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 110 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "grid-x", staticStyle: { background: "#121212" } },
-      [
-        _c("div", { staticClass: "large-12 small-12 medium-12 cell" }, [
-          _c("div", { staticClass: "message_info" }, [
-            _c("h3", { staticClass: "text-center" }, [
-              _vm._v("Want to Join SCGIS Community?")
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-center" }, [
-              _vm._v("We can't wait for you to be a member of the community.")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "center_btn" }, [
-              _c(
-                "button",
-                { staticClass: "button", attrs: { type: "button" } },
-                [_vm._v("Join Now!")]
-              )
-            ])
-          ])
-        ])
-      ]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1294f631", module.exports)
-  }
-}
-
-/***/ }),
+/* 110 */,
 /* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(112)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(114)
 /* template */
-var __vue_template__ = __webpack_require__(115)
+var __vue_template__ = __webpack_require__(134)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-0fa5a8d1"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -58981,46 +58178,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 112 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(113);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("e59a3896", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0fa5a8d1\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FooterSection.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0fa5a8d1\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FooterSection.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 113 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.footer[data-v-0fa5a8d1]{\n    font-family: \"Proxima Nova\", sans-serif;\n    background: #000000;\n}\n.lower_section[data-v-0fa5a8d1]{\n    margin-top:40px;\n}\nli a[data-v-0fa5a8d1]{\n    color: #a0a0a0;\n}\na[data-v-0fa5a8d1]{\n    color:#ff9933;\n}\n.top_icon[data-v-0fa5a8d1] {\n    height: 20px;\n    width: 20px;\n}\n.to-top[data-v-0fa5a8d1] {\n      display: none;\n      bottom: 200px;\n      right: 100px;\n      position: fixed;\n      background: orange;\n      color: white;\n      padding: 9px 12px;\n}\n.to-top[data-v-0fa5a8d1]:hover {\n    background: orangeRed;\n    color: white;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 112 */,
+/* 113 */,
 /* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -59108,273 +58267,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 115 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "footer" }, [
-      _c("div", { staticClass: "footer_container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "grid-container" }, [
-            _c("div", { staticClass: "grid-x grid-padding-x" }, [
-              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
-                _c("ul", { staticClass: "footer_ul" }, [
-                  _c("li", [_c("h6", [_vm._v("CHAPTERS")])]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Kenya")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Bulgaria")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Brazil")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("Latin America(Regional)")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Nepal")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("MORE")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
-                _c("ul", { staticClass: "footer_ul" }, [
-                  _c("li", [_c("h6", [_vm._v("COMMITTEES")])]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("Domestic Chapters")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("Communications")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Conference")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("International")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Membership")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Website")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
-                _c("ul", { staticClass: "footer_ul" }, [
-                  _c("li", [_c("h6", [_vm._v("ABOUT")])]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Newsroom")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Leadership")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("Job Opportunities")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Members")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Events")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Contact SCGIS")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
-                _c("ul", { staticClass: "footer_ul" }, [
-                  _c("li", [_c("h6", [_vm._v("SUPPORT")])]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Contact Us")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Inquiries")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("FAQ's")])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "float:left;" }, [
-                  _c("li", [_c("h6", [_vm._v("SOCIAL MEDIA")])]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "fb" }, [
-                    _c("a", { attrs: { href: "#0" } }),
-                    _vm._v(" "),
-                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
-                      _c("img", {
-                        staticClass: "img_foot",
-                        attrs: { src: "storage/fb.svg" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
-                      _c("img", {
-                        staticClass: "img_foot nxt",
-                        attrs: { src: "storage/twitter.svg" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
-                      _c("img", {
-                        staticClass: "img_foot nxt",
-                        attrs: { src: "storage/IG.svg" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
-                      _c("img", {
-                        staticClass: "img_foot nxt",
-                        attrs: { src: "storage/linkedin-logo.svg" }
-                      })
-                    ])
-                  ])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "lower_section" }, [
-            _c("span", { staticClass: "more_info" }, [
-              _vm._v("More information about SCGIS email: "),
-              _c("a", { staticClass: "join_link", attrs: { href: "#0" } }, [
-                _vm._v("hello@scgis.org")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("hr", { staticClass: "footer_hr" }),
-            _vm._v(" "),
-            _c("span", { staticClass: "more_info" }, [
-              _vm._v("Copyright © 2018 SCGIS. All Rights Reserved.")
-            ]),
-            _vm._v(" "),
-            _c(
-              "span",
-              { staticClass: "spoon_foot", staticStyle: { float: "right" } },
-              [
-                _c("a", { attrs: { href: "#0" } }, [_vm._v("Privacy Policy")]),
-                _vm._v(" | "),
-                _c("a", { attrs: { href: "#0" } }, [_vm._v("Term of Use")])
-              ]
-            )
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("a", { staticClass: "to-top", attrs: { href: "#top" } }, [
-          _c("img", {
-            staticClass: "image top_icon",
-            attrs: { src: "storage/caret-symbol.svg" }
-          })
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0fa5a8d1", module.exports)
-  }
-}
-
-/***/ }),
-/* 116 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("top_header"),
-      _vm._v(" "),
-      _c("banner"),
-      _vm._v(" "),
-      _c("who_we_are"),
-      _vm._v(" "),
-      _c("featured_story"),
-      _vm._v(" "),
-      _c("knowledge_support"),
-      _vm._v(" "),
-      _c("conference"),
-      _vm._v(" "),
-      _c("members"),
-      _vm._v(" "),
-      _c("banner_map"),
-      _vm._v(" "),
-      _c("news_articles"),
-      _vm._v(" "),
-      _c("join_message"),
-      _vm._v(" "),
-      _c("footer_section")
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3d067658", module.exports)
-  }
-}
-
-/***/ }),
+/* 115 */,
+/* 116 */,
 /* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59831,44 +58725,367 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(131);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("6cb4c4f8", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5e6f0c35\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Banner.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5e6f0c35\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Banner.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "map_bike",
+        staticStyle: {
+          background: "url('storage/Bitmap9.png')",
+          "background-size": "cover"
+        }
+      },
+      [
+        _c("div", { staticClass: "medium-offset-1 medium-10" }, [
+          _c("div", { staticClass: "grid-x" }, [
+            _c(
+              "div",
+              {
+                staticClass: "column medium-5 small-12",
+                staticStyle: { color: "white" }
+              },
+              [
+                _c("h4", [
+                  _vm._v(
+                    "\n                    Allowing conservation GIS\n                    practitioners to attend the\n                    Esri user conference and\n                    SGIS annual conference .\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                    Lorem ipsum is simply a dummy text of the printing\n                    and typsetting industry. Lorem ipsum has been the\n                    industry's standard dummy text ever since...\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "grid-x grid-padding-x" }, [
+                  _c("div", { staticClass: "medium-3 small-3 cell" }, [
+                    _c("img", {
+                      staticClass: "play-icon",
+                      attrs: { src: "storage/play_icon.svg" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "medium-9 small-9 cell" }, [
+                    _c("p", { staticClass: "span_head" }, [
+                      _c("span", { staticClass: "head_bold" }, [
+                        _vm._v("Learning more with GIS ")
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(
+                        "Improving\n                            customer service"
+                      ),
+                      _c("br"),
+                      _vm._v(
+                        "with\n                            custom\n                            IOS apps"
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "column small-12 medium-5" })
+          ])
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-556e0d7e", module.exports)
+  }
 }
 
 /***/ }),
 /* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.hero[data-v-5e6f0c35] {\n    padding: 80px;\n    color: #ffffff;\n}\n.button_community_join[data-v-5e6f0c35] {\n    width: 200px;\n}\n.button[data-v-5e6f0c35] {\n    text-align: center;\n    padding: 15px;\n    border-radius: 50px;\n    font-size: 14px;\n    font-weight: 600;\n    letter-spacing: 1.5px;\n    background: orange;\n}\n.button[data-v-5e6f0c35]:hover {\n    background-color: darkorange;\n}\n", ""]);
-
-// exports
-
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "grid-x conference" }, [
+      _c("div", { staticClass: "medium-offset-1 medium-10 columns" }, [
+        _c("h6", { staticClass: "text-center" }, [
+          _c("strong", [_vm._v("OUR CONFERENCES")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row small-collapse medium-uncollapse" }, [
+          _c("div", { staticClass: "my-slick-carousel" }, [
+            _c(
+              "div",
+              {
+                staticClass: "column medium-4 small-4 textOverImage",
+                staticStyle: {
+                  "background-image": "url('storage/conference2.jpg')"
+                }
+              },
+              [
+                _c("div", { staticClass: "hover-height" }, [
+                  _c("div", { staticClass: "link-slider" }, [
+                    _c("h3", [
+                      _vm._v("The Future of GIS "),
+                      _c("br"),
+                      _vm._v("in our Region")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v("Promoting growth in our"),
+                      _c("br"),
+                      _vm._v(" chapters and communities")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "button button_conference",
+                        attrs: { type: "button" }
+                      },
+                      [_vm._v("View Conference")]
+                    )
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "column medium-4 small-4 textOverImage",
+                staticStyle: {
+                  "background-image": "url('storage/group_photo.jpg')"
+                }
+              },
+              [
+                _c("div", { staticClass: "hover-height" }, [
+                  _c("div", { staticClass: "link-slider" }, [
+                    _c("h3", [
+                      _vm._v("The Future of GIS "),
+                      _c("br"),
+                      _vm._v("in our Region")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v("Promoting growth in our"),
+                      _c("br"),
+                      _vm._v(" chapters and communities")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "button  button_conference",
+                        attrs: { type: "button " }
+                      },
+                      [_vm._v("View Conference")]
+                    )
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "column medium-4 small-4 textOverImage",
+                staticStyle: {
+                  "background-image": "url('storage/speaker.jpg')"
+                }
+              },
+              [
+                _c("div", { staticClass: "hover-height" }, [
+                  _c("div", { staticClass: "link-slider" }, [
+                    _c("h3", [
+                      _vm._v("The Future of GIS "),
+                      _c("br"),
+                      _vm._v("in our Region")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v("Promoting growth in our"),
+                      _c("br"),
+                      _vm._v(" chapters and communities")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "button  button_conference",
+                        attrs: { type: "button" }
+                      },
+                      [_vm._v("View Conference")]
+                    )
+                  ])
+                ])
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-14373f30", module.exports)
+  }
+}
 
 /***/ }),
 /* 132 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "grid-x member" }, [
+      _c("div", { staticClass: "medium-offset-1 medium-10 columns" }, [
+        _c("p", [_c("b", [_vm._v("PANEL MEMBERS")])]),
+        _vm._v(" "),
+        _c("div", { staticClass: "grid-x", staticStyle: { height: "350px" } }, [
+          _c(
+            "div",
+            {
+              staticClass: "column medium-4 small-12 textOverImage",
+              staticStyle: { "background-image": "url('storage/client1.jpg')" }
+            },
+            [
+              _c("div", { staticClass: "hover-height" }, [
+                _c("div", { staticClass: "link-slider" }, [
+                  _c("div", { staticClass: "grid-x" }, [
+                    _c("div", { staticClass: "small-9 column" }, [
+                      _c("h5", [_vm._v("Dr Lilian Pintea ")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                                    Vice President Conservation Science, the Jance Goodall\n                                    Institute.\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "small-3 column" }, [
+                      _c("button", { staticClass: "button button_go" }, [
+                        _c("i", { staticClass: "fi-arrow-right" })
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "column medium-4 small-12 textOverImage",
+              staticStyle: { "background-image": "url('storage/client2.jpg')" }
+            },
+            [
+              _c("div", { staticClass: "hover-height" }, [
+                _c("div", { staticClass: "link-slider" }, [
+                  _c("div", { staticClass: "grid-x" }, [
+                    _c("div", { staticClass: "small-9 column" }, [
+                      _c("h5", [_vm._v("Dr. Michael Wamaye ")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                                    Head of our design and development team.\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "small-3 column" }, [
+                      _c("button", { staticClass: "button button_go" }, [
+                        _c("i", { staticClass: "fi-arrow-right" })
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "column medium-4 small-12 textOverImage",
+              staticStyle: { "background-image": "url('storage/client3.jpg')" }
+            },
+            [
+              _c("div", { staticClass: "hover-height" }, [
+                _c("div", { staticClass: "link-slider" }, [
+                  _c("div", { staticClass: "grid-x" }, [
+                    _c("div", { staticClass: "small-9 column" }, [
+                      _c("h5", [_vm._v("Mr. Chaka Williams ")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                                    Head of our Software Engineering department.\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "small-3 column" }, [
+                      _c("button", { staticClass: "button button_go" }, [
+                        _c("i", { staticClass: "fi-arrow-right" })
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          )
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-533c28d6", module.exports)
+  }
+}
+
+/***/ }),
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -59944,51 +59161,7 @@ if (false) {
 }
 
 /***/ }),
-/* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */,
-/* 137 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(138);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("635d0f0e", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-58deacf4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./HeaderTwo.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-58deacf4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./HeaderTwo.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 138 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.top-bar[data-v-58deacf4], .top-bar ul[data-v-58deacf4] {\n    background-color: transparent;\n    color: white;\n}\nul li a[data-v-58deacf4]{\n    color: white;\n    background:transparent;\n}\na[data-v-58deacf4]:hover{\n    color: white;\n    background:transparent;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 139 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -60002,122 +59175,200 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "header_main" }, [
-      _c(
-        "div",
-        {
-          staticClass: "title-bar",
-          attrs: {
-            "data-responsive-toggle": "second-menu",
-            "data-hide-for": "medium"
-          }
-        },
-        [
-          _c("button", {
-            staticClass: "menu-icon",
-            attrs: { type: "button", "data-toggle": "second-menu" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "title-bar-title" }, [_vm._v("Menu")])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "top-bar my_nav_two",
-          staticStyle: { background: "transparent !important" },
-          attrs: { id: "second-menu" }
-        },
-        [
-          _c("div", { staticClass: "top-bar-left" }, [
-            _c("ul", { staticClass: "menu" }, [
-              _c("li", [
-                _c("img", { attrs: { src: "storage/logo.svg", alt: "logo" } })
+    return _c("div", { staticClass: "footer" }, [
+      _c("div", { staticClass: "footer_container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "grid-container" }, [
+            _c("div", { staticClass: "grid-x grid-padding-x" }, [
+              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
+                _c("ul", { staticClass: "footer_ul" }, [
+                  _c("li", [_c("h6", [_vm._v("CHAPTERS")])]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Kenya")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Bulgaria")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Brazil")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("Latin America(Regional)")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Nepal")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("MORE")])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
+                _c("ul", { staticClass: "footer_ul" }, [
+                  _c("li", [_c("h6", [_vm._v("COMMITTEES")])]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("Domestic Chapters")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("Communications")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Conference")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("International")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Membership")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Website")])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
+                _c("ul", { staticClass: "footer_ul" }, [
+                  _c("li", [_c("h6", [_vm._v("ABOUT")])]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Newsroom")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Leadership")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("Job Opportunities")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Members")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Events")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Contact SCGIS")])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
+                _c("ul", { staticClass: "footer_ul" }, [
+                  _c("li", [_c("h6", [_vm._v("SUPPORT")])]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Contact Us")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Inquiries")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("FAQ's")])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "float:left;" }, [
+                  _c("li", [_c("h6", [_vm._v("SOCIAL MEDIA")])]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "fb" }, [
+                    _c("a", { attrs: { href: "#0" } }),
+                    _vm._v(" "),
+                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
+                      _c("img", {
+                        staticClass: "img_foot",
+                        attrs: { src: "storage/fb.svg" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
+                      _c("img", {
+                        staticClass: "img_foot nxt",
+                        attrs: { src: "storage/twitter.svg" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
+                      _c("img", {
+                        staticClass: "img_foot nxt",
+                        attrs: { src: "storage/IG.svg" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
+                      _c("img", {
+                        staticClass: "img_foot nxt",
+                        attrs: { src: "storage/linkedin-logo.svg" }
+                      })
+                    ])
+                  ])
+                ])
               ])
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "top-bar-right" }, [
+          _c("div", { staticClass: "lower_section" }, [
+            _c("span", { staticClass: "more_info" }, [
+              _vm._v("More information about SCGIS email: "),
+              _c("a", { staticClass: "join_link", attrs: { href: "#0" } }, [
+                _vm._v("hello@scgis.org")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("hr", { staticClass: "footer_hr" }),
+            _vm._v(" "),
+            _c("span", { staticClass: "more_info" }, [
+              _vm._v("Copyright © 2018 SCGIS. All Rights Reserved.")
+            ]),
+            _vm._v(" "),
             _c(
-              "ul",
-              {
-                staticClass: "dropdown menu",
-                attrs: { "data-dropdown-menu": "" }
-              },
+              "span",
+              { staticClass: "spoon_foot", staticStyle: { float: "right" } },
               [
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("WHO WE ARE")]),
-                  _vm._v(" "),
-                  _c("ul", { staticClass: "menu vertical" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("CONFERENCE")]),
-                  _vm._v(" "),
-                  _c("ul", { staticClass: "menu vertical" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("MEMBERSHIP")]),
-                  _vm._v(" "),
-                  _c("ul", { staticClass: "menu vertical" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("DISCUSSIONS")]),
-                  _vm._v(" "),
-                  _c("ul", { staticClass: "menu vertical" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("MEDIA CENTRE")]),
-                  _vm._v(" "),
-                  _c("ul", { staticClass: "menu vertical" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("SUPPORT")]),
-                  _vm._v(" "),
-                  _c("ul", { staticClass: "menu vertical" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("One")])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    { staticClass: "button button_join", attrs: { href: "#" } },
-                    [_vm._v("JOIN NOW")]
-                  )
-                ])
+                _c("a", { attrs: { href: "#0" } }, [_vm._v("Privacy Policy")]),
+                _vm._v(" | "),
+                _c("a", { attrs: { href: "#0" } }, [_vm._v("Term of Use")])
               ]
             )
           ])
-        ]
-      )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c("a", { staticClass: "to-top", attrs: { href: "#top" } }, [
+          _c("img", {
+            staticClass: "image top_icon",
+            attrs: { src: "storage/caret-symbol.svg" }
+          })
+        ])
+      ])
     ])
   }
 ]
@@ -60126,7 +59377,369 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-58deacf4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0fa5a8d1", module.exports)
+  }
+}
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "article_section" }, [
+      _c("div", { staticClass: "grid-x" }, [
+        _c("div", { staticClass: "medium-offset-1 small-offset-1" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "medium-3 small-12 column" }, [
+          _c("h5", [_vm._v("NEWS & ARTICLES")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "grid-x" }, [
+        _c("div", { staticClass: "medium-offset-1" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "medium-3 small-12 column panel_article" }, [
+          _c("h5", [_vm._v("SCGIS Conference: Maps for advocacy session.")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Lorem ipsum is simply a dummy text of the printing\n                and typsetting industry. Lorem ipsum has been the\n                industry's standard dummy text ever since..."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _c("span", { staticClass: "info" }, [_vm._v("Posted on: ")]),
+            _vm._v("Date is 17th July")
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "medium-3 small-12 column panel_article",
+            staticStyle: { background: "#5d7a37", color: "white" }
+          },
+          [
+            _c("h5", [_vm._v("CrisisMapping Typhoon Haiyan (Yolanda)")]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum is simply a dummy text of the printing\n                and typsetting industry. Lorem ipsum has been the\n                industry's standard dummy text ever since...."
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("span", { staticClass: "info" }, [_vm._v("Posted on: ")]),
+              _vm._v("Date is 17th July")
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "medium-3 small-12 column panel_article" }, [
+          _c("h5", [_vm._v("Web GIS Spurs Open Culture Towards Government")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Lorem ipsum is simply a dummy text of the printing\n                and typsetting industry. Lorem ipsum has been the\n                industry's standard dummy text ever since..."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _c("span", { staticClass: "info" }, [_vm._v("Posted on: ")]),
+            _vm._v("Date is 17th July")
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("br")
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-201591dc", module.exports)
+  }
+}
+
+/***/ }),
+/* 136 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "grid-x join_message" }, [
+      _c("div", { staticClass: "large-12 small-12 medium-12 cell" }, [
+        _c("div", { staticClass: "message_info" }, [
+          _c("h3", { staticClass: "text-center" }, [
+            _vm._v("Want to Join SCGIS Community?")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-center" }, [
+            _vm._v("We can't wait for you to be a member of the community.")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "center_btn" }, [
+            _c("button", { staticClass: "button", attrs: { type: "button" } }, [
+              _vm._v("Join Now!")
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1294f631", module.exports)
+  }
+}
+
+/***/ }),
+/* 137 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("top_header"),
+      _vm._v(" "),
+      _c("banner"),
+      _vm._v(" "),
+      _c("who_we_are"),
+      _vm._v(" "),
+      _c("featured_story"),
+      _vm._v(" "),
+      _c("knowledge_support"),
+      _vm._v(" "),
+      _c("conference"),
+      _vm._v(" "),
+      _c("members"),
+      _vm._v(" "),
+      _c("banner_map"),
+      _vm._v(" "),
+      _c("news_articles"),
+      _vm._v(" "),
+      _c("join_message"),
+      _vm._v(" "),
+      _c("footer_section")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3d067658", module.exports)
+  }
+}
+
+/***/ }),
+/* 138 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "featured" }, [
+      _c("h6", { staticClass: "text-center" }, [
+        _c("strong", [_vm._v("FEATURED STORIES")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "grid-x images" }, [
+        _c("div", { staticClass: "medium-offset-1 medium-10 small-12" }, [
+          _c("div", { staticClass: "grid-x" }, [
+            _c(
+              "div",
+              {
+                staticClass: "columns medium-6 small-12 textOverImage",
+                staticStyle: {
+                  "background-image": "url('storage/green_back.jpg')"
+                }
+              },
+              [
+                _c("div", { staticClass: "hover-height" }, [
+                  _c("div", { staticClass: "text-slider" }, [
+                    _c("h5", [_vm._v("Master's Thesis")])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "link-slider" }, [
+                    _c("hr", { staticClass: "view_pr" }),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("View Project >")
+                    ])
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "columns medium-6 small-12 textOverImage",
+                staticStyle: {
+                  "background-image": "url('storage/bitmap2.png')"
+                }
+              },
+              [
+                _c("div", { staticClass: "hover-height" }, [
+                  _c("div", { staticClass: "text-slider" }, [
+                    _c("h5", [
+                      _vm._v("Catalog and classification of online "),
+                      _c("br"),
+                      _vm._v(
+                        "\n                                Free GIS Training Courses"
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "link-slider" }, [
+                    _c("hr", { staticClass: "view_pr" }),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("View Project >")
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "grid-x" }, [
+            _c(
+              "div",
+              {
+                staticClass: "columns medium-5 small-12 textOverImage",
+                staticStyle: {
+                  "background-image": "url('storage/bitmap3.png')"
+                }
+              },
+              [
+                _c("div", { staticClass: "hover-height" }, [
+                  _c("div", { staticClass: "text-slider" }, [
+                    _c("h5", [
+                      _vm._v("Caribou and mining "),
+                      _c("br"),
+                      _vm._v(" Story Map")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "link-slider" }, [
+                    _c("hr", { staticClass: "view_pr" }),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("View Project >")
+                    ])
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "columns medium-7 small-12 textOverImage",
+                staticStyle: {
+                  "background-image": "url('storage/bitmap4.png')"
+                }
+              },
+              [
+                _c("div", { staticClass: "hover-height" }, [
+                  _c("div", { staticClass: "text-slider" }, [
+                    _c("h5", [
+                      _vm._v("Quantifying The Impact of Multi-Annual "),
+                      _c("br"),
+                      _vm._v(
+                        "\n                                Drought on California's Agriculture Industry "
+                      ),
+                      _c("br")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "link-slider" }, [
+                    _c("hr", { staticClass: "view_pr" }),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("View Project >")
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "grid-x" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "cell small-offset-4 small-4 medium-offset-4 medium-4 large-4 btn"
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "button expanded button_view",
+                    attrs: { href: "#" }
+                  },
+                  [_vm._v("View All Project")]
+                )
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-09446dc7", module.exports)
   }
 }
 

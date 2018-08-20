@@ -39,19 +39,3 @@
         name: "BannerMapSection"
     }
 </script>
-
-<style scoped>
-    .map_bike{
-        padding:150px;
-    }
-    h4 {
-        font-size: 30px;
-        font-weight: 100;
-        font-family: "Proxima Nova", sans-serif;
-        text-align: left;
-    }
-
-    .head_bold {
-        font-weight: bold;
-    }
-</style>

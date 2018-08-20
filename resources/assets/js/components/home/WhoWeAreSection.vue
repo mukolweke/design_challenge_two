@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="meeting">
+        <div class="who_we_are">
             <div class="grid-x" style="margin-top:40px;">
                 <div class="medium-6 small-12 column mobile" style="background: url('storage/Bitmap.png') no-repeat;">
                     <img src="" alt=""/>
@@ -31,29 +31,5 @@
 </script>
 
 <style scoped>
-    .meeting {
-        padding-top: 10px;
-        background-color: #fafafa;
-    }
 
-    .mobile {
-        background-size: cover;
-        background-color: #fafafa;
-    }
-
-    h2 {
-        font-weight: 200;
-    }
-
-    .button_meeting {
-        background: darkorange;
-        font-weight: 600;
-        border-radius: 25px;
-        height: 50px;
-    }
-
-    .button_meeting:hover {
-        background-color: orange;
-        transition: 2ms;
-    }
 </style>

@@ -43,27 +43,3 @@
         name: "NewsArticlesSection"
     }
 </script>
-
-<style scoped>
-    .info {
-        color: gray;
-        font-weight: 600;
-    }
-
-    h5 {
-        font-weight: 700;
-    }
-
-    .article_section {
-        padding: 30px;
-    }
-
-    .column {
-        margin: 15px;
-    }
-
-    .panel_article {
-        border: 1px solid gray;
-        padding: 20px;
-    }
-</style>

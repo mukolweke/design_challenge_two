@@ -21,16 +21,5 @@
 </script>
 
 <style scoped>
-    h3 {
-        font-weight: bold;
-    }
 
-    .support {
-        background-color: #fafafa;padding: 60px;
-    }
-
-    p{
-        font-size: 25px;
-        font-weight:500;
-    }
 </style>

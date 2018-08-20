@@ -13062,6 +13062,22 @@ body .header_main .button_join {
   width: 150px;
 }
 
+body .header_main .top-bar,
+body .header_main .top-bar ul {
+  background-color: transparent;
+  color: white;
+}
+
+body .header_main ul li a {
+  color: white;
+  background: transparent;
+}
+
+body .header_main a:hover {
+  color: white;
+  background: transparent;
+}
+
 body .primary {
   height: 500px;
 }
@@ -13080,11 +13096,354 @@ body .my_nav_two menu li a {
   color: white;
 }
 
+body .featured {
+  margin-top: 20px;
+}
+
+body .featured h5 {
+  font-weight: 600;
+}
+
+body .featured .images {
+  margin-top: 20px;
+}
+
+body .featured .hover-height {
+  height: 350px;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+  color: white;
+}
+
+body .featured .hover-height:hover {
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+  cursor: pointer;
+  color: white;
+}
+
+body .featured .textOverImage {
+  background-size: 100%;
+  background-position: center;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+body .featured .textOverImage:hover {
+  background-size: 110%;
+}
+
+body .featured .textOverImage:after {
+  content: attr(data-text);
+}
+
+body .featured .text-slider {
+  display: block;
+  padding-top: 200px;
+  padding-left: 30px;
+}
+
+body .featured .link-slider {
+  display: none;
+  padding-top: 10px;
+  padding-left: 30px;
+  color: white;
+}
+
+body .featured .link-sliderhover {
+  display: block;
+}
+
+body .featured .view_pr {
+  width: 15%;
+  margin-left: 0;
+}
+
+body .featured hr {
+  border-bottom: 1px solid darkorange;
+}
+
+body .featured a {
+  margin-top: 0;
+  color: white;
+  cursor: pointer;
+}
+
+body .featured .button_view {
+  padding-top: 20px;
+  margin: 0 auto;
+  background-color: #f4f4f4;
+  color: black;
+  font-weight: bold;
+  height: 60px;
+  border-radius: 20px;
+}
+
+body .featured .button_view:hover {
+  background-color: #8a8a8a;
+}
+
+body .featured .btn {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+body .support {
+  background-color: #fafafa;
+  padding: 60px;
+}
+
+body .support h3 {
+  font-weight: bold;
+}
+
+body .support p {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+body .who_we_are {
+  padding-top: 10px;
+  background-color: #fafafa;
+}
+
+body .who_we_are .mobile {
+  background-size: cover;
+  background-color: #fafafa;
+}
+
+body .who_we_are h2 {
+  font-weight: 200;
+}
+
+body .who_we_are .button_meeting {
+  background: darkorange;
+  font-weight: 600;
+  border-radius: 25px;
+  height: 50px;
+}
+
+body .who_we_are .button_meeting:hover {
+  background-color: orange;
+  -webkit-transition: 2ms;
+  transition: 2ms;
+}
+
+body .conference {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+body .conference .hover-height {
+  height: 350px;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+  color: white;
+}
+
+body .conference .hover-height:hover {
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+  cursor: pointer;
+  color: white;
+}
+
+body .conference h5 {
+  font-weight: 600;
+}
+
+body .conference .textOverImage {
+  background-size: 100%;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+  margin: 4px;
+  background-position: center;
+  color: white;
+}
+
+body .conference .textOverImage:hover {
+  background-size: 110%;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+  color: white;
+}
+
+body .conference hr {
+  border-bottom: 1px solid #f68c1e;
+}
+
+body .conference .button_conference {
+  background-color: #ffffff;
+  color: black;
+  font-weight: bold;
+  border-radius: 30px;
+}
+
+body .conference .slick-dots {
+  list-style: none;
+}
+
+body .member {
+  margin-top: 40px;
+  margin-bottom: 70px;
+}
+
+body .member h5 {
+  font-weight: 600;
+}
+
+body .member .textOverImage {
+  background-size: cover;
+  background-position: center;
+  border-bottom: 3px solid orangered;
+}
+
+body .member .textOverImage:hover {
+  height: 300px;
+}
+
+body .member .textOverImage:after {
+  content: attr(data-text);
+}
+
+body .member .link-slider {
+  padding-top: 310px;
+  padding-left: 30px;
+  display: none;
+  color: black;
+  font-weight: bold;
+}
+
+body .member .link-slider:hover {
+  display: block;
+}
+
+body .member .view_pr {
+  width: 15%;
+  margin-left: 0;
+}
+
+body .member hr {
+  border-bottom: 1px solid #f68c1e;
+}
+
+body .member .button_go {
+  width: 50px;
+  background-color: #f68c1e;
+  color: black;
+  font-weight: bold;
+  height: 50px;
+  border-radius: 60%;
+}
+
+body .member .fi-arrow-right {
+  background-color: transparent;
+  color: white;
+}
+
+body .map_bike {
+  padding: 150px;
+}
+
+body .map_bike h4 {
+  font-size: 30px;
+  font-weight: 100;
+  font-family: "Proxima Nova", sans-serif;
+  text-align: left;
+}
+
+body .map_bike .head_bold {
+  font-weight: bold;
+}
+
+body .hero {
+  padding: 80px;
+  color: #ffffff;
+}
+
+body .hero .button_community_join {
+  width: 200px;
+}
+
+body .hero .button {
+  text-align: center;
+  padding: 15px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  background: orange;
+}
+
+body .hero .button:hover {
+  background-color: darkorange;
+}
+
+body .article_section .info {
+  color: gray;
+  font-weight: 600;
+}
+
+body .article_section h5 {
+  font-weight: 700;
+}
+
+body .article_section .article_section {
+  padding: 30px;
+}
+
+body .article_section .column,
+body .article_section .columns {
+  margin: 15px;
+}
+
+body .article_section .panel_article {
+  border: 1px solid gray;
+  padding: 20px;
+}
+
+body .join_message {
+  background: #121212;
+}
+
+body .join_message h3 {
+  font-weight: 600;
+}
+
+body .join_message p {
+  font-weight: 100;
+  font-size: 30px;
+}
+
 body .footer {
   font-family: 'Proxima Nova', sans-serif;
   background: #0a0a0a;
   color: #ccc;
   padding: 30px;
+}
+
+body .footer .lower_section {
+  margin-top: 40px;
+}
+
+body .footer .top_icon {
+  height: 20px;
+  width: 20px;
+}
+
+body .footer .to-top {
+  display: none;
+  bottom: 200px;
+  right: 100px;
+  position: fixed;
+  background: orange;
+  color: white;
+  padding: 9px 12px;
+}
+
+body .footer .to-top:hover {
+  background: orangeRed;
+  color: white;
 }
 
 body .footer .footer_container {
@@ -13101,7 +13460,7 @@ body .footer ul li h6 {
 }
 
 body .footer ul li a {
-  color: #737373;
+  color: #a0a0a0;
 }
 
 body .footer .footer_ul {
@@ -13109,6 +13468,10 @@ body .footer .footer_ul {
 }
 
 body .footer .footer_ul li a:hover {
+  color: #ff9933;
+}
+
+body .footer a {
   color: #ff9933;
 }
 
