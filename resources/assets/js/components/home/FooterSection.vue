@@ -79,38 +79,3 @@
         name: "FooterSection"
     }
 </script>
-
-<style scoped>
-    .footer{
-        font-family: "Proxima Nova", sans-serif;
-        background: #000000;
-    }
-    .lower_section{
-        margin-top:40px;
-    }
-    li a{
-        color: #a0a0a0;
-    }
-    a{
-        color:#ff9933;
-    }
-
-    .top_icon {
-        height: 20px;
-        width: 20px;
-    }
-      .to-top {
-          display: none;
-          bottom: 200px;
-          right: 100px;
-          position: fixed;
-          background: orange;
-          color: white;
-          padding: 9px 12px;
-      }
-
-    .to-top:hover {
-        background: orangeRed;
-        color: white;
-    }
-</style>

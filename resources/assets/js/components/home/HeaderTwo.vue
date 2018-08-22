@@ -65,16 +65,5 @@
 </script>
 
 <style scoped>
-    .top-bar, .top-bar ul {
-        background-color: transparent;
-        color: white;
-    }
-    ul li a{
-        color: white;
-        background:transparent;
-    }
-    a:hover{
-        color: white;
-        background:transparent;
-    }
+
 </style>

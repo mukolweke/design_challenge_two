@@ -1,5 +1,5 @@
 <template>
-        <div class="grid-x" style="background: #121212;">
+        <div class="grid-x join_message">
             <div class="large-12 small-12 medium-12 cell">
                 <div class="message_info">
                     <h3 class="text-center">Want to Join SCGIS Community?</h3>
@@ -17,13 +17,3 @@
         name: "JoinMessageSection"
     }
 </script>
-
-<style scoped>
-    h3{
-        font-weight:600;
-    }
-    p{
-        font-weight:100;
-        font-size:30px;
-    }
-</style>

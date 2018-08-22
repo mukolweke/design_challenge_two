@@ -36,28 +36,3 @@
         components: {banner_heading, search_input}
     }
 </script>
-
-<style scoped>
-    .hero {
-        padding: 80px;
-        color: #ffffff;
-    }
-
-    .button_community_join {
-        width: 200px;
-    }
-
-    .button {
-        text-align: center;
-        padding: 15px;
-        border-radius: 50px;
-        font-size: 14px;
-        font-weight: 600;
-        letter-spacing: 1.5px;
-        background: orange;
-    }
-
-    .button:hover {
-        background-color: darkorange;
-    }
-</style>

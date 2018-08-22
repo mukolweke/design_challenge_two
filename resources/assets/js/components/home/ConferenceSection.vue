@@ -1,15 +1,8 @@
 <template>
-    <div class="grid-x member">
+    <div class="grid-x conference">
         <div class="medium-offset-1 medium-10 columns">
             <h6 class="text-center"><strong>OUR CONFERENCES</strong></h6>
             <div class="row small-collapse medium-uncollapse">
-
-                <!--<slick ref="slick" :options="slickOptions">-->
-                    <!---->
-                <!--</slick>-->
-
-
-
 
                 <div class="my-slick-carousel">
                     <div class="column medium-4 small-4 textOverImage"
@@ -65,77 +58,9 @@
             autoplaySpeed: 3000,
             arrows: false,
             adaptiveHeight: true,
-
+            dots: true,
+            dotsClass: 'slick-dots',
             mobileFirst: true
         });
     });
 </script>
-
-<style scoped>
-    .member{
-        margin-top: 20px;
-        margin-bottom:30px;
-    }
-    .hover_btn {
-        background: white;
-        color: black;
-        border-radius: 50px;
-        width: 40%;
-    }
-    .hover-height {
-        height: 350px;
-        transition: 0.7s;
-    }
-
-    .hover-height:hover {
-        transition: 0.7s;
-        cursor: pointer;
-    }
-
-    h5 {
-        font-weight: 600;
-    }
-
-    .hover-height {
-        height: 350px;
-        color: white;
-    }
-
-    .hover-height:hover {
-        cursor: pointer;
-        color: white;
-    }
-
-    .textOverImage {
-        background-size: 100%;
-        transition: 0.7s;
-        margin:4px;
-        background-position: center;
-    }
-
-    .textOverImage:hover {
-        background-size: 110%;
-        transition: 0.7s;
-    }
-
-    .view_pr {
-        width: 15%;
-        margin-left: 0;
-    }
-
-    hr {
-        border-bottom: 1px solid #f68c1e;
-    }
-
-    .button_conference {
-        background-color: #ffffff;
-        color: black;
-        font-weight: bold;
-        border-radius: 30px;
-    }
-
-    .slick-dots{
-        list-style: none;
-    }
-
-</style>
