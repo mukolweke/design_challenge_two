@@ -23,7 +23,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
 
-    <script>
+        <script>
         $(document).foundation()
 
         $(document).ready(() => {

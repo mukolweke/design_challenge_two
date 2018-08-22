@@ -1,8 +1,8 @@
 <template>
-    <div class="map_bike" style="background: url('storage/Bitmap9.png');background-size: cover;">
-        <div class="medium-offset-1 medium-10">
+    <div class="map_bike grid-x" style="background: url('storage/Bitmap9.png');background-size: cover;">
+        <div class="small-12 medium-12 column">
             <div class="grid-x">
-                <div class="column medium-5 small-12" style="color:white;">
+                <div class="column medium-4 small-12" style="color:white;">
                     <h4>
                         Allowing conservation GIS
                         practitioners to attend the
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="column small-12 medium-5"></div>
+                <div class="column medium-8 small-12"></div>
             </div>
         </div>
     </div>

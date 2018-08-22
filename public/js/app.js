@@ -174,316 +174,6 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-  Modified by Evan You @yyx990803
-*/
-
-var hasDocument = typeof document !== 'undefined'
-
-if (typeof DEBUG !== 'undefined' && DEBUG) {
-  if (!hasDocument) {
-    throw new Error(
-    'vue-style-loader cannot be used in a non-browser environment. ' +
-    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
-  ) }
-}
-
-var listToStyles = __webpack_require__(45)
-
-/*
-type StyleObject = {
-  id: number;
-  parts: Array<StyleObjectPart>
-}
-
-type StyleObjectPart = {
-  css: string;
-  media: string;
-  sourceMap: ?string
-}
-*/
-
-var stylesInDom = {/*
-  [id: number]: {
-    id: number,
-    refs: number,
-    parts: Array<(obj?: StyleObjectPart) => void>
-  }
-*/}
-
-var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
-var singletonElement = null
-var singletonCounter = 0
-var isProduction = false
-var noop = function () {}
-var options = null
-var ssrIdKey = 'data-vue-ssr-id'
-
-// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-// tags it will allow on a page
-var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
-
-module.exports = function (parentId, list, _isProduction, _options) {
-  isProduction = _isProduction
-
-  options = _options || {}
-
-  var styles = listToStyles(parentId, list)
-  addStylesToDom(styles)
-
-  return function update (newList) {
-    var mayRemove = []
-    for (var i = 0; i < styles.length; i++) {
-      var item = styles[i]
-      var domStyle = stylesInDom[item.id]
-      domStyle.refs--
-      mayRemove.push(domStyle)
-    }
-    if (newList) {
-      styles = listToStyles(parentId, newList)
-      addStylesToDom(styles)
-    } else {
-      styles = []
-    }
-    for (var i = 0; i < mayRemove.length; i++) {
-      var domStyle = mayRemove[i]
-      if (domStyle.refs === 0) {
-        for (var j = 0; j < domStyle.parts.length; j++) {
-          domStyle.parts[j]()
-        }
-        delete stylesInDom[domStyle.id]
-      }
-    }
-  }
-}
-
-function addStylesToDom (styles /* Array<StyleObject> */) {
-  for (var i = 0; i < styles.length; i++) {
-    var item = styles[i]
-    var domStyle = stylesInDom[item.id]
-    if (domStyle) {
-      domStyle.refs++
-      for (var j = 0; j < domStyle.parts.length; j++) {
-        domStyle.parts[j](item.parts[j])
-      }
-      for (; j < item.parts.length; j++) {
-        domStyle.parts.push(addStyle(item.parts[j]))
-      }
-      if (domStyle.parts.length > item.parts.length) {
-        domStyle.parts.length = item.parts.length
-      }
-    } else {
-      var parts = []
-      for (var j = 0; j < item.parts.length; j++) {
-        parts.push(addStyle(item.parts[j]))
-      }
-      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
-    }
-  }
-}
-
-function createStyleElement () {
-  var styleElement = document.createElement('style')
-  styleElement.type = 'text/css'
-  head.appendChild(styleElement)
-  return styleElement
-}
-
-function addStyle (obj /* StyleObjectPart */) {
-  var update, remove
-  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
-
-  if (styleElement) {
-    if (isProduction) {
-      // has SSR styles and in production mode.
-      // simply do nothing.
-      return noop
-    } else {
-      // has SSR styles but in dev mode.
-      // for some reason Chrome can't handle source map in server-rendered
-      // style tags - source maps in <style> only works if the style tag is
-      // created and inserted dynamically. So we remove the server rendered
-      // styles and inject new ones.
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  if (isOldIE) {
-    // use singleton mode for IE9.
-    var styleIndex = singletonCounter++
-    styleElement = singletonElement || (singletonElement = createStyleElement())
-    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
-    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
-  } else {
-    // use multi-style-tag mode in all other cases
-    styleElement = createStyleElement()
-    update = applyToTag.bind(null, styleElement)
-    remove = function () {
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  update(obj)
-
-  return function updateStyle (newObj /* StyleObjectPart */) {
-    if (newObj) {
-      if (newObj.css === obj.css &&
-          newObj.media === obj.media &&
-          newObj.sourceMap === obj.sourceMap) {
-        return
-      }
-      update(obj = newObj)
-    } else {
-      remove()
-    }
-  }
-}
-
-var replaceText = (function () {
-  var textStore = []
-
-  return function (index, replacement) {
-    textStore[index] = replacement
-    return textStore.filter(Boolean).join('\n')
-  }
-})()
-
-function applyToSingletonTag (styleElement, index, remove, obj) {
-  var css = remove ? '' : obj.css
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = replaceText(index, css)
-  } else {
-    var cssNode = document.createTextNode(css)
-    var childNodes = styleElement.childNodes
-    if (childNodes[index]) styleElement.removeChild(childNodes[index])
-    if (childNodes.length) {
-      styleElement.insertBefore(cssNode, childNodes[index])
-    } else {
-      styleElement.appendChild(cssNode)
-    }
-  }
-}
-
-function applyToTag (styleElement, obj) {
-  var css = obj.css
-  var media = obj.media
-  var sourceMap = obj.sourceMap
-
-  if (media) {
-    styleElement.setAttribute('media', media)
-  }
-  if (options.ssrId) {
-    styleElement.setAttribute(ssrIdKey, obj.id)
-  }
-
-  if (sourceMap) {
-    // https://developer.chrome.com/devtools/docs/javascript-debugging
-    // this makes source maps inside style tags work properly in Chrome
-    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
-    // http://stackoverflow.com/a/26603875
-    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
-  }
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = css
-  } else {
-    while (styleElement.firstChild) {
-      styleElement.removeChild(styleElement.firstChild)
-    }
-    styleElement.appendChild(document.createTextNode(css))
-  }
-}
-
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -790,6 +480,316 @@ module.exports = {
   extend: extend,
   trim: trim
 };
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(47)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+var options = null
+var ssrIdKey = 'data-vue-ssr-id'
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction, _options) {
+  isProduction = _isProduction
+
+  options = _options || {}
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+  if (options.ssrId) {
+    styleElement.setAttribute(ssrIdKey, obj.id)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
 
 
 /***/ }),
@@ -11197,7 +11197,7 @@ return jQuery;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 var normalizeHeaderName = __webpack_require__(24);
 
 var DEFAULT_CONTENT_TYPE = {
@@ -22475,7 +22475,7 @@ process.umask = function() { return 0; };
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 var settle = __webpack_require__(25);
 var buildURL = __webpack_require__(27);
 var parseHeaders = __webpack_require__(28);
@@ -22723,7 +22723,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);
-module.exports = __webpack_require__(119);
+module.exports = __webpack_require__(103);
 
 
 /***/ }),
@@ -22743,8 +22743,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __webpack_require__(16);
 __webpack_require__(39);
-__webpack_require__(117);
-__webpack_require__(118);
+__webpack_require__(101);
+__webpack_require__(102);
 
 
 
@@ -51757,7 +51757,7 @@ module.exports = __webpack_require__(21);
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 var bind = __webpack_require__(8);
 var Axios = __webpack_require__(23);
 var defaults = __webpack_require__(6);
@@ -51844,7 +51844,7 @@ function isSlowBuffer (obj) {
 
 
 var defaults = __webpack_require__(6);
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 var InterceptorManager = __webpack_require__(32);
 var dispatchRequest = __webpack_require__(33);
 
@@ -51929,7 +51929,7 @@ module.exports = Axios;
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -52009,7 +52009,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -52082,7 +52082,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 
 // Headers whose duplicates are ignored by node
 // c.f. https://nodejs.org/api/http.html#http_message_headers
@@ -52142,7 +52142,7 @@ module.exports = function parseHeaders(headers) {
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -52260,7 +52260,7 @@ module.exports = btoa;
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -52320,7 +52320,7 @@ module.exports = (
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 
 function InterceptorManager() {
   this.handlers = [];
@@ -52379,7 +52379,7 @@ module.exports = InterceptorManager;
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 var transformData = __webpack_require__(34);
 var isCancel = __webpack_require__(12);
 var defaults = __webpack_require__(6);
@@ -52472,7 +52472,7 @@ module.exports = function dispatchRequest(config) {
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(1);
 
 /**
  * Transform the data for a request or a response
@@ -52914,9 +52914,9 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(46)
+var __vue_script__ = __webpack_require__(43)
 /* template */
-var __vue_template__ = __webpack_require__(137)
+var __vue_template__ = __webpack_require__(100)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -52955,67 +52955,32 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 43 */,
-/* 44 */,
-/* 45 */
-/***/ (function(module, exports) {
-
-/**
- * Translates the list format produced by css-loader into something
- * easier to manipulate.
- */
-module.exports = function listToStyles (parentId, list) {
-  var styles = []
-  var newStyles = {}
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i]
-    var id = item[0]
-    var css = item[1]
-    var media = item[2]
-    var sourceMap = item[3]
-    var part = {
-      id: parentId + ':' + i,
-      css: css,
-      media: media,
-      sourceMap: sourceMap
-    }
-    if (!newStyles[id]) {
-      styles.push(newStyles[id] = { id: id, parts: [part] })
-    } else {
-      newStyles[id].parts.push(part)
-    }
-  }
-  return styles
-}
-
-
-/***/ }),
-/* 46 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__HeaderOne__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__HeaderOne__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__HeaderOne___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__HeaderOne__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Banner__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Banner__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Banner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Banner__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__WhoWeAreSection__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__WhoWeAreSection__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__WhoWeAreSection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__WhoWeAreSection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FeaturedStorySection__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FeaturedStorySection__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FeaturedStorySection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__FeaturedStorySection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__SupportKnowledgeSection__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__SupportKnowledgeSection__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__SupportKnowledgeSection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__SupportKnowledgeSection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ConferenceSection__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ConferenceSection__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ConferenceSection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__ConferenceSection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MembersSection__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MembersSection__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MembersSection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__MembersSection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__BannerMapSection__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__BannerMapSection__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__BannerMapSection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__BannerMapSection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__NewsArticlesSection__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__NewsArticlesSection__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__NewsArticlesSection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__NewsArticlesSection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__JoinMessageSection__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__JoinMessageSection__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__JoinMessageSection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__JoinMessageSection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__FooterSection__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__FooterSection__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__FooterSection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__FooterSection__);
 //
 //
@@ -53076,19 +53041,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 47 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(48)
+  __webpack_require__(45)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(50)
+var __vue_script__ = __webpack_require__(48)
 /* template */
-var __vue_template__ = __webpack_require__(51)
+var __vue_template__ = __webpack_require__(49)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -53127,17 +53092,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 48 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(49);
+var content = __webpack_require__(46);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("6e1ce55a", content, false, {});
+var update = __webpack_require__(3)("6e1ce55a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -53153,10 +53118,10 @@ if(false) {
 }
 
 /***/ }),
-/* 49 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -53167,7 +53132,40 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 
 /***/ }),
-/* 50 */
+/* 47 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ }),
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53190,7 +53188,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 51 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -53237,15 +53235,15 @@ if (false) {
 }
 
 /***/ }),
-/* 52 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(55)
+var __vue_script__ = __webpack_require__(51)
 /* template */
-var __vue_template__ = __webpack_require__(133)
+var __vue_template__ = __webpack_require__(62)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -53284,16 +53282,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 53 */,
-/* 54 */,
-/* 55 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__HeaderTwo__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__HeaderTwo__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__HeaderTwo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__HeaderTwo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SearchComponent__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SearchComponent__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SearchComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SearchComponent__);
 //
 //
@@ -53334,19 +53330,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 56 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(57)
+  __webpack_require__(53)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(59)
+var __vue_script__ = __webpack_require__(55)
 /* template */
-var __vue_template__ = __webpack_require__(60)
+var __vue_template__ = __webpack_require__(56)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -53385,17 +53381,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 57 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(58);
+var content = __webpack_require__(54);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("635d0f0e", content, false, {});
+var update = __webpack_require__(3)("635d0f0e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -53411,10 +53407,10 @@ if(false) {
 }
 
 /***/ }),
-/* 58 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -53425,7 +53421,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 59 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53496,7 +53492,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 60 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -53639,19 +53635,19 @@ if (false) {
 }
 
 /***/ }),
-/* 61 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(62)
+  __webpack_require__(58)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(64)
+var __vue_script__ = __webpack_require__(60)
 /* template */
-var __vue_template__ = __webpack_require__(65)
+var __vue_template__ = __webpack_require__(61)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -53690,17 +53686,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 62 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(63);
+var content = __webpack_require__(59);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("e392ec8e", content, false, {});
+var update = __webpack_require__(3)("e392ec8e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -53716,10 +53712,10 @@ if(false) {
 }
 
 /***/ }),
-/* 63 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -53730,7 +53726,7 @@ exports.push([module.i, "\n.input-group[data-v-55ae3a08] {\n  height: 100px;\n  
 
 
 /***/ }),
-/* 64 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53757,7 +53753,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 65 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -53819,20 +53815,95 @@ if (false) {
 }
 
 /***/ }),
-/* 66 */,
-/* 67 */
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass: "grid-x banner",
+        staticStyle: {
+          background: "url('storage/img1.png')",
+          "background-size": "cover"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "medium-12 small-12 columns" },
+          [
+            _c("banner_heading"),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", [_c("search_input")], 1)
+          ],
+          1
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hero grid-x" }, [
+      _c("div", { staticClass: "medium-offset-1 columns" }, [
+        _c("h2", [
+          _vm._v("Do yo want to be part of the "),
+          _c("br"),
+          _vm._v(" "),
+          _c("b", [_vm._v("community")]),
+          _vm._v(" and make a "),
+          _c("br"),
+          _vm._v("\n                        difference in GIS")
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(" If you are a GIS professional or are interested "),
+          _c("br"),
+          _vm._v("\n                        in using GIS for conversation")
+        ]),
+        _vm._v(" "),
+        _c(
+          "a",
+          { staticClass: "button button_community_join", attrs: { href: "#" } },
+          [_vm._v("Join the Community")]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5e6f0c35", module.exports)
+  }
+}
+
+/***/ }),
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(68)
+  __webpack_require__(64)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(70)
+var __vue_script__ = __webpack_require__(66)
 /* template */
-var __vue_template__ = __webpack_require__(71)
+var __vue_template__ = __webpack_require__(67)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -53871,17 +53942,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 68 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(69);
+var content = __webpack_require__(65);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("037d5d95", content, false, {});
+var update = __webpack_require__(3)("037d5d95", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -53897,10 +53968,10 @@ if(false) {
 }
 
 /***/ }),
-/* 69 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -53911,7 +53982,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 70 */
+/* 66 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53948,7 +54019,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 71 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -54034,15 +54105,15 @@ if (false) {
 }
 
 /***/ }),
-/* 72 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(75)
+var __vue_script__ = __webpack_require__(69)
 /* template */
-var __vue_template__ = __webpack_require__(138)
+var __vue_template__ = __webpack_require__(70)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -54081,9 +54152,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 73 */,
-/* 74 */,
-/* 75 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54164,20 +54233,195 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 76 */,
-/* 77 */
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "featured" }, [
+      _c("h6", { staticClass: "text-center" }, [
+        _c("strong", [_vm._v("FEATURED STORIES")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "grid-x images" }, [
+        _c("div", { staticClass: "medium-offset-1 medium-10 small-12" }, [
+          _c("div", { staticClass: "grid-x" }, [
+            _c(
+              "div",
+              {
+                staticClass: "columns medium-6 small-12 textOverImage",
+                staticStyle: {
+                  "background-image": "url('storage/green_back.jpg')"
+                }
+              },
+              [
+                _c("div", { staticClass: "hover-height" }, [
+                  _c("div", { staticClass: "text-slider" }, [
+                    _c("h5", [_vm._v("Master's Thesis")])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "link-slider" }, [
+                    _c("hr", { staticClass: "view_pr" }),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("View Project >")
+                    ])
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "columns medium-6 small-12 textOverImage",
+                staticStyle: {
+                  "background-image": "url('storage/bitmap2.png')"
+                }
+              },
+              [
+                _c("div", { staticClass: "hover-height" }, [
+                  _c("div", { staticClass: "text-slider" }, [
+                    _c("h5", [
+                      _vm._v("Catalog and classification of online "),
+                      _c("br"),
+                      _vm._v(
+                        "\n                                Free GIS Training Courses"
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "link-slider" }, [
+                    _c("hr", { staticClass: "view_pr" }),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("View Project >")
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "grid-x" }, [
+            _c(
+              "div",
+              {
+                staticClass: "columns medium-5 small-12 textOverImage",
+                staticStyle: {
+                  "background-image": "url('storage/bitmap3.png')"
+                }
+              },
+              [
+                _c("div", { staticClass: "hover-height" }, [
+                  _c("div", { staticClass: "text-slider" }, [
+                    _c("h5", [
+                      _vm._v("Caribou and mining "),
+                      _c("br"),
+                      _vm._v(" Story Map")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "link-slider" }, [
+                    _c("hr", { staticClass: "view_pr" }),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("View Project >")
+                    ])
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "columns medium-7 small-12 textOverImage",
+                staticStyle: {
+                  "background-image": "url('storage/bitmap4.png')"
+                }
+              },
+              [
+                _c("div", { staticClass: "hover-height" }, [
+                  _c("div", { staticClass: "text-slider" }, [
+                    _c("h5", [
+                      _vm._v("Quantifying The Impact of Multi-Annual "),
+                      _c("br"),
+                      _vm._v(
+                        "\n                                Drought on California's Agriculture Industry "
+                      ),
+                      _c("br")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "link-slider" }, [
+                    _c("hr", { staticClass: "view_pr" }),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("View Project >")
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "grid-x" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "cell small-offset-4 small-4 medium-offset-4 medium-4 large-4 btn"
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "button expanded button_view",
+                    attrs: { href: "#" }
+                  },
+                  [_vm._v("View All Project")]
+                )
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-09446dc7", module.exports)
+  }
+}
+
+/***/ }),
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(78)
+  __webpack_require__(72)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(80)
+var __vue_script__ = __webpack_require__(74)
 /* template */
-var __vue_template__ = __webpack_require__(81)
+var __vue_template__ = __webpack_require__(75)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -54216,17 +54460,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 78 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(79);
+var content = __webpack_require__(73);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("8f209d4a", content, false, {});
+var update = __webpack_require__(3)("8f209d4a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -54242,10 +54486,10 @@ if(false) {
 }
 
 /***/ }),
-/* 79 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(2)(false);
 // imports
 
 
@@ -54256,7 +54500,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""])
 
 
 /***/ }),
-/* 80 */
+/* 74 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54283,7 +54527,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 81 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -54334,15 +54578,15 @@ if (false) {
 }
 
 /***/ }),
-/* 82 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(85)
+var __vue_script__ = __webpack_require__(77)
 /* template */
-var __vue_template__ = __webpack_require__(131)
+var __vue_template__ = __webpack_require__(82)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -54381,19 +54625,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 83 */,
-/* 84 */,
-/* 85 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_slick__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_slick__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_slick___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_slick__);
-//
-//
-//
-//
 //
 //
 //
@@ -54453,21 +54691,22 @@ $(document).ready(function () {
         autoplaySpeed: 3000,
         arrows: false,
         adaptiveHeight: true,
-
+        dots: true,
+        dotsClass: 'slick-dots',
         mobileFirst: true
     });
 });
 
 /***/ }),
-/* 86 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(87)
+var __vue_script__ = __webpack_require__(79)
 /* template */
-var __vue_template__ = __webpack_require__(89)
+var __vue_template__ = __webpack_require__(81)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -54506,7 +54745,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 87 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54526,7 +54765,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 // Check if the request came from the browser and is not server rendered
 if (typeof window !== 'undefined') {
-  var slick = __webpack_require__(88);
+  var slick = __webpack_require__(80);
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -54689,7 +54928,7 @@ if (typeof window !== 'undefined') {
 });
 
 /***/ }),
-/* 88 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -57709,7 +57948,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 89 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -57729,22 +57968,170 @@ if (false) {
 }
 
 /***/ }),
-/* 90 */,
-/* 91 */
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "grid-x conference" }, [
+      _c("div", { staticClass: "medium-offset-1 medium-10 columns" }, [
+        _c("h6", { staticClass: "text-center" }, [
+          _c("strong", [_vm._v("OUR CONFERENCES")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row small-collapse medium-uncollapse" }, [
+          _c("div", { staticClass: "my-slick-carousel" }, [
+            _c(
+              "div",
+              {
+                staticClass: "column medium-4 small-4 textOverImage",
+                staticStyle: {
+                  "background-image": "url('storage/conference2.jpg')"
+                }
+              },
+              [
+                _c("div", { staticClass: "hover-height" }, [
+                  _c("div", { staticClass: "link-slider" }, [
+                    _c("h3", [
+                      _vm._v("The Future of GIS "),
+                      _c("br"),
+                      _vm._v("in our Region")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v("Promoting growth in our"),
+                      _c("br"),
+                      _vm._v(" chapters and communities")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "button button_conference",
+                        attrs: { type: "button" }
+                      },
+                      [_vm._v("View Conference")]
+                    )
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "column medium-4 small-4 textOverImage",
+                staticStyle: {
+                  "background-image": "url('storage/group_photo.jpg')"
+                }
+              },
+              [
+                _c("div", { staticClass: "hover-height" }, [
+                  _c("div", { staticClass: "link-slider" }, [
+                    _c("h3", [
+                      _vm._v("The Future of GIS "),
+                      _c("br"),
+                      _vm._v("in our Region")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v("Promoting growth in our"),
+                      _c("br"),
+                      _vm._v(" chapters and communities")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "button  button_conference",
+                        attrs: { type: "button " }
+                      },
+                      [_vm._v("View Conference")]
+                    )
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "column medium-4 small-4 textOverImage",
+                staticStyle: {
+                  "background-image": "url('storage/speaker.jpg')"
+                }
+              },
+              [
+                _c("div", { staticClass: "hover-height" }, [
+                  _c("div", { staticClass: "link-slider" }, [
+                    _c("h3", [
+                      _vm._v("The Future of GIS "),
+                      _c("br"),
+                      _vm._v("in our Region")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v("Promoting growth in our"),
+                      _c("br"),
+                      _vm._v(" chapters and communities")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "button  button_conference",
+                        attrs: { type: "button" }
+                      },
+                      [_vm._v("View Conference")]
+                    )
+                  ])
+                ])
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-14373f30", module.exports)
+  }
+}
+
+/***/ }),
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(84)
+}
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(94)
+var __vue_script__ = __webpack_require__(86)
 /* template */
-var __vue_template__ = __webpack_require__(132)
+var __vue_template__ = __webpack_require__(87)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-533c28d6"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -57777,9 +58164,47 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 92 */,
-/* 93 */,
-/* 94 */
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(85);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("73d19773", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-533c28d6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MembersSection.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-533c28d6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MembersSection.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57857,16 +58282,141 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 95 */,
-/* 96 */
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "grid-x member" }, [
+      _c("div", { staticClass: "medium-offset-1 medium-10 columns" }, [
+        _c("p", [_c("b", [_vm._v("PANEL MEMBERS")])]),
+        _vm._v(" "),
+        _c("div", { staticClass: "grid-x", staticStyle: { height: "350px" } }, [
+          _c(
+            "div",
+            {
+              staticClass: "column medium-4 small-12 textOverImage",
+              staticStyle: { "background-image": "url('storage/client1.jpg')" }
+            },
+            [
+              _c("div", { staticClass: "hover-height" }, [
+                _c("div", { staticClass: "link-slider" }, [
+                  _c("div", { staticClass: "grid-x" }, [
+                    _c("div", { staticClass: "small-9 column" }, [
+                      _c("h5", [_vm._v("Dr Lilian Pintea ")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                                    Vice President Conservation Science, the Jance Goodall\n                                    Institute.\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "small-3 column" }, [
+                      _c("button", { staticClass: "button button_go" }, [
+                        _c("i", { staticClass: "fi-arrow-right" })
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "column medium-4 small-12 textOverImage",
+              staticStyle: { "background-image": "url('storage/client2.jpg')" }
+            },
+            [
+              _c("div", { staticClass: "hover-height" }, [
+                _c("div", { staticClass: "link-slider" }, [
+                  _c("div", { staticClass: "grid-x" }, [
+                    _c("div", { staticClass: "small-9 column" }, [
+                      _c("h5", [_vm._v("Dr. Michael Wamaye ")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                                    Head of our design and development team.\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "small-3 column" }, [
+                      _c("button", { staticClass: "button button_go" }, [
+                        _c("i", { staticClass: "fi-arrow-right" })
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "column medium-4 small-12 textOverImage",
+              staticStyle: { "background-image": "url('storage/client3.jpg')" }
+            },
+            [
+              _c("div", { staticClass: "hover-height" }, [
+                _c("div", { staticClass: "link-slider" }, [
+                  _c("div", { staticClass: "grid-x" }, [
+                    _c("div", { staticClass: "small-9 column" }, [
+                      _c("h5", [_vm._v("Mr. Chaka Williams ")]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                                    Head of our Software Engineering department.\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "small-3 column" }, [
+                      _c("button", { staticClass: "button button_go" }, [
+                        _c("i", { staticClass: "fi-arrow-right" })
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          )
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-533c28d6", module.exports)
+  }
+}
+
+/***/ }),
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(99)
+var __vue_script__ = __webpack_require__(89)
 /* template */
-var __vue_template__ = __webpack_require__(130)
+var __vue_template__ = __webpack_require__(90)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -57905,9 +58455,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 97 */,
-/* 98 */,
-/* 99 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57954,16 +58502,107 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 100 */,
-/* 101 */
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "map_bike grid-x",
+        staticStyle: {
+          background: "url('storage/Bitmap9.png')",
+          "background-size": "cover"
+        }
+      },
+      [
+        _c("div", { staticClass: "small-12 medium-12 column" }, [
+          _c("div", { staticClass: "grid-x" }, [
+            _c(
+              "div",
+              {
+                staticClass: "column medium-4 small-12",
+                staticStyle: { color: "white" }
+              },
+              [
+                _c("h4", [
+                  _vm._v(
+                    "\n                    Allowing conservation GIS\n                    practitioners to attend the\n                    Esri user conference and\n                    SGIS annual conference .\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                    Lorem ipsum is simply a dummy text of the printing\n                    and typsetting industry. Lorem ipsum has been the\n                    industry's standard dummy text ever since...\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "grid-x grid-padding-x" }, [
+                  _c("div", { staticClass: "medium-3 small-3 cell" }, [
+                    _c("img", {
+                      staticClass: "play-icon",
+                      attrs: { src: "storage/play_icon.svg" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "medium-9 small-9 cell" }, [
+                    _c("p", { staticClass: "span_head" }, [
+                      _c("span", { staticClass: "head_bold" }, [
+                        _vm._v("Learning more with GIS ")
+                      ]),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(
+                        "Improving\n                            customer service"
+                      ),
+                      _c("br"),
+                      _vm._v(
+                        "with\n                            custom\n                            IOS apps"
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "column medium-8 small-12" })
+          ])
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-556e0d7e", module.exports)
+  }
+}
+
+/***/ }),
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(104)
+var __vue_script__ = __webpack_require__(92)
 /* template */
-var __vue_template__ = __webpack_require__(135)
+var __vue_template__ = __webpack_require__(93)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -58002,9 +58641,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 102 */,
-/* 103 */,
-/* 104 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58055,16 +58692,110 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 105 */,
-/* 106 */
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "article_section" }, [
+      _c("div", { staticClass: "grid-x" }, [
+        _c("div", { staticClass: "medium-offset-1 small-offset-1" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "medium-3 small-12 column" }, [
+          _c("h5", [_vm._v("NEWS & ARTICLES")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "grid-x" }, [
+        _c("div", { staticClass: "medium-offset-1" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "medium-3 small-12 column panel_article" }, [
+          _c("h5", [_vm._v("SCGIS Conference: Maps for advocacy session.")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Lorem ipsum is simply a dummy text of the printing\n                and typsetting industry. Lorem ipsum has been the\n                industry's standard dummy text ever since..."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _c("span", { staticClass: "info" }, [_vm._v("Posted on: ")]),
+            _vm._v("Date is 17th July")
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "medium-3 small-12 column panel_article",
+            staticStyle: { background: "#5d7a37", color: "white" }
+          },
+          [
+            _c("h5", [_vm._v("CrisisMapping Typhoon Haiyan (Yolanda)")]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Lorem ipsum is simply a dummy text of the printing\n                and typsetting industry. Lorem ipsum has been the\n                industry's standard dummy text ever since...."
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("span", { staticClass: "info" }, [_vm._v("Posted on: ")]),
+              _vm._v("Date is 17th July")
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "medium-3 small-12 column panel_article" }, [
+          _c("h5", [_vm._v("Web GIS Spurs Open Culture Towards Government")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Lorem ipsum is simply a dummy text of the printing\n                and typsetting industry. Lorem ipsum has been the\n                industry's standard dummy text ever since..."
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _c("span", { staticClass: "info" }, [_vm._v("Posted on: ")]),
+            _vm._v("Date is 17th July")
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("br")
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-201591dc", module.exports)
+  }
+}
+
+/***/ }),
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(109)
+var __vue_script__ = __webpack_require__(95)
 /* template */
-var __vue_template__ = __webpack_require__(136)
+var __vue_template__ = __webpack_require__(96)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -58103,9 +58834,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 107 */,
-/* 108 */,
-/* 109 */
+/* 95 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58130,16 +58859,60 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 110 */,
-/* 111 */
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "grid-x join_message" }, [
+      _c("div", { staticClass: "large-12 small-12 medium-12 cell" }, [
+        _c("div", { staticClass: "message_info" }, [
+          _c("h3", { staticClass: "text-center" }, [
+            _vm._v("Want to Join SCGIS Community?")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-center" }, [
+            _vm._v("We can't wait for you to be a member of the community.")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "center_btn" }, [
+            _c("button", { staticClass: "button", attrs: { type: "button" } }, [
+              _vm._v("Join Now!")
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1294f631", module.exports)
+  }
+}
+
+/***/ }),
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(114)
+var __vue_script__ = __webpack_require__(98)
 /* template */
-var __vue_template__ = __webpack_require__(134)
+var __vue_template__ = __webpack_require__(99)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -58178,9 +58951,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 112 */,
-/* 113 */,
-/* 114 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58267,9 +59038,274 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 115 */,
-/* 116 */,
-/* 117 */
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "footer" }, [
+      _c("div", { staticClass: "footer_container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "grid-container" }, [
+            _c("div", { staticClass: "grid-x grid-padding-x" }, [
+              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
+                _c("ul", { staticClass: "footer_ul" }, [
+                  _c("li", [_c("h6", [_vm._v("CHAPTERS")])]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Kenya")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Bulgaria")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Brazil")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("Latin America(Regional)")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Nepal")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("MORE")])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
+                _c("ul", { staticClass: "footer_ul" }, [
+                  _c("li", [_c("h6", [_vm._v("COMMITTEES")])]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("Domestic Chapters")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("Communications")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Conference")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("International")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Membership")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Website")])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
+                _c("ul", { staticClass: "footer_ul" }, [
+                  _c("li", [_c("h6", [_vm._v("ABOUT")])]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Newsroom")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Leadership")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("Job Opportunities")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Members")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Events")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Contact SCGIS")])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
+                _c("ul", { staticClass: "footer_ul" }, [
+                  _c("li", [_c("h6", [_vm._v("SUPPORT")])]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Contact Us")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Inquiries")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("FAQ's")])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "float:left;" }, [
+                  _c("li", [_c("h6", [_vm._v("SOCIAL MEDIA")])]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "fb" }, [
+                    _c("a", { attrs: { href: "#0" } }),
+                    _vm._v(" "),
+                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
+                      _c("img", {
+                        staticClass: "img_foot",
+                        attrs: { src: "storage/fb.svg" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
+                      _c("img", {
+                        staticClass: "img_foot nxt",
+                        attrs: { src: "storage/twitter.svg" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
+                      _c("img", {
+                        staticClass: "img_foot nxt",
+                        attrs: { src: "storage/IG.svg" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
+                      _c("img", {
+                        staticClass: "img_foot nxt",
+                        attrs: { src: "storage/linkedin-logo.svg" }
+                      })
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "lower_section" }, [
+            _c("span", { staticClass: "more_info" }, [
+              _vm._v("More information about SCGIS email: "),
+              _c("a", { staticClass: "join_link", attrs: { href: "#0" } }, [
+                _vm._v("hello@scgis.org")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("hr", { staticClass: "footer_hr" }),
+            _vm._v(" "),
+            _c("span", { staticClass: "more_info" }, [
+              _vm._v("Copyright © 2018 SCGIS. All Rights Reserved.")
+            ]),
+            _vm._v(" "),
+            _c(
+              "span",
+              { staticClass: "spoon_foot", staticStyle: { float: "right" } },
+              [
+                _c("a", { attrs: { href: "#0" } }, [_vm._v("Privacy Policy")]),
+                _vm._v(" | "),
+                _c("a", { attrs: { href: "#0" } }, [_vm._v("Term of Use")])
+              ]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c("a", { staticClass: "to-top", attrs: { href: "#top" } }, [
+          _c("img", {
+            staticClass: "image top_icon",
+            attrs: { src: "storage/caret-symbol.svg" }
+          })
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0fa5a8d1", module.exports)
+  }
+}
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("top_header"),
+      _vm._v(" "),
+      _c("banner"),
+      _vm._v(" "),
+      _c("who_we_are"),
+      _vm._v(" "),
+      _c("featured_story"),
+      _vm._v(" "),
+      _c("knowledge_support"),
+      _vm._v(" "),
+      _c("conference"),
+      _vm._v(" "),
+      _c("members"),
+      _vm._v(" "),
+      _c("banner_map"),
+      _vm._v(" "),
+      _c("news_articles"),
+      _vm._v(" "),
+      _c("join_message"),
+      _vm._v(" "),
+      _c("footer_section")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3d067658", module.exports)
+  }
+}
+
+/***/ }),
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -58700,1048 +59736,16 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 });
 
 /***/ }),
-/* 118 */
+/* 102 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 119 */
+/* 103 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */,
-/* 128 */,
-/* 129 */,
-/* 130 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "map_bike",
-        staticStyle: {
-          background: "url('storage/Bitmap9.png')",
-          "background-size": "cover"
-        }
-      },
-      [
-        _c("div", { staticClass: "medium-offset-1 medium-10" }, [
-          _c("div", { staticClass: "grid-x" }, [
-            _c(
-              "div",
-              {
-                staticClass: "column medium-5 small-12",
-                staticStyle: { color: "white" }
-              },
-              [
-                _c("h4", [
-                  _vm._v(
-                    "\n                    Allowing conservation GIS\n                    practitioners to attend the\n                    Esri user conference and\n                    SGIS annual conference .\n                "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "\n                    Lorem ipsum is simply a dummy text of the printing\n                    and typsetting industry. Lorem ipsum has been the\n                    industry's standard dummy text ever since...\n                "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("div", { staticClass: "grid-x grid-padding-x" }, [
-                  _c("div", { staticClass: "medium-3 small-3 cell" }, [
-                    _c("img", {
-                      staticClass: "play-icon",
-                      attrs: { src: "storage/play_icon.svg" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "medium-9 small-9 cell" }, [
-                    _c("p", { staticClass: "span_head" }, [
-                      _c("span", { staticClass: "head_bold" }, [
-                        _vm._v("Learning more with GIS ")
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(
-                        "Improving\n                            customer service"
-                      ),
-                      _c("br"),
-                      _vm._v(
-                        "with\n                            custom\n                            IOS apps"
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "column small-12 medium-5" })
-          ])
-        ])
-      ]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-556e0d7e", module.exports)
-  }
-}
-
-/***/ }),
-/* 131 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "grid-x conference" }, [
-      _c("div", { staticClass: "medium-offset-1 medium-10 columns" }, [
-        _c("h6", { staticClass: "text-center" }, [
-          _c("strong", [_vm._v("OUR CONFERENCES")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row small-collapse medium-uncollapse" }, [
-          _c("div", { staticClass: "my-slick-carousel" }, [
-            _c(
-              "div",
-              {
-                staticClass: "column medium-4 small-4 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/conference2.jpg')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("h3", [
-                      _vm._v("The Future of GIS "),
-                      _c("br"),
-                      _vm._v("in our Region")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v("Promoting growth in our"),
-                      _c("br"),
-                      _vm._v(" chapters and communities")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "button button_conference",
-                        attrs: { type: "button" }
-                      },
-                      [_vm._v("View Conference")]
-                    )
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "column medium-4 small-4 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/group_photo.jpg')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("h3", [
-                      _vm._v("The Future of GIS "),
-                      _c("br"),
-                      _vm._v("in our Region")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v("Promoting growth in our"),
-                      _c("br"),
-                      _vm._v(" chapters and communities")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "button  button_conference",
-                        attrs: { type: "button " }
-                      },
-                      [_vm._v("View Conference")]
-                    )
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "column medium-4 small-4 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/speaker.jpg')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("h3", [
-                      _vm._v("The Future of GIS "),
-                      _c("br"),
-                      _vm._v("in our Region")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v("Promoting growth in our"),
-                      _c("br"),
-                      _vm._v(" chapters and communities")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "button  button_conference",
-                        attrs: { type: "button" }
-                      },
-                      [_vm._v("View Conference")]
-                    )
-                  ])
-                ])
-              ]
-            )
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-14373f30", module.exports)
-  }
-}
-
-/***/ }),
-/* 132 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "grid-x member" }, [
-      _c("div", { staticClass: "medium-offset-1 medium-10 columns" }, [
-        _c("p", [_c("b", [_vm._v("PANEL MEMBERS")])]),
-        _vm._v(" "),
-        _c("div", { staticClass: "grid-x", staticStyle: { height: "350px" } }, [
-          _c(
-            "div",
-            {
-              staticClass: "column medium-4 small-12 textOverImage",
-              staticStyle: { "background-image": "url('storage/client1.jpg')" }
-            },
-            [
-              _c("div", { staticClass: "hover-height" }, [
-                _c("div", { staticClass: "link-slider" }, [
-                  _c("div", { staticClass: "grid-x" }, [
-                    _c("div", { staticClass: "small-9 column" }, [
-                      _c("h5", [_vm._v("Dr Lilian Pintea ")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                                    Vice President Conservation Science, the Jance Goodall\n                                    Institute.\n                                "
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "small-3 column" }, [
-                      _c("button", { staticClass: "button button_go" }, [
-                        _c("i", { staticClass: "fi-arrow-right" })
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "column medium-4 small-12 textOverImage",
-              staticStyle: { "background-image": "url('storage/client2.jpg')" }
-            },
-            [
-              _c("div", { staticClass: "hover-height" }, [
-                _c("div", { staticClass: "link-slider" }, [
-                  _c("div", { staticClass: "grid-x" }, [
-                    _c("div", { staticClass: "small-9 column" }, [
-                      _c("h5", [_vm._v("Dr. Michael Wamaye ")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                                    Head of our design and development team.\n                                "
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "small-3 column" }, [
-                      _c("button", { staticClass: "button button_go" }, [
-                        _c("i", { staticClass: "fi-arrow-right" })
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "column medium-4 small-12 textOverImage",
-              staticStyle: { "background-image": "url('storage/client3.jpg')" }
-            },
-            [
-              _c("div", { staticClass: "hover-height" }, [
-                _c("div", { staticClass: "link-slider" }, [
-                  _c("div", { staticClass: "grid-x" }, [
-                    _c("div", { staticClass: "small-9 column" }, [
-                      _c("h5", [_vm._v("Mr. Chaka Williams ")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                                    Head of our Software Engineering department.\n                                "
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "small-3 column" }, [
-                      _c("button", { staticClass: "button button_go" }, [
-                        _c("i", { staticClass: "fi-arrow-right" })
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ]
-          )
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-533c28d6", module.exports)
-  }
-}
-
-/***/ }),
-/* 133 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      {
-        staticClass: "grid-x banner",
-        staticStyle: {
-          background: "url('storage/img1.png')",
-          "background-size": "cover"
-        }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "medium-12 small-12 columns" },
-          [
-            _c("banner_heading"),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", [_c("search_input")], 1)
-          ],
-          1
-        )
-      ]
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "hero grid-x" }, [
-      _c("div", { staticClass: "medium-offset-1 columns" }, [
-        _c("h2", [
-          _vm._v("Do yo want to be part of the "),
-          _c("br"),
-          _vm._v(" "),
-          _c("b", [_vm._v("community")]),
-          _vm._v(" and make a "),
-          _c("br"),
-          _vm._v("\n                        difference in GIS")
-        ]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(" If you are a GIS professional or are interested "),
-          _c("br"),
-          _vm._v("\n                        in using GIS for conversation")
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          { staticClass: "button button_community_join", attrs: { href: "#" } },
-          [_vm._v("Join the Community")]
-        )
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5e6f0c35", module.exports)
-  }
-}
-
-/***/ }),
-/* 134 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "footer" }, [
-      _c("div", { staticClass: "footer_container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "grid-container" }, [
-            _c("div", { staticClass: "grid-x grid-padding-x" }, [
-              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
-                _c("ul", { staticClass: "footer_ul" }, [
-                  _c("li", [_c("h6", [_vm._v("CHAPTERS")])]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Kenya")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Bulgaria")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Brazil")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("Latin America(Regional)")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Nepal")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("MORE")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
-                _c("ul", { staticClass: "footer_ul" }, [
-                  _c("li", [_c("h6", [_vm._v("COMMITTEES")])]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("Domestic Chapters")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("Communications")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Conference")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("International")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Membership")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Website")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
-                _c("ul", { staticClass: "footer_ul" }, [
-                  _c("li", [_c("h6", [_vm._v("ABOUT")])]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Newsroom")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Leadership")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("Job Opportunities")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Members")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Events")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Contact SCGIS")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "small-12 medium-3 large-3 cell" }, [
-                _c("ul", { staticClass: "footer_ul" }, [
-                  _c("li", [_c("h6", [_vm._v("SUPPORT")])]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Contact Us")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Inquiries")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("FAQ's")])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "float:left;" }, [
-                  _c("li", [_c("h6", [_vm._v("SOCIAL MEDIA")])]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "fb" }, [
-                    _c("a", { attrs: { href: "#0" } }),
-                    _vm._v(" "),
-                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
-                      _c("img", {
-                        staticClass: "img_foot",
-                        attrs: { src: "storage/fb.svg" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
-                      _c("img", {
-                        staticClass: "img_foot nxt",
-                        attrs: { src: "storage/twitter.svg" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
-                      _c("img", {
-                        staticClass: "img_foot nxt",
-                        attrs: { src: "storage/IG.svg" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("a", { staticClass: "img_lnk", attrs: { href: "#0" } }, [
-                      _c("img", {
-                        staticClass: "img_foot nxt",
-                        attrs: { src: "storage/linkedin-logo.svg" }
-                      })
-                    ])
-                  ])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "lower_section" }, [
-            _c("span", { staticClass: "more_info" }, [
-              _vm._v("More information about SCGIS email: "),
-              _c("a", { staticClass: "join_link", attrs: { href: "#0" } }, [
-                _vm._v("hello@scgis.org")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("hr", { staticClass: "footer_hr" }),
-            _vm._v(" "),
-            _c("span", { staticClass: "more_info" }, [
-              _vm._v("Copyright © 2018 SCGIS. All Rights Reserved.")
-            ]),
-            _vm._v(" "),
-            _c(
-              "span",
-              { staticClass: "spoon_foot", staticStyle: { float: "right" } },
-              [
-                _c("a", { attrs: { href: "#0" } }, [_vm._v("Privacy Policy")]),
-                _vm._v(" | "),
-                _c("a", { attrs: { href: "#0" } }, [_vm._v("Term of Use")])
-              ]
-            )
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("a", { staticClass: "to-top", attrs: { href: "#top" } }, [
-          _c("img", {
-            staticClass: "image top_icon",
-            attrs: { src: "storage/caret-symbol.svg" }
-          })
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0fa5a8d1", module.exports)
-  }
-}
-
-/***/ }),
-/* 135 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "article_section" }, [
-      _c("div", { staticClass: "grid-x" }, [
-        _c("div", { staticClass: "medium-offset-1 small-offset-1" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "medium-3 small-12 column" }, [
-          _c("h5", [_vm._v("NEWS & ARTICLES")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "grid-x" }, [
-        _c("div", { staticClass: "medium-offset-1" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "medium-3 small-12 column panel_article" }, [
-          _c("h5", [_vm._v("SCGIS Conference: Maps for advocacy session.")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorem ipsum is simply a dummy text of the printing\n                and typsetting industry. Lorem ipsum has been the\n                industry's standard dummy text ever since..."
-            )
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _c("span", { staticClass: "info" }, [_vm._v("Posted on: ")]),
-            _vm._v("Date is 17th July")
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "medium-3 small-12 column panel_article",
-            staticStyle: { background: "#5d7a37", color: "white" }
-          },
-          [
-            _c("h5", [_vm._v("CrisisMapping Typhoon Haiyan (Yolanda)")]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "Lorem ipsum is simply a dummy text of the printing\n                and typsetting industry. Lorem ipsum has been the\n                industry's standard dummy text ever since...."
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _c("span", { staticClass: "info" }, [_vm._v("Posted on: ")]),
-              _vm._v("Date is 17th July")
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "medium-3 small-12 column panel_article" }, [
-          _c("h5", [_vm._v("Web GIS Spurs Open Culture Towards Government")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorem ipsum is simply a dummy text of the printing\n                and typsetting industry. Lorem ipsum has been the\n                industry's standard dummy text ever since..."
-            )
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _c("span", { staticClass: "info" }, [_vm._v("Posted on: ")]),
-            _vm._v("Date is 17th July")
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("br")
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-201591dc", module.exports)
-  }
-}
-
-/***/ }),
-/* 136 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "grid-x join_message" }, [
-      _c("div", { staticClass: "large-12 small-12 medium-12 cell" }, [
-        _c("div", { staticClass: "message_info" }, [
-          _c("h3", { staticClass: "text-center" }, [
-            _vm._v("Want to Join SCGIS Community?")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "text-center" }, [
-            _vm._v("We can't wait for you to be a member of the community.")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "center_btn" }, [
-            _c("button", { staticClass: "button", attrs: { type: "button" } }, [
-              _vm._v("Join Now!")
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1294f631", module.exports)
-  }
-}
-
-/***/ }),
-/* 137 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("top_header"),
-      _vm._v(" "),
-      _c("banner"),
-      _vm._v(" "),
-      _c("who_we_are"),
-      _vm._v(" "),
-      _c("featured_story"),
-      _vm._v(" "),
-      _c("knowledge_support"),
-      _vm._v(" "),
-      _c("conference"),
-      _vm._v(" "),
-      _c("members"),
-      _vm._v(" "),
-      _c("banner_map"),
-      _vm._v(" "),
-      _c("news_articles"),
-      _vm._v(" "),
-      _c("join_message"),
-      _vm._v(" "),
-      _c("footer_section")
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3d067658", module.exports)
-  }
-}
-
-/***/ }),
-/* 138 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "featured" }, [
-      _c("h6", { staticClass: "text-center" }, [
-        _c("strong", [_vm._v("FEATURED STORIES")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "grid-x images" }, [
-        _c("div", { staticClass: "medium-offset-1 medium-10 small-12" }, [
-          _c("div", { staticClass: "grid-x" }, [
-            _c(
-              "div",
-              {
-                staticClass: "columns medium-6 small-12 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/green_back.jpg')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "text-slider" }, [
-                    _c("h5", [_vm._v("Master's Thesis")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("hr", { staticClass: "view_pr" }),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("View Project >")
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "columns medium-6 small-12 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/bitmap2.png')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "text-slider" }, [
-                    _c("h5", [
-                      _vm._v("Catalog and classification of online "),
-                      _c("br"),
-                      _vm._v(
-                        "\n                                Free GIS Training Courses"
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("hr", { staticClass: "view_pr" }),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("View Project >")
-                    ])
-                  ])
-                ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "grid-x" }, [
-            _c(
-              "div",
-              {
-                staticClass: "columns medium-5 small-12 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/bitmap3.png')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "text-slider" }, [
-                    _c("h5", [
-                      _vm._v("Caribou and mining "),
-                      _c("br"),
-                      _vm._v(" Story Map")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("hr", { staticClass: "view_pr" }),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("View Project >")
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "columns medium-7 small-12 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/bitmap4.png')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "text-slider" }, [
-                    _c("h5", [
-                      _vm._v("Quantifying The Impact of Multi-Annual "),
-                      _c("br"),
-                      _vm._v(
-                        "\n                                Drought on California's Agriculture Industry "
-                      ),
-                      _c("br")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("hr", { staticClass: "view_pr" }),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("View Project >")
-                    ])
-                  ])
-                ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "grid-x" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "cell small-offset-4 small-4 medium-offset-4 medium-4 large-4 btn"
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "button expanded button_view",
-                    attrs: { href: "#" }
-                  },
-                  [_vm._v("View All Project")]
-                )
-              ]
-            )
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-09446dc7", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

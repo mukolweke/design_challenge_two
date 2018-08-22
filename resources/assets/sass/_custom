@@ -261,7 +261,20 @@ body {
     }
 
     .slick-dots {
-      list-style: none;
+
+      ul {
+        list-style-type: circle;
+        margin: 0 auto;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      li {
+        float: left;
+        padding-left: 30px;
+        margin: 0 auto;
+        align-items: center;
+      }
     }
   }
 
@@ -277,9 +290,11 @@ body {
       background-size: cover;
       background-position: center;
       border-bottom: 3px solid orangered;
+      transition: 0.7s !important;
 
       &:hover {
         height: 300px;
+        transition: 0.7s !important;
       }
       &:after {
         content: attr(data-text)
@@ -287,14 +302,20 @@ body {
     }
 
     .link-slider {
-      padding-top: 310px;
+      padding-top: 275px;
       padding-left: 30px;
       display: none;
       color: black;
       font-weight: bold;
+      transition: 0.9s !important;
+
+      .small-9{
+        padding-top: 35px;
+      }
 
       &:hover {
         display: block;
+        transition: 0.9s !important;
       }
     }
 
@@ -308,6 +329,7 @@ body {
     }
 
     .button_go {
+      margin-top: 0;
       width: 50px;
       background-color: #f68c1e;
       color: black;

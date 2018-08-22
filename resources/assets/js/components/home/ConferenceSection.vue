@@ -4,10 +4,6 @@
             <h6 class="text-center"><strong>OUR CONFERENCES</strong></h6>
             <div class="row small-collapse medium-uncollapse">
 
-                <!--<slick ref="slick" :options="slickOptions">-->
-                    <!---->
-                <!--</slick>-->
-
                 <div class="my-slick-carousel">
                     <div class="column medium-4 small-4 textOverImage"
                          style="background-image: url('storage/conference2.jpg');">
@@ -62,7 +58,8 @@
             autoplaySpeed: 3000,
             arrows: false,
             adaptiveHeight: true,
-
+            dots: true,
+            dotsClass: 'slick-dots',
             mobileFirst: true
         });
     });
