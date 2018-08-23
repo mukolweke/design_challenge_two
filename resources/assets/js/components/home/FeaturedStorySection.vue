@@ -4,8 +4,8 @@
         <div class="grid-x images">
             <div class="medium-offset-1 medium-10 small-12">
                 <div class="grid-x">
-                    <div class="columns medium-6 small-12 textOverImage"
-                         style="background-image: url('storage/green_back.jpg');">
+                    <div class="column medium-6 small-12 textOverImage"
+                         style="background-image: url('storage/green_back.jpg');background-repeat: no-repeat;">
                         <div class="hover-height">
                             <div class="text-slider">
                                 <h5>Master's Thesis</h5>
@@ -16,8 +16,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="columns medium-6 small-12 textOverImage"
-                         style="background-image: url('storage/bitmap2.png');">
+                    <div class="column medium-6 small-12 textOverImage"
+                         style="background-image: url('storage/bitmap2.png');background-repeat: no-repeat;">
                         <div class="hover-height">
                             <div class="text-slider">
                                 <h5>Catalog and classification of online <br>
@@ -31,8 +31,8 @@
                     </div>
                 </div>
                 <div class="grid-x">
-                    <div class="columns medium-5 small-12 textOverImage"
-                         style="background-image: url('storage/bitmap3.png');">
+                    <div class="column medium-5 small-12 textOverImage"
+                         style="background-image: url('storage/bitmap3.png');background-repeat: no-repeat;">
                         <div class="hover-height">
                             <div class="text-slider">
                                 <h5>Caribou and mining <br> Story Map</h5>
@@ -43,8 +43,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="columns medium-7 small-12 textOverImage"
-                         style="background-image: url('storage/bitmap4.png');">
+                    <div class="column medium-7 small-12 textOverImage"
+                         style="background-image: url('storage/bitmap4.png');background-repeat: no-repeat;">
                         <div class="hover-height">
                             <div class="text-slider">
                                 <h5>Quantifying The Impact of Multi-Annual <br>

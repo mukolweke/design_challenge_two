@@ -53032,7 +53032,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         featured_story: __WEBPACK_IMPORTED_MODULE_3__FeaturedStorySection___default.a,
         knowledge_support: __WEBPACK_IMPORTED_MODULE_4__SupportKnowledgeSection___default.a,
         conference: __WEBPACK_IMPORTED_MODULE_5__ConferenceSection___default.a,
-        members: __WEBPACK_IMPORTED_MODULE_6__MembersSection___default.a,
+        members_section: __WEBPACK_IMPORTED_MODULE_6__MembersSection___default.a,
         banner_map: __WEBPACK_IMPORTED_MODULE_7__BannerMapSection___default.a,
         news_articles: __WEBPACK_IMPORTED_MODULE_8__NewsArticlesSection___default.a,
         join_message: __WEBPACK_IMPORTED_MODULE_9__JoinMessageSection___default.a,
@@ -53126,7 +53126,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53182,6 +53182,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "HeaderOne"
@@ -53221,7 +53225,26 @@ var staticRenderFns = [
             ])
           ])
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "title-bar",
+          attrs: {
+            "data-responsive-toggle": "second-menu",
+            "data-hide-for": "medium"
+          }
+        },
+        [
+          _c("button", {
+            staticClass: "menu-icon",
+            attrs: { type: "button", "data-toggle": "second-menu" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "title-bar-title" }, [_vm._v("Menu")])
+        ]
+      )
     ])
   }
 ]
@@ -53415,7 +53438,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53426,11 +53449,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
 //
 //
 //
@@ -53507,25 +53525,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "header_main" }, [
-      _c(
-        "div",
-        {
-          staticClass: "title-bar",
-          attrs: {
-            "data-responsive-toggle": "second-menu",
-            "data-hide-for": "medium"
-          }
-        },
-        [
-          _c("button", {
-            staticClass: "menu-icon",
-            attrs: { type: "button", "data-toggle": "second-menu" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "title-bar-title" }, [_vm._v("Menu")])
-        ]
-      ),
-      _vm._v(" "),
       _c(
         "div",
         {
@@ -53720,7 +53719,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.input-group[data-v-55ae3a08] {\n  height: 100px;\n  margin: 0 auto;\n}\n.input-group .fi-magnifying-glass[data-v-55ae3a08] {\n    font-size: 50px;\n}\n.input-group .fi-arrow-right[data-v-55ae3a08] {\n    font-size: 50px;\n}\n.input-group button[data-v-55ae3a08] {\n    background-color: #5d7a37;\n}\n\n/**/\n", ""]);
+exports.push([module.i, "\n.input-group[data-v-55ae3a08] {\n  height: 100px;\n  margin: 0 auto;\n}\n.input-group .fi-magnifying-glass[data-v-55ae3a08] {\n    font-size: 50px;\n}\n.input-group .fi-arrow-right[data-v-55ae3a08] {\n    font-size: 50px;\n}\n.input-group button[data-v-55ae3a08] {\n    background-color: #5d7a37;\n}\n@media only screen and (max-width: 640px) {\n.input-group[data-v-55ae3a08] {\n    margin-top: 120px;\n}\n}\n\n/**/\n", ""]);
 
 // exports
 
@@ -54082,10 +54081,13 @@ var staticRenderFns = [
                 _c(
                   "a",
                   {
-                    staticClass: "button large button_meeting",
+                    staticClass: "button button_meeting",
                     attrs: { href: "#" }
                   },
-                  [_vm._v("Learn more about "), _c("strong", [_vm._v("SCGIS")])]
+                  [
+                    _vm._v("Learn more about "),
+                    _c("strong", [_vm._v(" SCGIS")])
+                  ]
                 )
               ]
             )
@@ -54258,9 +54260,10 @@ var staticRenderFns = [
             _c(
               "div",
               {
-                staticClass: "columns medium-6 small-12 textOverImage",
+                staticClass: "column medium-6 small-12 textOverImage",
                 staticStyle: {
-                  "background-image": "url('storage/green_back.jpg')"
+                  "background-image": "url('storage/green_back.jpg')",
+                  "background-repeat": "no-repeat"
                 }
               },
               [
@@ -54283,9 +54286,10 @@ var staticRenderFns = [
             _c(
               "div",
               {
-                staticClass: "columns medium-6 small-12 textOverImage",
+                staticClass: "column medium-6 small-12 textOverImage",
                 staticStyle: {
-                  "background-image": "url('storage/bitmap2.png')"
+                  "background-image": "url('storage/bitmap2.png')",
+                  "background-repeat": "no-repeat"
                 }
               },
               [
@@ -54316,9 +54320,10 @@ var staticRenderFns = [
             _c(
               "div",
               {
-                staticClass: "columns medium-5 small-12 textOverImage",
+                staticClass: "column medium-5 small-12 textOverImage",
                 staticStyle: {
-                  "background-image": "url('storage/bitmap3.png')"
+                  "background-image": "url('storage/bitmap3.png')",
+                  "background-repeat": "no-repeat"
                 }
               },
               [
@@ -54345,9 +54350,10 @@ var staticRenderFns = [
             _c(
               "div",
               {
-                staticClass: "columns medium-7 small-12 textOverImage",
+                staticClass: "column medium-7 small-12 textOverImage",
                 staticStyle: {
-                  "background-image": "url('storage/bitmap4.png')"
+                  "background-image": "url('storage/bitmap4.png')",
+                  "background-repeat": "no-repeat"
                 }
               },
               [
@@ -54672,9 +54678,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -54691,7 +54694,7 @@ $(document).ready(function () {
         autoplaySpeed: 3000,
         arrows: false,
         adaptiveHeight: true,
-        dots: true,
+        dots: false,
         dotsClass: 'slick-dots',
         mobileFirst: true
     });
@@ -57983,121 +57986,122 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "grid-x conference" }, [
-      _c("div", { staticClass: "medium-offset-1 medium-10 columns" }, [
+      _c("div", { staticClass: "medium-offset-1 medium-10 column" }, [
         _c("h6", { staticClass: "text-center" }, [
           _c("strong", [_vm._v("OUR CONFERENCES")])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row small-collapse medium-uncollapse" }, [
-          _c("div", { staticClass: "my-slick-carousel" }, [
-            _c(
-              "div",
-              {
-                staticClass: "column medium-4 small-4 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/conference2.jpg')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("h3", [
-                      _vm._v("The Future of GIS "),
-                      _c("br"),
-                      _vm._v("in our Region")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v("Promoting growth in our"),
-                      _c("br"),
-                      _vm._v(" chapters and communities")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "button button_conference",
-                        attrs: { type: "button" }
-                      },
-                      [_vm._v("View Conference")]
-                    )
-                  ])
+        _c("div", { staticClass: "my-slick-carousel" }, [
+          _c(
+            "div",
+            {
+              staticClass: "column medium-6 small-12 textOverImage",
+              staticStyle: {
+                "background-image": "url('storage/conference2.jpg')",
+                "background-repeat": "no-repeat"
+              }
+            },
+            [
+              _c("div", { staticClass: "hover-height" }, [
+                _c("div", { staticClass: "link-slider" }, [
+                  _c("h4", [
+                    _vm._v("The Future of GIS "),
+                    _c("br"),
+                    _vm._v(" in our Region")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v("Promoting growth in our "),
+                    _c("br"),
+                    _vm._v(" chapters and communities")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button button_conference",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("View Conference")]
+                  )
                 ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "column medium-4 small-4 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/group_photo.jpg')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("h3", [
-                      _vm._v("The Future of GIS "),
-                      _c("br"),
-                      _vm._v("in our Region")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v("Promoting growth in our"),
-                      _c("br"),
-                      _vm._v(" chapters and communities")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "button  button_conference",
-                        attrs: { type: "button " }
-                      },
-                      [_vm._v("View Conference")]
-                    )
-                  ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "column medium-6 small-12 textOverImage",
+              staticStyle: {
+                "background-image": "url('storage/group_photo.jpg')",
+                "background-repeat": "no-repeat"
+              }
+            },
+            [
+              _c("div", { staticClass: "hover-height" }, [
+                _c("div", { staticClass: "link-slider" }, [
+                  _c("h4", [
+                    _vm._v("The Future of GIS "),
+                    _c("br"),
+                    _vm._v("in our Region")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v("Promoting growth in our"),
+                    _c("br"),
+                    _vm._v(" chapters and communities")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button  button_conference",
+                      attrs: { type: "button " }
+                    },
+                    [_vm._v("View Conference")]
+                  )
                 ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "column medium-4 small-4 textOverImage",
-                staticStyle: {
-                  "background-image": "url('storage/speaker.jpg')"
-                }
-              },
-              [
-                _c("div", { staticClass: "hover-height" }, [
-                  _c("div", { staticClass: "link-slider" }, [
-                    _c("h3", [
-                      _vm._v("The Future of GIS "),
-                      _c("br"),
-                      _vm._v("in our Region")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v("Promoting growth in our"),
-                      _c("br"),
-                      _vm._v(" chapters and communities")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "button  button_conference",
-                        attrs: { type: "button" }
-                      },
-                      [_vm._v("View Conference")]
-                    )
-                  ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "column medium-6 small-12 textOverImage",
+              staticStyle: {
+                "background-image": "url('storage/speaker.jpg')",
+                "background-repeat": "no-repeat"
+              }
+            },
+            [
+              _c("div", { staticClass: "hover-height" }, [
+                _c("div", { staticClass: "link-slider" }, [
+                  _c("h4", [
+                    _vm._v("The Future of GIS "),
+                    _c("br"),
+                    _vm._v("in our Region")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v("Promoting growth in our"),
+                    _c("br"),
+                    _vm._v(" chapters and communities")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button button_conference",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("View Conference")]
+                  )
                 ])
-              ]
-            )
-          ])
+              ])
+            ]
+          )
         ])
       ])
     ])
@@ -58198,7 +58202,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -58209,6 +58213,11 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -58296,100 +58305,118 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "grid-x member" }, [
-      _c("div", { staticClass: "medium-offset-1 medium-10 columns" }, [
-        _c("p", [_c("b", [_vm._v("PANEL MEMBERS")])]),
-        _vm._v(" "),
-        _c("div", { staticClass: "grid-x", staticStyle: { height: "350px" } }, [
-          _c(
-            "div",
-            {
-              staticClass: "column medium-4 small-12 textOverImage",
-              staticStyle: { "background-image": "url('storage/client1.jpg')" }
-            },
-            [
-              _c("div", { staticClass: "hover-height" }, [
-                _c("div", { staticClass: "link-slider" }, [
-                  _c("div", { staticClass: "grid-x" }, [
-                    _c("div", { staticClass: "small-9 column" }, [
-                      _c("h5", [_vm._v("Dr Lilian Pintea ")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                                    Vice President Conservation Science, the Jance Goodall\n                                    Institute.\n                                "
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "small-3 column" }, [
-                      _c("button", { staticClass: "button button_go" }, [
-                        _c("i", { staticClass: "fi-arrow-right" })
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ]
-          ),
+    return _c("div", { staticClass: "member" }, [
+      _c("div", { staticClass: "grid-x" }, [
+        _c("div", { staticClass: "medium-offset-1 medium-10 columns" }, [
+          _c("p", [_c("b", [_vm._v("PANEL MEMBERS")])]),
           _vm._v(" "),
           _c(
             "div",
-            {
-              staticClass: "column medium-4 small-12 textOverImage",
-              staticStyle: { "background-image": "url('storage/client2.jpg')" }
-            },
+            { staticClass: "grid-x", staticStyle: { height: "350px" } },
             [
-              _c("div", { staticClass: "hover-height" }, [
-                _c("div", { staticClass: "link-slider" }, [
-                  _c("div", { staticClass: "grid-x" }, [
-                    _c("div", { staticClass: "small-9 column" }, [
-                      _c("h5", [_vm._v("Dr. Michael Wamaye ")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                                    Head of our design and development team.\n                                "
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "small-3 column" }, [
-                      _c("button", { staticClass: "button button_go" }, [
-                        _c("i", { staticClass: "fi-arrow-right" })
+              _c("div", { staticClass: "column medium-4 small-12" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "textOverImage",
+                    staticStyle: {
+                      "background-image": "url('storage/client1.jpg')"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "hover-height" }, [
+                      _c("div", { staticClass: "link-slider" }, [
+                        _c("div", { staticClass: "grid-x" }, [
+                          _c("div", { staticClass: "small-9 column" }, [
+                            _c("h5", [_vm._v("Dr Lilian Pintea ")]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "\n                                            Vice President Conservation Science, the Jance Goodall\n                                            Institute.\n                                        "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "small-3 column" }, [
+                            _c("button", { staticClass: "button button_go" }, [
+                              _c("i", { staticClass: "fi-arrow-right" })
+                            ])
+                          ])
+                        ])
                       ])
                     ])
-                  ])
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "column medium-4 small-12 textOverImage",
-              staticStyle: { "background-image": "url('storage/client3.jpg')" }
-            },
-            [
-              _c("div", { staticClass: "hover-height" }, [
-                _c("div", { staticClass: "link-slider" }, [
-                  _c("div", { staticClass: "grid-x" }, [
-                    _c("div", { staticClass: "small-9 column" }, [
-                      _c("h5", [_vm._v("Mr. Chaka Williams ")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                                    Head of our Software Engineering department.\n                                "
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "small-3 column" }, [
-                      _c("button", { staticClass: "button button_go" }, [
-                        _c("i", { staticClass: "fi-arrow-right" })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "column medium-4 small-12" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "textOverImage",
+                    staticStyle: {
+                      "background-image": "url('storage/client2.jpg')"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "hover-height" }, [
+                      _c("div", { staticClass: "link-slider" }, [
+                        _c("div", { staticClass: "grid-x" }, [
+                          _c("div", { staticClass: "small-9 column" }, [
+                            _c("h5", [_vm._v("Dr. Michael Wamaye ")]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "\n                                            Head of our design and development team.\n                                        "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "small-3 column" }, [
+                            _c("button", { staticClass: "button button_go" }, [
+                              _c("i", { staticClass: "fi-arrow-right" })
+                            ])
+                          ])
+                        ])
                       ])
                     ])
-                  ])
-                ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "column medium-4 small-12" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "textOverImage",
+                    staticStyle: {
+                      "background-image": "url('storage/client3.jpg')"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "hover-height" }, [
+                      _c("div", { staticClass: "link-slider" }, [
+                        _c("div", { staticClass: "grid-x" }, [
+                          _c("div", { staticClass: "small-9 column" }, [
+                            _c("h5", [_vm._v("Mr. Chaka Williams ")]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "\n                                            Head of our Software Engineering department.\n                                        "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "small-3 column" }, [
+                            _c("button", { staticClass: "button button_go" }, [
+                              _c("i", { staticClass: "fi-arrow-right" })
+                            ])
+                          ])
+                        ])
+                      ])
+                    ])
+                  ]
+                )
               ])
             ]
           )
@@ -58516,23 +58543,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "map_bike grid-x",
-        staticStyle: {
-          background: "url('storage/Bitmap9.png')",
-          "background-size": "cover"
-        }
-      },
-      [
-        _c("div", { staticClass: "small-12 medium-12 column" }, [
+    return _c("div", [
+      _c(
+        "div",
+        {
+          staticClass: "map_bike",
+          staticStyle: {
+            "background-image": "url('storage/Bitmap9.png')",
+            "background-repeat": "no-repeat",
+            "background-size": "cover"
+          }
+        },
+        [
           _c("div", { staticClass: "grid-x" }, [
             _c(
               "div",
               {
-                staticClass: "column medium-4 small-12",
-                staticStyle: { color: "white" }
+                staticClass:
+                  "medium-offset-1 column medium-4 small-12small-offset-1",
+                staticStyle: { color: "white", "padding-top": "200px" }
               },
               [
                 _c("h4", [
@@ -58549,15 +58578,15 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
-                _c("div", { staticClass: "grid-x grid-padding-x" }, [
-                  _c("div", { staticClass: "medium-3 small-3 cell" }, [
+                _c("div", { staticClass: "grid-x" }, [
+                  _c("div", { staticClass: "medium-3 small-6 column" }, [
                     _c("img", {
                       staticClass: "play-icon",
                       attrs: { src: "storage/play_icon.svg" }
                     })
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "medium-9 small-9 cell" }, [
+                  _c("div", { staticClass: "medium-9 small-6 column" }, [
                     _c("p", { staticClass: "span_head" }, [
                       _c("span", { staticClass: "head_bold" }, [
                         _vm._v("Learning more with GIS ")
@@ -58577,11 +58606,11 @@ var staticRenderFns = [
               ]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "column medium-8 small-12" })
+            _c("div", { staticClass: "column medium-7 small-12" })
           ])
-        ])
-      ]
-    )
+        ]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -59281,7 +59310,7 @@ var render = function() {
       _vm._v(" "),
       _c("conference"),
       _vm._v(" "),
-      _c("members"),
+      _c("members_section"),
       _vm._v(" "),
       _c("banner_map"),
       _vm._v(" "),

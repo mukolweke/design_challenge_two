@@ -12,7 +12,7 @@
 
         <conference></conference>
 
-        <members></members>
+        <members_section></members_section>
 
         <banner_map></banner_map>
 
@@ -32,7 +32,7 @@
     import featured_story from './FeaturedStorySection'
     import knowledge_support from './SupportKnowledgeSection'
     import conference from './ConferenceSection'
-    import members from './MembersSection'
+    import members_section from './MembersSection'
     import banner_map from './BannerMapSection'
     import news_articles from './NewsArticlesSection'
     import join_message from './JoinMessageSection'
@@ -48,7 +48,7 @@
             featured_story,
             knowledge_support,
             conference,
-            members,
+            members_section,
             banner_map,
             news_articles,
             join_message,
