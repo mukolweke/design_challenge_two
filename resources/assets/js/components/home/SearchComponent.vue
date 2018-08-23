@@ -39,5 +39,11 @@
         }
     }
 
+    @media only screen and (max-width: 640px) {
+        .input-group{
+            margin-top: 120px;
+        }
+    }
+
     /**/
 </style>

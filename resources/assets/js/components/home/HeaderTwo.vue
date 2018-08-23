@@ -1,10 +1,5 @@
 <template>
     <div class="header_main">
-        <div class="title-bar" data-responsive-toggle="second-menu" data-hide-for="medium">
-            <button class="menu-icon" type="button" data-toggle="second-menu"></button>
-            <div class="title-bar-title">Menu</div>
-        </div>
-
         <div class="top-bar my_nav_two" id="second-menu" style="background: transparent !important;">
             <div class="top-bar-left">
                 <ul class="menu">

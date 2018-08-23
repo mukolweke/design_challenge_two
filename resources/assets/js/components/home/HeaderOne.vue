@@ -7,6 +7,10 @@
                 <li><a href="#0"><span>Sign In</span></a></li>
             </ul>
         </div>
+        <div class="title-bar" data-responsive-toggle="second-menu" data-hide-for="medium">
+            <button class="menu-icon" type="button" data-toggle="second-menu"></button>
+            <div class="title-bar-title">Menu</div>
+        </div>
     </div>
 </template>
 

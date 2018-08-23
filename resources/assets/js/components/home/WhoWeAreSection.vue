@@ -17,7 +17,7 @@
                         and typsetting industry. Lorem ipsum has been the <br>
                         industry's standard dummy text ever since...</p>
 
-                    <a href="#" class="button large button_meeting">Learn more about <strong>SCGIS</strong></a>
+                    <a href="#" class="button button_meeting">Learn more about <strong>&nbsp;SCGIS</strong></a>
                 </div>
             </div>
         </div>
