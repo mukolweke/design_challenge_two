@@ -13110,6 +13110,13 @@ body .featured .hover-height {
   color: white;
 }
 
+body .featured .hover-height .link-slider {
+  display: none;
+  padding-top: 10px;
+  padding-left: 30px;
+  color: white;
+}
+
 body .featured .hover-height:hover {
   -webkit-transition: 0.7s;
   transition: 0.7s;
@@ -13117,8 +13124,13 @@ body .featured .hover-height:hover {
   color: white;
 }
 
+body .featured .hover-height:hover .link-slider {
+  display: block;
+}
+
 body .featured .textOverImage {
-  background-size: cover;
+  background-size: 100%;
+  background-position: center;
   -webkit-transition: 0.9s;
   transition: 0.9s;
 }
@@ -13130,23 +13142,9 @@ body .featured .textOverImage:hover {
 }
 
 body .featured .text-slider {
+  display: block;
   padding-top: 200px;
   padding-left: 30px;
-}
-
-body .featured .link-slider {
-  display: none;
-  padding-top: 10px;
-  padding-left: 30px;
-  color: white;
-  -webkit-transition: 0.9s;
-  transition: 0.9s;
-}
-
-body .featured .link-sliderhover {
-  display: block;
-  -webkit-transition: 0.9s;
-  transition: 0.9s;
 }
 
 body .featured .view_pr {
@@ -13203,10 +13201,17 @@ body .conference {
 }
 
 body .conference .hover-height {
-  height: 350px;
+  height: 300px;
   -webkit-transition: 0.7s;
   transition: 0.7s;
   color: white;
+  padding-top: 50px;
+}
+
+body .conference .hover-height .link-slider {
+  display: none;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
 }
 
 body .conference .hover-height:hover {
@@ -13214,6 +13219,12 @@ body .conference .hover-height:hover {
   transition: 0.7s;
   cursor: pointer;
   color: white;
+}
+
+body .conference .hover-height:hover .link-slider {
+  display: block;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
 }
 
 body .conference h5 {
@@ -13286,6 +13297,20 @@ body .member .hover-height {
   height: 350px;
 }
 
+body .member .hover-height .link-slider {
+  padding-top: 275px;
+  padding-left: 30px;
+  display: none;
+  color: black;
+  font-weight: bold;
+  -webkit-transition: 0.7s !important;
+  transition: 0.7s !important;
+}
+
+body .member .hover-height .link-slider .small-9 {
+  padding-top: 35px;
+}
+
 body .member .hover-height:hover {
   height: 300px;
   -webkit-transition: height 0.7s;
@@ -13293,23 +13318,12 @@ body .member .hover-height:hover {
   transition: height 0.7s;
 }
 
-body .member .link-slider {
-  padding-top: 275px;
-  display: none;
+body .member .hover-height:hover .link-slider {
+  display: block;
   color: black;
   font-weight: bold;
-  -webkit-transition: 30s !important;
-  transition: 30s !important;
-}
-
-body .member .link-slider .small-9 {
-  padding-top: 35px;
-}
-
-body .member .link-slider:hover {
-  display: block;
-  -webkit-transition: 30s !important;
-  transition: 30s !important;
+  -webkit-transition: 0.7s !important;
+  transition: 0.7s !important;
 }
 
 body .member .view_pr {
@@ -13495,21 +13509,6 @@ body .footer .spoon_foot a:hover {
   color: #ff9933;
 }
 
-body .to-top {
-  display: none;
-  bottom: 200px;
-  right: 100px;
-  position: fixed;
-  background: #ff9933;
-  color: #fefefe;
-  padding: 9px 12px;
-}
-
-body .to-top:hover {
-  background: #ff4500;
-  color: #fefefe;
-}
-
 body .textImage {
   font-family: "Proxima Nova", sans-serif;
   background-size: 100%;
@@ -13526,37 +13525,8 @@ body .textImage h3 {
   font-weight: 600;
 }
 
-body .link-slider {
-  display: none;
-  padding-top: 120px;
-  padding-left: 30px;
-}
-
-body .link-slider .hover_btn {
-  background: white;
-  color: black;
-  border-radius: 50px;
-  width: 40%;
-}
-
 body .img_hold {
   padding: 0.2%;
-}
-
-body .hover-height {
-  height: 350px;
-  -webkit-transition: 0.7s;
-  transition: 0.7s;
-}
-
-body .hover-height:hover {
-  -webkit-transition: 0.7s;
-  transition: 0.7s;
-  cursor: pointer;
-}
-
-body .hover-height:hover .link-slider {
-  display: block;
 }
 
 body .no-js .top-bar {
@@ -13632,32 +13602,83 @@ body .who_we_are .button_meeting:hover {
   transition: 2ms;
 }
 
-@media only screen and (max-width: 360px) {
-  body .featured .textOverImage:hover {
-    background-size: 120%;
-  }
-
-  body .featured .text-slider {
-    padding-top: 120px;
-    padding-left: 30px;
-  }
-
-  body .featured .link-slider {
-    display: block;
-  }
-
-  body .featured .link-slider {
-    display: none;
-  }
-}
-
 @media only screen and (max-width: 640px) {
   body .member .link-slider:hover {
     margin-bottom: 50px;
+    color: orange;
   }
 
   body .map_bike {
     margin-top: 700px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  body .featured .textOverImage {
+    background-size: cover;
+    background-position: center;
+    -webkit-transition: 0.9s;
+    transition: 0.9s;
+  }
+
+  body .featured .textOverImage:hover {
+    background-size: cover;
+    background-position: center;
+    -webkit-transition: 0.9s;
+    transition: 0.9s;
+  }
+
+  body .featured .hover-height .link-slider {
+    display: none;
+    padding-top: 0;
+  }
+
+  body .featured .hover-height:hover .link-slider {
+    display: block;
+    padding-top: 0;
+  }
+
+  body .conference {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  body .conference .hover-height {
+    height: 200px;
+  }
+
+  body .conference .hover-height:hover {
+    height: 200px;
+  }
+
+  body .conference h5 {
+    font-weight: 100;
+  }
+
+  body .conference .textOverImage {
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
+
+  body .member {
+    height: 410px;
+  }
+
+  body .member .link-slider {
+    padding-top: 230px;
+    display: block;
+    font-weight: 500;
+    color: darkorange;
+    font-weight: bold;
+    -webkit-transition: 0.7s !important;
+    transition: 0.7s !important;
+  }
+
+  body .member .link-slider:hover {
+    padding-top: 150px;
+    color: darkorange;
+    -webkit-transition: 0.7s !important;
+    transition: 0.7s !important;
   }
 }
 

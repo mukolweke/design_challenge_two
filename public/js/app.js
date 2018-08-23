@@ -57995,7 +57995,7 @@ var staticRenderFns = [
           _c(
             "div",
             {
-              staticClass: "column medium-6 small-6 textOverImage",
+              staticClass: "column medium-6 small-12 textOverImage",
               staticStyle: {
                 "background-image": "url('storage/conference2.jpg')",
                 "background-repeat": "no-repeat"
@@ -58004,14 +58004,14 @@ var staticRenderFns = [
             [
               _c("div", { staticClass: "hover-height" }, [
                 _c("div", { staticClass: "link-slider" }, [
-                  _c("h3", [
+                  _c("h4", [
                     _vm._v("The Future of GIS "),
                     _c("br"),
-                    _vm._v("in our Region")
+                    _vm._v(" in our Region")
                   ]),
                   _vm._v(" "),
                   _c("p", [
-                    _vm._v("Promoting growth in our"),
+                    _vm._v("Promoting growth in our "),
                     _c("br"),
                     _vm._v(" chapters and communities")
                   ]),
@@ -58032,7 +58032,7 @@ var staticRenderFns = [
           _c(
             "div",
             {
-              staticClass: "column medium-6 small-6 textOverImage",
+              staticClass: "column medium-6 small-12 textOverImage",
               staticStyle: {
                 "background-image": "url('storage/group_photo.jpg')",
                 "background-repeat": "no-repeat"
@@ -58041,7 +58041,7 @@ var staticRenderFns = [
             [
               _c("div", { staticClass: "hover-height" }, [
                 _c("div", { staticClass: "link-slider" }, [
-                  _c("h3", [
+                  _c("h4", [
                     _vm._v("The Future of GIS "),
                     _c("br"),
                     _vm._v("in our Region")
@@ -58069,7 +58069,7 @@ var staticRenderFns = [
           _c(
             "div",
             {
-              staticClass: "column medium-6 small-6 textOverImage",
+              staticClass: "column medium-6 small-12 textOverImage",
               staticStyle: {
                 "background-image": "url('storage/speaker.jpg')",
                 "background-repeat": "no-repeat"
@@ -58078,7 +58078,7 @@ var staticRenderFns = [
             [
               _c("div", { staticClass: "hover-height" }, [
                 _c("div", { staticClass: "link-slider" }, [
-                  _c("h3", [
+                  _c("h4", [
                     _vm._v("The Future of GIS "),
                     _c("br"),
                     _vm._v("in our Region")
@@ -58093,7 +58093,7 @@ var staticRenderFns = [
                   _c(
                     "button",
                     {
-                      staticClass: "button  button_conference",
+                      staticClass: "button button_conference",
                       attrs: { type: "button" }
                     },
                     [_vm._v("View Conference")]
