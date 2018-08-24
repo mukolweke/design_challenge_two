@@ -5,7 +5,7 @@
                 <span class="input-group-label"><i class="fi-magnifying-glass"
                                                    style="transform: rotate(270deg);"></i></span>
                 <input type="text" class="input-group-field" placeholder="What do you wish to learn Today?">
-                <div class="input-group-button">
+                <div class="input-group-button" style="padding: 10px;background:white;">
                     <button class="button" type="submit"><i class="fi-arrow-right"></i></button>
                 </div>
             </div>
@@ -23,8 +23,8 @@
 <style scoped lang="scss">
 
     .input-group {
-        height: 100px;
-        margin: 0 auto;
+        height: 160px;
+        margin: 140px auto;
 
         .fi-magnifying-glass {
             font-size: 50px;
@@ -42,6 +42,13 @@
     @media only screen and (max-width: 640px) {
         .input-group{
             margin-top: 120px;
+        }
+    }
+
+    @media only screen and (max-width: 421px) {
+        .input-group{
+            margin-top: 280px;
+            height:100px;
         }
     }
 

@@ -2,16 +2,16 @@
 <div>
     <div class="map_bike" style="background-image: url('storage/Bitmap9.png');background-repeat:no-repeat;background-size:cover;">
         <div class="grid-x">
-            <div class="medium-offset-1 column medium-4 small-12small-offset-1" style="color:white; padding-top: 200px;">
-                <h4>
-                    Allowing conservation GIS
-                    practitioners to attend the
-                    Esri user conference and
-                    SGIS annual conference .
-                </h4>
+            <div class="medium-offset-1 column medium-4 small-12small-offset-1 content">
+                <h2>
+                    Allowing conservation GIS<br>
+                    practitioners to attend the<br>
+                    Esri user conference and<br>
+                    SGIS annual conference .<br>
+                </h2>
                 <p>
-                    Lorem ipsum is simply a dummy text of the printing
-                    and typsetting industry. Lorem ipsum has been the
+                    Lorem ipsum is simply a dummy text of the printing<br>
+                    and typsetting industry. Lorem ipsum has been the<br>
                     industry's standard dummy text ever since...
                 </p>
                 <br>
@@ -39,3 +39,10 @@
         name: "BannerMapSection"
     }
 </script>
+
+
+<style scoped>
+    .content{
+        color:white; padding-top: 250px;
+    }
+</style>

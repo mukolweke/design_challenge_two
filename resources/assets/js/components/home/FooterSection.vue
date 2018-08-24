@@ -79,3 +79,14 @@
         name: "FooterSection"
     }
 </script>
+
+<style scoped>
+    @media only screen and (max-width: 421px) {
+        .footer{
+            margin-top: 0;
+            height: auto;
+        }
+
+
+    }
+</style>
