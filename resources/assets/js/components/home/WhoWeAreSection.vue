@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="who_we_are">
-            <div class="grid-x" style="margin-top:40px;">
+            <div class="grid-x" style="margin-top:50px;">
                 <div class="medium-6 small-12 column mobile" style="background: url('storage/Bitmap.png') no-repeat;">
-                    <img src="" alt=""/>
+                    <!--<img src="storage/Bitmap.png" alt=""/>-->
                 </div>
                 <div class="medium-6 small-12 column" style="padding: 80px;">
                     <h5>
@@ -31,5 +31,9 @@
 </script>
 
 <style scoped>
-
+    @media only screen and (max-width: 421px) {
+        .mobile{
+            background-repeat: no-repeat;
+        }
+    }
 </style>

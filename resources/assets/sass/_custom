@@ -8,29 +8,39 @@ $lightBlack: #1a1a1a;
 $medium-gray: #cacaca;
 $lightGray: #a0a0a0;
 $orangeRed: #ff4500;
-$lightOrange: #ff9933;
+$darkOrange: #ff8c00;
+$hover_gray:#8a8a8a;
+$light_btn_gray: #f4f4f4;
+$design_orange: #f68c1e;
+$background_msg: #1a1a1a;
+$article_gray: gray;
+
 $customFont: 'Proxima Nova', 'Montserrat', sans-serif;
 
+@mixin transition($time){
+  transition: $time !important;
+}
+
 body {
-  font-family: "Proxima Nova", sans-serif;
+  font-family: $customFont;
 
   h1, h2, h3, h4, h5 {
-    font-family: "Proxima Nova", sans-serif;
+    font-family: $customFont;
     font-weight: 400;
   }
   .my_nav_one {
-    background: black;
-    color: white;
+    background: $black;
+    color: $white;
     .menu {
-      background: black;
+      background: $black;
       li a {
-        color: white;
+        color: $white;
       }
     }
   }
 
   .banner {
-    height: 700px;
+    height: 870px;
   }
 
   .header_main {
@@ -42,13 +52,14 @@ body {
       content: '';
       border-bottom-width: 0;
       border-top-style: solid;
-      border-color: white transparent transparent;
+      border-color: $white transparent transparent;
       right: 5px;
       left: auto;
       margin-top: -3px;
     }
+
     .button_join {
-      background: white;
+      background: $white;
       border-radius: 20px;
       color: black;
       font-weight: 600;
@@ -57,16 +68,16 @@ body {
 
     .top-bar, .top-bar ul {
       background-color: transparent;
-      color: white;
+      color: $white;
     }
 
     ul li a {
-      color: white;
+      color: $white;
       background: transparent;
     }
 
     a:hover {
-      color: white;
+      color: $white;
       background: transparent;
     }
   }
@@ -74,13 +85,13 @@ body {
     height: 500px;
   }
   .my_nav_two {
-    color: white;
+    color: $white;
     menu {
       background: transparent;
       text-decoration: none;
       li a {
         background: transparent;
-        color: white;
+        color: $white;
       }
     }
   }
@@ -94,38 +105,38 @@ body {
     }
 
     .hover-height {
-      transition: 0.7s;
-      color: white;
+      @include transition(0.7s);;
+      color: $white;
 
       .link-slider {
         display: none;
         padding-top: 10px;
         padding-left: 30px;
-        color: white;
-        //transition: 0.9s;
-
+        color: $white;
       }
 
       &:hover {
-        transition: 0.7s;
+        @include transition(0.7s);;
         cursor: pointer;
-        color: white;
+        color: $white;
 
         .link-slider {
           display: block;
-          //transition: 0.9s;
+          padding-top: 10px;
+          padding-left: 30px;
+          color: $white;
         }
       }
     }
 
     .textOverImage {
-      background-size: 100%;
+      background-size: 110%;
       background-position: center;
-      transition: 0.9s;
+      @include transition(0.9s);
 
       &:hover {
-        background-size: 110%;
-        transition: 0.9s;
+        background-size: 120%;
+        @include transition(0.9s);
       }
     }
 
@@ -141,26 +152,26 @@ body {
     }
 
     hr {
-      border-bottom: 1px solid darkorange;
+      border-bottom: 1px solid $darkOrange;
     }
 
     a {
       margin-top: 0;
-      color: white;
+      color: $white;
       cursor: pointer;
     }
 
     .button_view {
       padding-top: 20px;
       margin: 0 auto;
-      background-color: #f4f4f4;
-      color: black;
+      background-color: $light_btn_gray;
+      color: $black;
       font-weight: bold;
       height: 60px;
       border-radius: 20px;
 
       &:hover {
-        background-color: #8a8a8a;
+        background-color: $hover_gray;
       }
     }
 
@@ -173,9 +184,10 @@ body {
   .support {
     background-color: #fafafa;
     padding: 60px;
+    height: 400px;
 
-    h3 {
-      font-weight: bold;
+    h2 {
+      font-weight: 700;
     }
 
     p {
@@ -189,24 +201,25 @@ body {
     margin-bottom: 30px;
 
     .hover-height {
-      height: 300px;
-      transition: 0.7s;
-      color: white;
-      padding-top: 50px;
+      height: 530px;
+      @include transition(0.7s);;
+      color: $white;
+      padding-top: 200px;
+      padding-left: 50px;
 
       .link-slider {
         display: none;
-        transition: 0.7s;
+        @include transition(0.7s);
       }
 
       &:hover {
         transition: 0.7s;
         cursor: pointer;
-        color: white;
+        color: $white;
 
         .link-slider {
           display: block;
-          transition: 0.7s;
+          @include transition(0.7s);;
         }
       }
     }
@@ -216,26 +229,26 @@ body {
     }
 
     .textOverImage {
-      background-size: 100%;
-      transition: 0.7s;
+      background-size: 130%;
+      @include transition(0.7s);;
       margin: 4px;
       background-position: center;
-      color: white;
+      color: $white;
 
       &:hover {
-        background-size: 110%;
-        transition: 0.7s;
-        color: white;
+        background-size: 140%;
+        @include transition(0.7s);
+        color: $white;
       }
     }
 
     hr {
-      border-bottom: 1px solid #f68c1e;
+      border-bottom: 1px solid $design_orange;
     }
 
     .button_conference {
-      background-color: #ffffff;
-      color: black;
+      background-color: $white;
+      color: $black;
       font-weight: bold;
       border-radius: 30px;
     }
@@ -260,7 +273,7 @@ body {
   }
 
   .member {
-    height: 450px;
+    height: 480px;
 
     h5 {
       font-weight: 600;
@@ -270,7 +283,7 @@ body {
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      border-bottom: 3px solid orangered;
+      border-bottom: 3px solid $orangeRed;
     }
 
     .hover-height {
@@ -282,9 +295,9 @@ body {
         padding-top: 275px;
         padding-left: 30px;
         display: none;
-        color: black;
+        color: $black;
         font-weight: bold;
-        transition: 0.7s !important;
+        @include transition(0.7s);
 
         .small-9 {
           padding-top: 35px;
@@ -299,9 +312,9 @@ body {
 
         .link-slider {
           display: block;
-          color: black;
+          color: $black;
           font-weight: bold;
-          transition: 0.7s !important;
+          @include transition(0.7s);
         }
       }
     }
@@ -312,13 +325,13 @@ body {
     }
 
     hr {
-      border-bottom: 1px solid #f68c1e;
+      border-bottom: 1px solid $design_orange;
     }
 
     .button_go {
       margin-top: 0;
       width: 50px;
-      background-color: #f68c1e;
+      background-color: $design_orange;
       color: black;
       font-weight: bold;
       height: 50px;
@@ -333,11 +346,9 @@ body {
 
   .map_bike {
 
-    height: 800px;
+    height: 920px;
 
-    h4 {
-      font-size: 30px;
-      font-weight: 100;
+    h2 {
       font-family: "Proxima Nova", sans-serif;
       text-align: left;
     }
@@ -371,8 +382,9 @@ body {
   }
 
   .article_section {
+
     .info {
-      color: gray;
+      color: $article_gray;
       font-weight: 600;
     }
 
@@ -389,15 +401,38 @@ body {
     }
 
     .panel_article {
-      border: 1px solid gray;
-      padding: 20px;
+      border: 1px solid $article_gray;
+      padding: 25px;
+      height: 280px;
     }
   }
 
   .join_message {
     background: #121212;
 
-    h3 {
+    .message_info {
+      font-family: $customFont;
+      background: $background_msg;
+      padding-top: 70px;
+      padding-bottom: 30px;
+      color: $white;
+      height: 300px;
+
+      .center_btn {
+        display: flex;
+        justify-content: center;
+
+        button {
+          background-color: $design_orange;
+          border-radius: 30px;
+          width: 150px;
+          font-weight: 600;
+        }
+      }
+
+    }
+
+    h1 {
       font-weight: 600;
     }
     p {
@@ -407,13 +442,14 @@ body {
   }
 
   .footer {
-    font-family: 'Proxima Nova', sans-serif;
+    font-family: $customFont;
     background: $black;
     color: #ccc;
     padding: 30px;
+    height: 460px;
 
     .lower_section {
-      margin-top: 40px;
+      margin-top: 60px;
     }
 
     .top_icon {
@@ -445,6 +481,8 @@ body {
 
     ul li {
       list-style-type: none;
+      margin-bottom: 10px;
+      font-weight: 600;
 
       h6 {
         font-weight: 600;
@@ -460,12 +498,12 @@ body {
 
       li {
         a:hover {
-          color: $lightOrange;
+          color: $design_orange;
         }
       }
     }
     a {
-      color: $lightOrange;
+      color: $design_orange;
     }
     .more_info {
       color: #737373;
@@ -487,7 +525,7 @@ body {
         color: $lightGray;
       }
       a:hover {
-        color: $lightOrange;
+        color: $design_orange;
       }
     }
 
@@ -496,13 +534,13 @@ body {
   // hover on image
 
   .textImage {
-    font-family: "Proxima Nova", sans-serif;
+    font-family: $customFont;
     background-size: 100%;
     height: 350px;
     margin-bottom: 0.4%;
     transition: .5s;
     position: relative;
-    color: white;
+    color: $white;
     background-position: center;
 
     h3 {
@@ -533,33 +571,13 @@ body {
     width: 20px;
   }
 
-  .message_info {
-    font-family: $customFont;
-    background: #1a1a1a;
-    padding-top: 50px;
-    padding-bottom: 20px;
-    color: $white;
-
-    .center_btn {
-      display: flex;
-      justify-content: center;
-
-      button {
-        background-color: $lightOrange;
-        border-radius: 30px;
-        width: 150px;
-        font-weight: 600;
-      }
-    }
-
-  }
-
   .who_we_are {
     padding-top: 10px;
     background-color: #fafafa;
 
     .mobile {
       background-size: cover;
+      height: 600px;
       background-color: #fafafa;
     }
 
@@ -568,14 +586,14 @@ body {
     }
 
     .button_meeting {
-      background: darkorange;
+      background: $darkOrange;
       font-weight: 600;
       border-radius: 25px;
       display: flex;
       width: 200px;
 
       &:hover {
-        background-color: orange;
+        background-color: $design_orange;
         transition: 2ms;
       }
     }
@@ -586,7 +604,7 @@ body {
       .link-slider {
         &:hover {
           margin-bottom: 50px;
-          color: orange;
+          color: $design_orange;
         }
       }
     }
@@ -602,12 +620,12 @@ body {
       .textOverImage {
         background-size: cover;
         background-position: center;
-        transition: 0.9s;
+        @include transition(0.9s);
 
         &:hover {
           background-size: cover;
           background-position: center;
-          transition: 0.9s;
+          @include transition(0.9s);
         }
       }
 
@@ -654,681 +672,18 @@ body {
       .link-slider {
         padding-top: 230px;
         display: block;
-        font-weight: 500;
-        color: darkorange;
+        color: $darkOrange;
         font-weight: bold;
-        transition: 0.7s !important;
+        @include transition(0.7s);
 
         &:hover {
           padding-top: 150px;
-          color: darkorange;
-          transition: 0.7s !important;
+          color: $darkOrange;
+          @include transition(0.7s);
         }
       }
 
     }
-  }
-  // Add-ons
-
-  .slide-in-down.mui-enter, .slide-in-left.mui-enter, .slide-in-up.mui-enter, .slide-in-right.mui-enter, .slide-out-down.mui-leave, .slide-out-right.mui-leave, .slide-out-up.mui-leave, .slide-out-left.mui-leave, .fade-in.mui-enter, .fade-out.mui-leave, .hinge-in-from-top.mui-enter, .hinge-in-from-right.mui-enter, .hinge-in-from-bottom.mui-enter, .hinge-in-from-left.mui-enter, .hinge-in-from-middle-x.mui-enter, .hinge-in-from-middle-y.mui-enter, .hinge-out-from-top.mui-leave, .hinge-out-from-right.mui-leave, .hinge-out-from-bottom.mui-leave, .hinge-out-from-left.mui-leave, .hinge-out-from-middle-x.mui-leave, .hinge-out-from-middle-y.mui-leave, .scale-in-up.mui-enter, .scale-in-down.mui-enter, .scale-out-up.mui-leave, .scale-out-down.mui-leave, .spin-in.mui-enter, .spin-out.mui-leave, .spin-in-ccw.mui-enter, .spin-out-ccw.mui-leave {
-    transition-duration: 500ms;
-    transition-timing-function: linear;
-  }
-
-  .slide-in-down.mui-enter {
-    -webkit-transform: translateY(-100%);
-    -ms-transform: translateY(-100%);
-    transform: translateY(-100%);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-
-  .slide-in-down.mui-enter.mui-enter-active {
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-  }
-
-  .slide-in-left.mui-enter {
-    -webkit-transform: translateX(-100%);
-    -ms-transform: translateX(-100%);
-    transform: translateX(-100%);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-
-  .slide-in-left.mui-enter.mui-enter-active {
-    -webkit-transform: translateX(0);
-    -ms-transform: translateX(0);
-    transform: translateX(0);
-  }
-
-  .slide-in-up.mui-enter {
-    -webkit-transform: translateY(100%);
-    -ms-transform: translateY(100%);
-    transform: translateY(100%);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-
-  .slide-in-up.mui-enter.mui-enter-active {
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-  }
-
-  .slide-in-right.mui-enter {
-    -webkit-transform: translateX(100%);
-    -ms-transform: translateX(100%);
-    transform: translateX(100%);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-
-  .slide-in-right.mui-enter.mui-enter-active {
-    -webkit-transform: translateX(0);
-    -ms-transform: translateX(0);
-    transform: translateX(0);
-  }
-
-  .slide-out-down.mui-leave {
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-
-  .slide-out-down.mui-leave.mui-leave-active {
-    -webkit-transform: translateY(-100%);
-    -ms-transform: translateY(-100%);
-    transform: translateY(-100%);
-  }
-
-  .slide-out-right.mui-leave {
-    -webkit-transform: translateX(0);
-    -ms-transform: translateX(0);
-    transform: translateX(0);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-
-  .slide-out-right.mui-leave.mui-leave-active {
-    -webkit-transform: translateX(100%);
-    -ms-transform: translateX(100%);
-    transform: translateX(100%);
-  }
-
-  .slide-out-up.mui-leave {
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-
-  .slide-out-up.mui-leave.mui-leave-active {
-    -webkit-transform: translateY(-100%);
-    -ms-transform: translateY(-100%);
-    transform: translateY(-100%);
-  }
-
-  .slide-out-left.mui-leave {
-    -webkit-transform: translateX(0);
-    -ms-transform: translateX(0);
-    transform: translateX(0);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-
-  .slide-out-left.mui-leave.mui-leave-active {
-    -webkit-transform: translateX(-100%);
-    -ms-transform: translateX(-100%);
-    transform: translateX(-100%);
-  }
-
-  .fade-in.mui-enter {
-    opacity: 0;
-    transition-property: opacity;
-  }
-
-  .fade-in.mui-enter.mui-enter-active {
-    opacity: 1;
-  }
-
-  .fade-out.mui-leave {
-    opacity: 1;
-    transition-property: opacity;
-  }
-
-  .fade-out.mui-leave.mui-leave-active {
-    opacity: 0;
-  }
-
-  .hinge-in-from-top.mui-enter {
-    -webkit-transform: perspective(2000px) rotateX(-90deg);
-    transform: perspective(2000px) rotateX(-90deg);
-    -webkit-transform-origin: top;
-    -ms-transform-origin: top;
-    transform-origin: top;
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .hinge-in-from-top.mui-enter.mui-enter-active {
-    -webkit-transform: perspective(2000px) rotate(0deg);
-    transform: perspective(2000px) rotate(0deg);
-  }
-
-  .hinge-in-from-right.mui-enter {
-    -webkit-transform: perspective(2000px) rotateY(-90deg);
-    transform: perspective(2000px) rotateY(-90deg);
-    -webkit-transform-origin: right;
-    -ms-transform-origin: right;
-    transform-origin: right;
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .hinge-in-from-right.mui-enter.mui-enter-active {
-    -webkit-transform: perspective(2000px) rotate(0deg);
-    transform: perspective(2000px) rotate(0deg);
-  }
-
-  .hinge-in-from-bottom.mui-enter {
-    -webkit-transform: perspective(2000px) rotateX(90deg);
-    transform: perspective(2000px) rotateX(90deg);
-    -webkit-transform-origin: bottom;
-    -ms-transform-origin: bottom;
-    transform-origin: bottom;
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .hinge-in-from-bottom.mui-enter.mui-enter-active {
-    -webkit-transform: perspective(2000px) rotate(0deg);
-    transform: perspective(2000px) rotate(0deg);
-  }
-
-  .hinge-in-from-left.mui-enter {
-    -webkit-transform: perspective(2000px) rotateY(90deg);
-    transform: perspective(2000px) rotateY(90deg);
-    -webkit-transform-origin: left;
-    -ms-transform-origin: left;
-    transform-origin: left;
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .hinge-in-from-left.mui-enter.mui-enter-active {
-    -webkit-transform: perspective(2000px) rotate(0deg);
-    transform: perspective(2000px) rotate(0deg);
-  }
-
-  .hinge-in-from-middle-x.mui-enter {
-    -webkit-transform: perspective(2000px) rotateX(-90deg);
-    transform: perspective(2000px) rotateX(-90deg);
-    -webkit-transform-origin: center;
-    -ms-transform-origin: center;
-    transform-origin: center;
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .hinge-in-from-middle-x.mui-enter.mui-enter-active {
-    -webkit-transform: perspective(2000px) rotate(0deg);
-    transform: perspective(2000px) rotate(0deg);
-  }
-
-  .hinge-in-from-middle-y.mui-enter {
-    -webkit-transform: perspective(2000px) rotateY(-90deg);
-    transform: perspective(2000px) rotateY(-90deg);
-    -webkit-transform-origin: center;
-    -ms-transform-origin: center;
-    transform-origin: center;
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .hinge-in-from-middle-y.mui-enter.mui-enter-active {
-    -webkit-transform: perspective(2000px) rotate(0deg);
-    transform: perspective(2000px) rotate(0deg);
-  }
-
-  .hinge-out-from-top.mui-leave {
-    -webkit-transform: perspective(2000px) rotate(0deg);
-    transform: perspective(2000px) rotate(0deg);
-    -webkit-transform-origin: top;
-    -ms-transform-origin: top;
-    transform-origin: top;
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .hinge-out-from-top.mui-leave.mui-leave-active {
-    -webkit-transform: perspective(2000px) rotateX(-90deg);
-    transform: perspective(2000px) rotateX(-90deg);
-  }
-
-  .hinge-out-from-right.mui-leave {
-    -webkit-transform: perspective(2000px) rotate(0deg);
-    transform: perspective(2000px) rotate(0deg);
-    -webkit-transform-origin: right;
-    -ms-transform-origin: right;
-    transform-origin: right;
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .hinge-out-from-right.mui-leave.mui-leave-active {
-    -webkit-transform: perspective(2000px) rotateY(-90deg);
-    transform: perspective(2000px) rotateY(-90deg);
-  }
-
-  .hinge-out-from-bottom.mui-leave {
-    -webkit-transform: perspective(2000px) rotate(0deg);
-    transform: perspective(2000px) rotate(0deg);
-    -webkit-transform-origin: bottom;
-    -ms-transform-origin: bottom;
-    transform-origin: bottom;
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .hinge-out-from-bottom.mui-leave.mui-leave-active {
-    -webkit-transform: perspective(2000px) rotateX(90deg);
-    transform: perspective(2000px) rotateX(90deg);
-  }
-
-  .hinge-out-from-left.mui-leave {
-    -webkit-transform: perspective(2000px) rotate(0deg);
-    transform: perspective(2000px) rotate(0deg);
-    -webkit-transform-origin: left;
-    -ms-transform-origin: left;
-    transform-origin: left;
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .hinge-out-from-left.mui-leave.mui-leave-active {
-    -webkit-transform: perspective(2000px) rotateY(90deg);
-    transform: perspective(2000px) rotateY(90deg);
-  }
-
-  .hinge-out-from-middle-x.mui-leave {
-    -webkit-transform: perspective(2000px) rotate(0deg);
-    transform: perspective(2000px) rotate(0deg);
-    -webkit-transform-origin: center;
-    -ms-transform-origin: center;
-    transform-origin: center;
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .hinge-out-from-middle-x.mui-leave.mui-leave-active {
-    -webkit-transform: perspective(2000px) rotateX(-90deg);
-    transform: perspective(2000px) rotateX(-90deg);
-  }
-
-  .hinge-out-from-middle-y.mui-leave {
-    -webkit-transform: perspective(2000px) rotate(0deg);
-    transform: perspective(2000px) rotate(0deg);
-    -webkit-transform-origin: center;
-    -ms-transform-origin: center;
-    transform-origin: center;
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .hinge-out-from-middle-y.mui-leave.mui-leave-active {
-    -webkit-transform: perspective(2000px) rotateY(-90deg);
-    transform: perspective(2000px) rotateY(-90deg);
-  }
-
-  .scale-in-up.mui-enter {
-    -webkit-transform: scale(0.5);
-    -ms-transform: scale(0.5);
-    transform: scale(0.5);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .scale-in-up.mui-enter.mui-enter-active {
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-  }
-
-  .scale-in-down.mui-enter {
-    -webkit-transform: scale(1.5);
-    -ms-transform: scale(1.5);
-    transform: scale(1.5);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .scale-in-down.mui-enter.mui-enter-active {
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-  }
-
-  .scale-out-up.mui-leave {
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .scale-out-up.mui-leave.mui-leave-active {
-    -webkit-transform: scale(1.5);
-    -ms-transform: scale(1.5);
-    transform: scale(1.5);
-  }
-
-  .scale-out-down.mui-leave {
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .scale-out-down.mui-leave.mui-leave-active {
-    -webkit-transform: scale(0.5);
-    -ms-transform: scale(0.5);
-    transform: scale(0.5);
-  }
-
-  .spin-in.mui-enter {
-    -webkit-transform: rotate(-0.75turn);
-    -ms-transform: rotate(-0.75turn);
-    transform: rotate(-0.75turn);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .spin-in.mui-enter.mui-enter-active {
-    -webkit-transform: rotate(0);
-    -ms-transform: rotate(0);
-    transform: rotate(0);
-  }
-
-  .spin-out.mui-leave {
-    -webkit-transform: rotate(0);
-    -ms-transform: rotate(0);
-    transform: rotate(0);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .spin-out.mui-leave.mui-leave-active {
-    -webkit-transform: rotate(0.75turn);
-    -ms-transform: rotate(0.75turn);
-    transform: rotate(0.75turn);
-  }
-
-  .spin-in-ccw.mui-enter {
-    -webkit-transform: rotate(0.75turn);
-    -ms-transform: rotate(0.75turn);
-    transform: rotate(0.75turn);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .spin-in-ccw.mui-enter.mui-enter-active {
-    -webkit-transform: rotate(0);
-    -ms-transform: rotate(0);
-    transform: rotate(0);
-  }
-
-  .spin-out-ccw.mui-leave {
-    -webkit-transform: rotate(0);
-    -ms-transform: rotate(0);
-    transform: rotate(0);
-    transition-property: -webkit-transform, opacity;
-    transition-property: transform, opacity;
-  }
-
-  .spin-out-ccw.mui-leave.mui-leave-active {
-    -webkit-transform: rotate(-0.75turn);
-    -ms-transform: rotate(-0.75turn);
-    transform: rotate(-0.75turn);
-  }
-
-  .slow {
-    transition-duration: 750ms !important;
-  }
-
-  .fast {
-    transition-duration: 250ms !important;
-  }
-
-  .linear {
-    transition-timing-function: linear !important;
-  }
-
-  .ease {
-    transition-timing-function: ease !important;
-  }
-
-  .ease-in {
-    transition-timing-function: ease-in !important;
-  }
-
-  .ease-out {
-    transition-timing-function: ease-out !important;
-  }
-
-  .ease-in-out {
-    transition-timing-function: ease-in-out !important;
-  }
-
-  .bounce-in {
-    transition-timing-function: cubic-bezier(0.485, 0.155, 0.24, 1.245) !important;
-  }
-
-  .bounce-out {
-    transition-timing-function: cubic-bezier(0.485, 0.155, 0.515, 0.845) !important;
-  }
-
-  .bounce-in-out {
-    transition-timing-function: cubic-bezier(0.76, -0.245, 0.24, 1.245) !important;
-  }
-
-  .short-delay {
-    transition-delay: 300ms !important;
-  }
-
-  .long-delay {
-    transition-delay: 700ms !important;
-  }
-
-  .shake {
-    -webkit-animation-name: shake-7;
-    animation-name: shake-7;
-  }
-
-  @-webkit-keyframes shake-7 {
-    0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90% {
-      -webkit-transform: translateX(7%);
-      transform: translateX(7%);
-    }
-    5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95% {
-      -webkit-transform: translateX(-7%);
-      transform: translateX(-7%);
-    }
-  }
-
-  @keyframes shake-7 {
-    0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90% {
-      -webkit-transform: translateX(7%);
-      transform: translateX(7%);
-    }
-    5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95% {
-      -webkit-transform: translateX(-7%);
-      transform: translateX(-7%);
-    }
-  }
-
-  .spin-cw {
-    -webkit-animation-name: spin-cw-1turn;
-    animation-name: spin-cw-1turn;
-  }
-
-  @-webkit-keyframes spin-cw-1turn {
-    0% {
-      -webkit-transform: rotate(-1turn);
-      transform: rotate(-1turn);
-    }
-    100% {
-      -webkit-transform: rotate(0);
-      transform: rotate(0);
-    }
-  }
-
-  @keyframes spin-cw-1turn {
-    0% {
-      -webkit-transform: rotate(-1turn);
-      transform: rotate(-1turn);
-    }
-    100% {
-      -webkit-transform: rotate(0);
-      transform: rotate(0);
-    }
-  }
-
-  .spin-ccw {
-    -webkit-animation-name: spin-cw-1turn;
-    animation-name: spin-cw-1turn;
-  }
-
-  @keyframes spin-cw-1turn {
-    0% {
-      -webkit-transform: rotate(0);
-      transform: rotate(0);
-    }
-    100% {
-      -webkit-transform: rotate(1turn);
-      transform: rotate(1turn);
-    }
-  }
-
-  .wiggle {
-    -webkit-animation-name: wiggle-7deg;
-    animation-name: wiggle-7deg;
-  }
-
-  @-webkit-keyframes wiggle-7deg {
-    40%, 50%, 60% {
-      -webkit-transform: rotate(7deg);
-      transform: rotate(7deg);
-    }
-    35%, 45%, 55%, 65% {
-      -webkit-transform: rotate(-7deg);
-      transform: rotate(-7deg);
-    }
-    0%, 30%, 70%, 100% {
-      -webkit-transform: rotate(0);
-      transform: rotate(0);
-    }
-  }
-
-  @keyframes wiggle-7deg {
-    40%, 50%, 60% {
-      -webkit-transform: rotate(7deg);
-      transform: rotate(7deg);
-    }
-    35%, 45%, 55%, 65% {
-      -webkit-transform: rotate(-7deg);
-      transform: rotate(-7deg);
-    }
-    0%, 30%, 70%, 100% {
-      -webkit-transform: rotate(0);
-      transform: rotate(0);
-    }
-  }
-
-  .infinite {
-    -webkit-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
-  }
-
-  .slow {
-    -webkit-animation-duration: 750ms !important;
-    animation-duration: 750ms !important;
-  }
-
-  .fast {
-    -webkit-animation-duration: 250ms !important;
-    animation-duration: 250ms !important;
-  }
-
-  .linear {
-    -webkit-animation-timing-function: linear !important;
-    animation-timing-function: linear !important;
-  }
-
-  .ease {
-    -webkit-animation-timing-function: ease !important;
-    animation-timing-function: ease !important;
-  }
-
-  .ease-in {
-    -webkit-animation-timing-function: ease-in !important;
-    animation-timing-function: ease-in !important;
-  }
-
-  .ease-out {
-    -webkit-animation-timing-function: ease-out !important;
-    animation-timing-function: ease-out !important;
-  }
-
-  .ease-in-out {
-    -webkit-animation-timing-function: ease-in-out !important;
-    animation-timing-function: ease-in-out !important;
-  }
-
-  .bounce-in {
-    -webkit-animation-timing-function: cubic-bezier(0.485, 0.155, 0.24, 1.245) !important;
-    animation-timing-function: cubic-bezier(0.485, 0.155, 0.24, 1.245) !important;
-  }
-
-  .bounce-out {
-    -webkit-animation-timing-function: cubic-bezier(0.485, 0.155, 0.515, 0.845) !important;
-    animation-timing-function: cubic-bezier(0.485, 0.155, 0.515, 0.845) !important;
-  }
-
-  .bounce-in-out {
-    -webkit-animation-timing-function: cubic-bezier(0.76, -0.245, 0.24, 1.245) !important;
-    animation-timing-function: cubic-bezier(0.76, -0.245, 0.24, 1.245) !important;
-  }
-
-  .short-delay {
-    -webkit-animation-delay: 300ms !important;
-    animation-delay: 300ms !important;
-  }
-
-  .long-delay {
-    -webkit-animation-delay: 700ms !important;
-    animation-delay: 700ms !important;
   }
 
 }
